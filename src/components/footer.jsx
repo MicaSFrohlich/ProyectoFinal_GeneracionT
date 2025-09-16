@@ -30,9 +30,9 @@ function Footer() {
           <button onClick={() => toggleSection("ayuda")}>Ayuda</button>
           {open.ayuda && (
             <div className="toggle-content">
-              <p>🤍 Querés mandar un reclamo? </p>
-              <p> Comunicate a nuestro mail:</p>
-              <p> novastyle.reclamos@gmail.com</p>
+              <p class="toggle-font">🤍 Querés mandar un reclamo? </p>
+              <p class="toggle-font"> Comunicate a nuestro mail:</p>
+              <p class="toggle-font"> novastyle.reclamos@gmail.com</p>
             </div>
           )}
         </div>
@@ -41,8 +41,8 @@ function Footer() {
           <button onClick={() => toggleSection("contacto")}>Contacto</button>
           {open.contacto && (
             <div className="toggle-content">
-              <p>🤍 Email: novastyle@gmail.com</p>
-              <p>🤍 Teléfono: +54 9 11 1234-5678</p>
+              <p class="toggle-font">🤍 Email: novastyle@gmail.com</p>
+              <p class="toggle-font">🤍 Teléfono: +54 9 11 1234-5678</p>
             </div>
           )}
         </div>
@@ -51,15 +51,15 @@ function Footer() {
           <button onClick={() => toggleSection("local")}>Local</button>
           {open.local && (
             <div className="toggle-content">
-              <p>🤍 Dirección: Av. Siempre Viva 123, CABA</p>
-              <p>🤍 Horarios: Lunes a Sábado de 10 a 20hs</p>
-              <p>🤍 Cerca del subte línea B</p>
+              <p class="toggle-font">🤍 Dirección: Av. Santa Fé 2015, CABA</p>
+              <p class="toggle-font">🤍 Horarios: Lunes a Viernes de 9 a 18hs</p>
+              <p class="toggle-font">🤍 Cerca del Ateneo Grand Splendid</p>
             </div>
           )}
         </div>
       </div>
         <div className="barra-lado-derecho">
-          <p className="font subtitulo">Nuestras redes</p>
+          <p className="font-subtitulo">Nuestras redes</p>
           <div className="link-contactos">
             <a href="#">
               <img
