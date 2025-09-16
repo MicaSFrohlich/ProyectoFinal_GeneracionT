@@ -2,11 +2,11 @@
 
 header{
   background-color: white;
-  position: fixed;
-  top: 0;
+  position: fixed;  top: 0;
   left: 0;
   width: 100%;
   height: 12%;
+  z-index: 9999;
 }
 
 body{
@@ -45,10 +45,10 @@ input:-webkit-autofill {
 /* Textos */
 
 .titulo{
-    font-size: 15vh;
+  font-size: 15vh;
 }
 .subtitulo{
-    font-size: 5vh;
+  font-size: 5vh;
 }
 
 .font {
@@ -67,8 +67,8 @@ input:-webkit-autofill {
   font-size: 5vh;
 }
 .texto{
-    font-family: "Imperial";
-    font-size: 2.5vh;
+  font-family: "Imperial";
+  font-size: 2.5vh;
 }
 
 .toggle-font{
@@ -78,56 +78,56 @@ input:-webkit-autofill {
 /* Botones */
 
 .btn{
-    font-family: "Imperial Script", cursive;
-    color:white;
-    background-color: #987070;
-    width: 20vh;
-    border-radius: 1vh;
+  font-family: "Imperial Script", cursive;
+  color:white;
+  background-color: #987070;
+  width: 20vh;
+  border-radius: 1vh;
 }
 
 
 button{
-    background-color: #ffffff00;
-    border-color: #efe9dd;
-    border-style: none;
-    font-size: 4vh;
-    color: #3f3832;
+  background-color: #ffffff00;
+  border-color: #efe9dd;
+  border-style: none;
+  font-size: 4vh;
+  color: #3f3832;
 }
 p{
-    color: #3f3832;
+  color: #3f3832;
 }
 
 /* Detalles del footer */
 
 .barra-footer{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 10vh;
-    padding: 5vh;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 10vh;
+  padding: 5vh;
+  align-items: center;
 }
 
 .barra {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #ffffff;
 }
 .logo{
-    width: 8vh;
-    margin: 2vh;
+  width: 8vh;
+  margin: 2vh;
 }
 
 #logofooter{
-    height: 20vh;
+  height: 20vh;
 }
 .iconos{
-    height: 5vh;
-    width: 5vh;
+  height: 5vh;
+  width: 5vh;
 }
 a{
-    color: #3f3832;
+  color: #3f3832;
 }
 
 .informacion { 
@@ -153,7 +153,7 @@ a{
   position: relative;
   flex-wrap: wrap; 
   z-index: 1; 
-    color: #ffffff;   
+  color: #ffffff;   
 }
 
 .toggle button {
@@ -189,30 +189,30 @@ a{
 /* Detalles del navbar */
 
 .link-contactos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
 }
 
 .barra-lado-derecho{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5vh;
 }
 .link-otros-sitios{
-    display: flex;
-    flex-direction: row;
-    gap: 3vh;
+  display: flex;
+  flex-direction: row;
+  gap: 3vh;
 }
 
 /* HOME */
 
 .inicio{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .division {
@@ -269,15 +269,14 @@ a{
 /* REGISTRO Y LOGIN */
 
 .datos{
-    background: linear-gradient(135deg,#bd9090, #d4b8b8);;
-    padding: 3vh;
-    gap: 3vh;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 2vh;
-    border-radius: 2dvb;
+  background: linear-gradient(135deg,#bd9090, #d4b8b8);;
+  padding: 3vh;
+  gap: 3vh;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh;
+  border-radius: 2dvb;
 }
-
