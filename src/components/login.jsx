@@ -16,7 +16,7 @@ function login() {
       return;
     }
     alert("🩷 ¡Bienvenido!");
-    navigate("/home");
+    navigate("/");
   };
 
   return (

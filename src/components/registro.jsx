@@ -17,7 +17,7 @@ function registro() {
       return;
     }
     alert("🩷 ¡Bienvenido!");
-    navigate("/inicio");
+    navigate("/");
   };
 
   return (
