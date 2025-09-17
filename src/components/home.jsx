@@ -23,8 +23,6 @@ function home() {
             ))}
         </div>
 
-
-
     </main>
   );
 }

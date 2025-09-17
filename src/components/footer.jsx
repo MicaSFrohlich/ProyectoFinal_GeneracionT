@@ -51,7 +51,7 @@ function Footer() {
           <button onClick={() => toggleSection("local")}>Local</button>
           {open.local && (
             <div className="toggle-content">
-              <p class="toggle-font">🤍 Dirección: Av. Santa Fé 2015, CABA</p>
+              <p class="toggle-font">🤍 Dirección: Av. Santa Fe 2015, CABA</p>
               <p class="toggle-font">🤍 Horarios: Lunes a Viernes de 9 a 18hs</p>
               <p class="toggle-font">🤍 Cerca del Ateneo Grand Splendid</p>
             </div>
@@ -92,12 +92,8 @@ function Footer() {
           </div>
         </div>
 
-
-
-
       </div>
 
-     
     </footer>
   );
 }
