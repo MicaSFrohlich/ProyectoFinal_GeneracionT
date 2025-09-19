@@ -1,21 +1,42 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-function navbar() {
+function navbar({ secciones, onSelect }) {
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
   return (
     <header>
       <div className="barra">
         <Link to="/"><img src="/img/LogoHeader.png" alt="" className="logo" /></Link>
+
+        <button className="menu-btn" onClick={() => setMenuAbierto(!menuAbierto)}>
+          ☰ 
+        </button>
+
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">
-            <Link to="/catalogo"><p className="texto">Catálogo</p></Link>
-            <Link to="#"><p className="texto">Sobre Nosotros</p></Link>
-            <Link to="#"><p className="texto">Carrito</p></Link>
-            <Link to="#"><p className="texto">Seguí tu envío</p></Link>
-            <Link to="#"><p className="texto">Arma tu conjunto</p></Link>
+            <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
+            <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
+            <Link to="#"><p className="texto-nav">Carrito</p></Link>
+            <Link to="#"><p className="texto-nav">Seguí tu envío</p></Link>
+            <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>
           </div>
           <Link to="/usuario"><img src="/img/contacto.png" alt="" className="logo" /></Link>
         </div>
+      </div>
+
+      <div className={`sidebar ${menuAbierto ? "activo" : ""}`}>
+        <button className="cerrar-btn" onClick={() => setMenuAbierto(false)}>
+          ×
+        </button>
+        <ul>
+          {secciones.map((s) => (
+            <li key={s} onClick={() => { onSelect(s); setMenuAbierto(false); }}>
+              {s}
+            </li>
+          ))}
+        </ul>
       </div>
     </header>
   );

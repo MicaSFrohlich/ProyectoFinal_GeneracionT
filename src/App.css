@@ -71,6 +71,11 @@ input:-webkit-autofill {
   font-size: 2.5vh;
 }
 
+.texto-nav{
+  font-family: "Imperial";
+  font-size: 2vh;
+}
+
 .toggle-font{
   color:#ffffff;
 }
@@ -114,6 +119,7 @@ p{
   width: 100%;
   background-color: #ffffff;
 }
+
 .logo{
   width: 8vh;
   margin: 2vh;
@@ -206,6 +212,66 @@ a{
   flex-direction: row;
   gap: 3vh;
 }
+
+.menu-btn {
+  background: #dfc4c0;
+  color: #fff;
+  border: none;
+  padding: 1vh 1.5vh;
+  cursor: pointer;
+  border-radius: 2vh;
+  height: 8vh;
+  left:11vh;
+  position: fixed;
+  align-self: center;
+}
+
+.sidebar {
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 7vh;
+  position: fixed;
+  top: 0;
+  left: -60vh;
+  width: 40vh;
+  height: 100%;
+  background: #d9a29900;
+  transition: left 0.3s ease;
+  z-index: 9999;
+  color:#3f3832;
+}
+
+.sidebar.activo {
+  left: 0;
+  background: #d9a299a9;
+}
+
+.sidebar .cerrar-btn {
+  background: #987070;
+  border-radius: 1vh;
+  border: none;
+  color: #fff;
+  font-size: 2.4vh;
+  cursor: pointer;
+  margin-bottom: 2vh;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 1vh 0;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.sidebar li:hover {
+  background: #d9a299;
+}
+
 
 /* HOME */
 
