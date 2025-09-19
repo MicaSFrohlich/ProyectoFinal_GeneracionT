@@ -12,12 +12,18 @@ function registro() {
   const togglePassword = () => setShowPassword(!showPassword);
 
   const registrar = () => {
-    if (password !== passwordRepeat) {
-      alert("⚠️ Las contraseñas no coinciden!");
-      return;
-    }
-    alert("🩷 ¡Bienvenido!");
-    navigate("/");
+  if (!email || !password || !passwordRepeat) {
+    alert("⚠️ Todos los campos son obligatorios!");
+    return;
+  }
+
+  if (password !== passwordRepeat) {
+    alert("⚠️ Las contraseñas no coinciden!");
+    return;
+  }
+
+  alert("🩷 ¡Bienvenido!");
+  navigate("/");
   };
 
   return (
