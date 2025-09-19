@@ -22,7 +22,6 @@
   width: 180px;
   text-align: center;
   padding: 10px;
-  transition: transform 0.3s;
 }
 
 .producto img {
@@ -30,8 +29,4 @@
   height: 150px;
   object-fit: cover;
   border-radius: 8px;
-}
-
-.producto:hover {
-  transform: scale(1.05);
 }

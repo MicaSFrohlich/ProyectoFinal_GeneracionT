@@ -8,6 +8,7 @@ function navbar() {
         <Link to="/"><img src="/img/LogoHeader.png" alt="" className="logo" /></Link>
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">
+            <Link to="/catalogo"><p className="texto">Catálogo</p></Link>
             <Link to="#"><p className="texto">Sobre Nosotros</p></Link>
             <Link to="#"><p className="texto">Carrito</p></Link>
             <Link to="#"><p className="texto">Seguí tu envío</p></Link>

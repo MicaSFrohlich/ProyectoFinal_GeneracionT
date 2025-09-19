@@ -1,7 +1,7 @@
 import React from "react";
 import "./catalogo.css";
 
-const catalogo = [
+const productos = [
   {
     seccion: "Ropa",
     productos: [
@@ -18,10 +18,10 @@ const catalogo = [
   }
 ];
 
-const Catalogo = () => {
+const catalogo = () => {
   return (
     <div className="catalogo">
-      {catalogo.map((seccion) => (
+      {productos.map((seccion) => (
         <div key={seccion.seccion} className="seccion">
           <h2>{seccion.seccion}</h2>
           <div className="productos">
