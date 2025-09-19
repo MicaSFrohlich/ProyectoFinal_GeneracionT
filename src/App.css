@@ -336,21 +336,6 @@ a{
 /* REGISTRO Y LOGIN */
 
 .datos{
-<<<<<<< HEAD
-    background-color: #F0E4D3;
-    color: #987070;
-    padding: 3vh;
-    gap: 3vh;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 2vh;
-    
-}
-
-=======
   background: linear-gradient(135deg,#bd9090, #d4b8b8);;
   padding: 3vh;
   gap: 3vh;
@@ -362,4 +347,3 @@ a{
   margin: 2vh;
   border-radius: 2dvb;
 }
->>>>>>> c77b2a8ad967a37b9376ee994d9bae786d76b740
