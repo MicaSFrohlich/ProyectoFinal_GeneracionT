@@ -1,5 +1,4 @@
 .catalogo {
-  margin-top: 12%;
   display: flex;
   flex-direction: column;
 }
@@ -10,32 +9,32 @@
 }
 
 .productos {
-  width: 70%;
   justify-self: center;
+  align-items: center;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
   justify-content: space-between;
-  gap: 15vh;
+  gap: 5vh 20vh;
+  padding: 20vh;
 }
 
 .producto {
+  background-color: #e6d5d2;
   width: 20%;
   display: flex;
   flex-direction: column;
   justify-self: center;
+  padding: 2vh;
 }
 
 .producto img {
-  background-color: #fdfcfc;
-
-  width: 100%;
-  height: 40%;
-
+  background-color: #fdfcfcec;
+  height: 30vh;
   object-fit: contain;
   padding: 4vh;
-  border-radius: 2vh;
 }
 
 /* TEXTO */
@@ -43,12 +42,12 @@
   font-family: "Imperial Script", cursive;
   font-weight: 500;
   font-style: normal;
-  color: #000000;
+  color: #0000007c;
   font-size: 4vh;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 .nombre {
   font-weight: 800;
   font-size: 5vh;
-  color: #000000a2;
+  color: #0000007c;
 }
