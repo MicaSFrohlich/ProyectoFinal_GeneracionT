@@ -16,8 +16,8 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  justify-content: center;
-  gap: 0vh 30vh;
+  justify-content: space-between;
+  gap: 15vh;
 }
 
 .producto {
