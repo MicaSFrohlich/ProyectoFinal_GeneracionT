@@ -42,6 +42,7 @@ input:-webkit-autofill {
   -webkit-box-shadow:rgba(255, 255, 255, 0);
   transition: background-color 5000s ease-in-out 0s;
 }
+
 /* Textos */
 
 .titulo{
@@ -114,23 +115,26 @@ p{
 }
 
 .barra {
+  padding: 2vh;
   display: flex;
   justify-content: space-between;
-  width: 100%;
   background-color: #ffffff;
 }
 
 .logo{
   width: 8vh;
-  margin: 2vh;
 }
-
+#logoNS{
+  width: 10vh;
+}
 #logofooter{
-  height: 20vh;
+  height: 15vh;
+  padding: 2vh;
 }
 .iconos{
   height: 5vh;
   width: 5vh;
+  filter: invert();
 }
 a{
   color: #3f3832;
@@ -204,6 +208,7 @@ a{
 .barra-lado-derecho{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   gap: 5vh;
 }
@@ -217,12 +222,11 @@ a{
   background: #dfc4c0;
   color: #fff;
   border: none;
-  padding: 1vh 1.5vh;
+  padding: 1.5vh;
   cursor: pointer;
   border-radius: 2vh;
   height: 8vh;
-  left:11vh;
-  position: fixed;
+  position:relative;
   align-self: center;
 }
 

@@ -8,12 +8,12 @@ function navbar({ secciones, onSelect }) {
   return (
     <header>
       <div className="barra">
-        <Link to="/"><img src="/img/LogoHeader.png" alt="" className="logo" /></Link>
-
-        <button className="menu-btn" onClick={() => setMenuAbierto(!menuAbierto)}>
-          ☰ 
-        </button>
-
+        <div className="barra-lado-derecho">
+          <button className="menu-btn" onClick={() => setMenuAbierto(!menuAbierto)}>
+            ☰ 
+          </button>
+          <Link to="/"><img src="/img/LogoHeader.png" alt="" id="logoNS" /></Link>
+        </div>
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">
             <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
