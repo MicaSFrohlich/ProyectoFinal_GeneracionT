@@ -23,7 +23,7 @@
 
 .producto {
   background-color: #e6d5d2;
-  width: 20%;
+  width: 15%;
   display: flex;
   flex-direction: column;
   justify-self: center;
@@ -32,7 +32,7 @@
 
 .producto img {
   background-color: #fdfcfcec;
-  height: 30vh;
+  height: 25vh;
   object-fit: contain;
   padding: 4vh;
 }
@@ -43,11 +43,10 @@
   font-weight: 500;
   font-style: normal;
   color: #0000007c;
-  font-size: 4vh;
   margin-bottom: 1vh;
 }
 .nombre {
   font-weight: 800;
-  font-size: 5vh;
+  font-size: 4vh;
   color: #0000007c;
 }
