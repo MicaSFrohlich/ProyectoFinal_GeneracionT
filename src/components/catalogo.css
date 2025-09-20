@@ -50,3 +50,118 @@
   font-size: 4vh;
   color: #0000007c;
 }
+
+/* Detalle ! */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2vh;
+  box-sizing: border-box;
+}
+
+.modal-contenido {
+  background: #DBB5B5;
+  border:0.5vh solid #987070;
+  border-radius: 1vh;
+
+  width: 60vw;
+  max-width: 90vw;
+  height: auto;
+  max-height: 90vh;  
+    
+  padding: 2vh;
+  position: relative;
+  display: flex;
+  gap: 2vw;
+  align-items: stretch;
+  overflow-y: auto;
+
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 3vh;
+  font-weight: 400;
+  letter-spacing: 0.2vh;
+  color:#7a5858;
+}
+
+.modal-imagen {
+  width: 40vw;
+  max-width: 35vh;
+  border-radius: 1vh;
+  object-fit: contain;
+}
+
+.detalle-producto {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
+  height: 100%;
+}
+
+.cerrar {
+  position: absolute;
+  top: 1vh;
+  right: 1vh;
+  background: transparent;
+  border: none;
+  font-size: 2vh;
+  cursor: pointer;
+}
+
+.btn-comprar {
+  margin-top: 1vh;
+  background: #987070;
+  font-family: "Imperial Script";
+  letter-spacing: 0.5vh;
+  font-weight: 500;
+  color: white;
+
+  padding: 2vh 2vw;
+  border: none;
+  border-radius: 1vh;
+  cursor: pointer;
+  font-size: 3vh;
+  width: fit-content;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-comprar:hover {
+  transform: scale(1.05);
+  background: #C39898;
+}
+
+@media (max-width: 76.8vh) {
+  .modal-contenido {
+    flex-direction: column;
+    width: 90vw;
+    max-height: 90vh;
+  }
+
+  .modal-imagen {
+    width: 80vw;
+    max-width: 80vw;
+    margin-bottom: 2vh;
+  }
+
+  .detalle-producto {
+    width: 100%;
+  }
+}
+
+#talle{
+    width: 23vh;
+    background-color: #D9A299;
+    border:0.2vh solid #987070;
+    margin-left: 2vh;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
