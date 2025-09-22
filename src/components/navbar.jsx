@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
+
 function navbar({ secciones, onSelect }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -19,7 +20,7 @@ function navbar({ secciones, onSelect }) {
             <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
             <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
             <Link to="#"><p className="texto-nav">Carrito</p></Link>
-            <Link to="#"><p className="texto-nav">Seguí tu envío</p></Link>
+            <Link to="/seguimiento"><p className="texto-nav">Seguí tu envío</p></Link>
             <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>
           </div>
           <Link to="/usuario"><img src="/img/contacto.png" alt="" className="logo" /></Link>

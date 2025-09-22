@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./catalogo.css";
 
+
+
 const productos = [
   {
     seccion: "Ropa",
@@ -19,6 +21,13 @@ const productos = [
 ];
 
 const Catalogo = () => {
+  
+  const añadirAlCarrito = (producto) => {
+    setCarrito([...carrito, producto]);
+    setMensaje("✅ Añadido al carrito");
+    setTimeout(() => setMensaje(""), 2000);
+    setProductoSeleccionado(null);
+  };
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   const handleClick = (producto) => {
@@ -78,7 +87,8 @@ const Catalogo = () => {
                     </select>
                 </div>
 
-                <button className="btn-comprar">Añadir al carrito !</button>
+                <button className="btn-comprar" onClick={añadirAlCarrito}>Añadir al carrito !</button>
+                
             </div>
             
           </div>
@@ -87,5 +97,11 @@ const Catalogo = () => {
     </div>
   );
 };
+
+
+
+  
+
+
 
 export default Catalogo;

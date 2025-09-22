@@ -1,0 +1,65 @@
+.seguimiento-container {
+  text-align: center;
+  margin-top: 200px;
+
+    font-family: "Imperial Script", cursive;
+    font-size: 40px;
+}
+
+.timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+   font-size: 40px;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 30px;
+   font-size: 40px;
+}
+
+.timeline-item .circle {
+  width: 65px;
+  height: 65px;
+  background-color: rgb(129, 121, 121);
+  border-radius: 50%;
+  margin-bottom: 350px;
+   font-size: 40px;
+}
+
+.timeline-item.active .circle {
+  background-color: #987070; /* verde activo */
+   font-size: 40px;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 100%;
+  width: 60px;
+  height: 4px;
+  background-color: lightgray;
+   font-size: 40px;
+}
+
+.timeline-item:last-child::after {
+  display: none;
+   font-size: 40px;
+}
+
+.timeline-item.active::after {
+  background-color: #987070;
+   font-size: 40px;
+}
+
+.timeline-item p {
+
+  margin-top: -200px;
+   font-size: 40px;
+}
