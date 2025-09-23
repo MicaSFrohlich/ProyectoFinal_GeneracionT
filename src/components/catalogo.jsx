@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./catalogo.css";
-import { useParams } from "react-router-dom";
-
 const productos = [
   {
     seccion: "Ropa",
@@ -9,9 +7,6 @@ const productos = [
       { id: 1, tipo: "Musculosa", nombre: "Musculosa Valery", precio: 7500.0, imagen: "/img/productos/top_botones.png" },
       { id: 2, tipo: "Blusa", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
       { id: 3, tipo: "Blusa", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
-      { id: 1, tipo: "Top", nombre: "Musculosa Valery", precio: 7500.0,imagen: "/img/productos/top_botones.png" },
-      { id: 2, tipo: "Top", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
-      { id: 3, tipo: "Top", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
       { id: 4, tipo: "Pollera", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
       { id: 5, tipo: "Pollera", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
       { id: 6, tipo: "Short", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
@@ -21,17 +16,17 @@ const productos = [
     ],
   },
 ];
-
-  const mapaSecciones = {
+const mapaSecciones = {
     "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
     "Shorts / Polleras": ["Short", "Pollera"],
     "Pantalones": ["Pantalón"], 
     "Vestidos": ["Vestido"],
     "Abrigos": ["Abrigo"],
-  };
+};
+
+
 
 const Catalogo = ({ seccionSeleccionada }) => {
-
   const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
   const [productoSeleccionado, setProductoSeleccionado] = useState(null) || null;
 
@@ -45,7 +40,7 @@ const Catalogo = ({ seccionSeleccionada }) => {
 
   return (
     <div className="catalogo">
-        {productos.map((seccionObj) => {
+            {productos.map((seccionObj) => {
         const productosAMostrar = tiposFiltrar
           ? seccionObj.productos.filter((p) => tiposFiltrar.includes(p.tipo))
           : seccionObj.productos;
@@ -70,7 +65,7 @@ const Catalogo = ({ seccionSeleccionada }) => {
           </div>
         );
       })}
-
+      {/* Modal de detalle */}
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
@@ -82,12 +77,12 @@ const Catalogo = ({ seccionSeleccionada }) => {
               alt={productoSeleccionado.nombre}
               className="modal-imagen"
             />
-            <div className="detalle-producto"> 
+              <div className="detalle-producto"> 
                 <h2>{productoSeleccionado.nombre}</h2>
                 <p><strong>Tipo:</strong> {productoSeleccionado.tipo}</p>
                 <p><strong>Precio:</strong> ${productoSeleccionado.precio}</p>
 
-                <div className="selector-talles">
+                  <div className="selector-talles">
                     <label htmlFor="talle">Talle:</label>
                     <select id="talle" name="talle" defaultValue="">
                         <option value="" disabled>Selecciona! </option>
@@ -97,16 +92,13 @@ const Catalogo = ({ seccionSeleccionada }) => {
                         <option value="L">L</option>
                         <option value="XL">XL</option>
                     </select>
-                </div>
-
+                  </div>
                 <button className="btn-comprar">Añadir al carrito !</button>
-            </div>
-            
+              </div>
           </div>
         </div>
       )}
     </div>
-  );
-};
-
+  )
+}
 export default Catalogo;

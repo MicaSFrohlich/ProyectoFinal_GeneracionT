@@ -18,7 +18,6 @@ function navbar({ secciones, onSelect }) {
         </div>
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">
-            <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
             <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
             <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
             <Link to="#"><p className="texto-nav">Carrito</p></Link>
@@ -31,7 +30,7 @@ function navbar({ secciones, onSelect }) {
 
       <div className={`sidebar ${menuAbierto ? "activo" : ""}`}>
         <button className="cerrar-btn" onClick={() => setMenuAbierto(false)}>
-          ×
+        ×
         </button>
         <ul>
           {secciones.map((seccionSeleccionada) => (
@@ -41,6 +40,9 @@ function navbar({ secciones, onSelect }) {
                 onSelect(seccionSeleccionada); 
                 setMenuAbierto(false);
                 navigate(`/catalogo/`);                
+                onSelect(seccionSeleccionada);             
+                setMenuAbierto(false);   
+                navigate(`/catalogo/`);
               }}
             >
               {seccionSeleccionada}

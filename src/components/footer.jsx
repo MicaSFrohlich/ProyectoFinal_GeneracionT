@@ -24,7 +24,7 @@ function Footer() {
         <a href="/">
           <img src="/img/LogoFooter.png" alt="" id="logofooter" />
         </a>
-
+      
       <div className="footer-toggles">
         <div className="toggle">
           <button onClick={() => toggleSection("ayuda")}>Ayuda</button>
@@ -35,7 +35,7 @@ function Footer() {
               <p class="toggle-font"> novastyle.reclamos@gmail.com</p>
             </div>
           )}
-        </div>
+      </div>
 
         <div className="toggle">
           <button onClick={() => toggleSection("contacto")}>Contacto</button>
@@ -58,6 +58,7 @@ function Footer() {
           )}
         </div>
       </div>
+      
         <div className="barra-lado-derecho">
           <p className="font-subtitulo">Nuestras redes</p>
           <div className="link-contactos">
@@ -91,7 +92,7 @@ function Footer() {
             </a>
           </div>
         </div>
-
+          
       </div>
 
     </footer>

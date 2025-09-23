@@ -1,5 +1,5 @@
 .catalogo {
-  margin: 4% 10% 0% 10%;
+  margin: 10% 10% 4% 10%;
   display: flex;
   flex-direction: column;
 }
@@ -13,14 +13,11 @@
   width: 100%;
   justify-self: center;
   align-items: center;
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
   justify-content: space-between;
   gap: 5vh 20vh;
-  padding: 20vh;
 }
 
 .producto {
@@ -28,14 +25,12 @@
   width: 15%;
   display: flex;
   flex-direction: column;
-  justify-self: center;
   padding: 2vh;
 }
 
 .producto img {
   background-color: #fdfcfcec;
   height: 25vh;
-  object-fit: contain;
   padding: 4vh;
 }
 
