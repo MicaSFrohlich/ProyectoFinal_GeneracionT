@@ -8,12 +8,12 @@ const productos = [
       { id: 1, tipo: "Top", nombre: "Musculosa Valery", precio: 7500.0,imagen: "/img/productos/top_botones.png" },
       { id: 2, tipo: "Top", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
       { id: 3, tipo: "Top", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
-      { id: 4, tipo: "Buttom", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
-      { id: 5, tipo: "Buttom", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
-      { id: 6, tipo: "Buttom", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
-      { id: 7, tipo: "Dress", nombre: "Vestido Mistake", precio: 23500.0, imagen: "/img/productos/vestido_negro.png" },
-      { id: 8, tipo: "Dress", nombre: "Vestido Hopeless", precio: 19000.0, imagen: "/img/productos/vestido_argolla.png" },
-      { id: 9, tipo: "Dress", nombre: "Vestido Romantic", precio: 21500.0, imagen: "/img/productos/vestido_blanco.png" }
+      { id: 4, tipo: "Pollera", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
+      { id: 5, tipo: "Pollera", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
+      { id: 6, tipo: "Short", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
+      { id: 7, tipo: "Vestido", nombre: "Vestido Mistake", precio: 23500.0, imagen: "/img/productos/vestido_negro.png" },
+      { id: 8, tipo: "Vestido", nombre: "Vestido Hopeless", precio: 19000.0, imagen: "/img/productos/vestido_argolla.png" },
+      { id: 9, tipo: "Vestido", nombre: "Vestido Romantic", precio: 21500.0, imagen: "/img/productos/vestido_blanco.png" }
     ],
   },
 ];
@@ -49,7 +49,6 @@ const Catalogo = () => {
         </div>
       ))}
 
-      {/* Modal de detalle */}
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>

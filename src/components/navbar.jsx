@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
@@ -18,6 +18,7 @@ function navbar({ secciones, onSelect }) {
           <div className="link-otros-sitios">
             <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
             <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
+            <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
             <Link to="#"><p className="texto-nav">Carrito</p></Link>
             <Link to="#"><p className="texto-nav">Seguí tu envío</p></Link>
             <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>
