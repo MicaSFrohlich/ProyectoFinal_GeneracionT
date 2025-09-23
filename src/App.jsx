@@ -8,6 +8,7 @@ import Registro from "./components/registro";
 import Usuario from "./components/usuario";
 import Catalogo from "./components/catalogo";
 import Seguimiento from "./components/seguimiento";
+import SoporteChat from "./components/soporteChat";
 import "./App.css";
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/usuario" element={<Usuario />} />
+        <Route path="/soporteChat" element={<SoporteChat />} />
         <Route path="/seguimiento" element={<Seguimiento />} /> 
         <Route 
           path="/catalogo" 

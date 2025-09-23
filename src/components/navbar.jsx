@@ -30,7 +30,7 @@ function navbar({ secciones, onSelect }) {
 
       <div className={`sidebar ${menuAbierto ? "activo" : ""}`}>
         <button className="cerrar-btn" onClick={() => setMenuAbierto(false)}>
-        ×
+          ×
         </button>
         <ul>
           {secciones.map((seccionSeleccionada) => (
