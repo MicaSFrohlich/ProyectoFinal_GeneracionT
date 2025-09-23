@@ -20,6 +20,7 @@ function navbar({ secciones, onSelect }) {
           <div className="link-otros-sitios">
             <Link to="/catalogo"><p className="texto-nav">Catálogo</p></Link>
             <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
+            <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
             <Link to="#"><p className="texto-nav">Carrito</p></Link>
             <Link to="/seguimiento"><p className="texto-nav">Seguí tu envío</p></Link>
             <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>

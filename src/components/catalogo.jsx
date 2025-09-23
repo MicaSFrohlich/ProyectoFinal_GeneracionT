@@ -9,6 +9,9 @@ const productos = [
       { id: 1, tipo: "Musculosa", nombre: "Musculosa Valery", precio: 7500.0, imagen: "/img/productos/top_botones.png" },
       { id: 2, tipo: "Blusa", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
       { id: 3, tipo: "Blusa", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
+      { id: 1, tipo: "Top", nombre: "Musculosa Valery", precio: 7500.0,imagen: "/img/productos/top_botones.png" },
+      { id: 2, tipo: "Top", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
+      { id: 3, tipo: "Top", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
       { id: 4, tipo: "Pollera", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
       { id: 5, tipo: "Pollera", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
       { id: 6, tipo: "Short", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
@@ -68,7 +71,6 @@ const Catalogo = ({ seccionSeleccionada }) => {
         );
       })}
 
-      {/* Modal de detalle */}
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
