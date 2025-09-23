@@ -1,34 +1,36 @@
 import React, { useState } from "react";
 import "./catalogo.css";
-
-
+import { useParams } from "react-router-dom";
 
 const productos = [
   {
     seccion: "Ropa",
     productos: [
-      { id: 1, tipo: "Top", nombre: "Musculosa Valery", precio: 7500.0,imagen: "/img/productos/top_botones.png" },
-      { id: 2, tipo: "Top", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
-      { id: 3, tipo: "Top", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
-      { id: 4, tipo: "Buttom", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
-      { id: 5, tipo: "Buttom", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
-      { id: 6, tipo: "Buttom", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
-      { id: 7, tipo: "Dress", nombre: "Vestido Mistake", precio: 23500.0, imagen: "/img/productos/vestido_negro.png" },
-      { id: 8, tipo: "Dress", nombre: "Vestido Hopeless", precio: 19000.0, imagen: "/img/productos/vestido_argolla.png" },
-      { id: 9, tipo: "Dress", nombre: "Vestido Romantic", precio: 21500.0, imagen: "/img/productos/vestido_blanco.png" }
+      { id: 1, tipo: "Musculosa", nombre: "Musculosa Valery", precio: 7500.0, imagen: "/img/productos/top_botones.png" },
+      { id: 2, tipo: "Blusa", nombre: "Blusa Lover", precio: 6500.0, imagen: "/img/productos/top_rosa.png" },
+      { id: 3, tipo: "Blusa", nombre: "Blusa Greedy", precio: 6000.0, imagen: "/img/productos/top_turquesa.png" },
+      { id: 4, tipo: "Pollera", nombre: "Pollera Supernat", precio: 9000.0, imagen: "/img/productos/pollera_brillos.png" },
+      { id: 5, tipo: "Pollera", nombre: "Pollera Obvious", precio: 7500.0, imagen: "/img/productos/pollera_coqueta.png" },
+      { id: 6, tipo: "Short", nombre: "Short Problem", precio: 15000.0, imagen: "/img/productos/short_jean.png" },
+      { id: 7, tipo: "Vestido", nombre: "Vestido Mistake", precio: 23500.0, imagen: "/img/productos/vestido_negro.png" },
+      { id: 8, tipo: "Vestido", nombre: "Vestido Hopeless", precio: 19000.0, imagen: "/img/productos/vestido_argolla.png" },
+      { id: 9, tipo: "Vestido", nombre: "Vestido Romantic", precio: 21500.0, imagen: "/img/productos/vestido_blanco.png" },
     ],
   },
 ];
 
-const Catalogo = () => {
-  
-  const añadirAlCarrito = (producto) => {
-    setCarrito([...carrito, producto]);
-    setMensaje("✅ Añadido al carrito");
-    setTimeout(() => setMensaje(""), 2000);
-    setProductoSeleccionado(null);
+  const mapaSecciones = {
+    "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
+    "Shorts / Polleras": ["Short", "Pollera"],
+    "Pantalones": ["Pantalón"], 
+    "Vestidos": ["Vestido"],
+    "Abrigos": ["Abrigo"],
   };
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+
+const Catalogo = ({ seccionSeleccionada }) => {
+
+  const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null) || null;
 
   const handleClick = (producto) => {
     setProductoSeleccionado(producto);
@@ -40,23 +42,31 @@ const Catalogo = () => {
 
   return (
     <div className="catalogo">
-      {productos.map((seccion) => (
-        <div key={seccion.seccion} className="seccion">
-          <div className="productos">
-            {seccion.productos.map((producto) => (
-              <div
-                key={producto.id}
-                className="producto"
-                onClick={() => handleClick(producto)}
-              >
-                <img src={producto.imagen} alt={producto.nombre} />
-                <p className="nombre fuente">{producto.nombre}</p>
-                <p className="fuente">${producto.precio}</p>
-              </div>
-            ))}
+        {productos.map((seccionObj) => {
+        const productosAMostrar = tiposFiltrar
+          ? seccionObj.productos.filter((p) => tiposFiltrar.includes(p.tipo))
+          : seccionObj.productos;
+
+        if (productosAMostrar.length === 0);
+
+        return (
+          <div key={seccionObj.seccion} className="seccion">
+            <div className="productos">
+              {productosAMostrar.map((producto) => (
+                <div
+                  key={producto.id}
+                  className="producto"
+                  onClick={() => handleClick?.(producto)}
+                >
+                  <img src={producto.imagen} alt={producto.nombre} />
+                  <p className="nombre fuente">{producto.nombre}</p>
+                  <p className="fuente">${producto.precio}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {/* Modal de detalle */}
       {productoSeleccionado && (
@@ -87,8 +97,7 @@ const Catalogo = () => {
                     </select>
                 </div>
 
-                <button className="btn-comprar" onClick={añadirAlCarrito}>Añadir al carrito !</button>
-                
+                <button className="btn-comprar">Añadir al carrito !</button>
             </div>
             
           </div>
@@ -97,11 +106,5 @@ const Catalogo = () => {
     </div>
   );
 };
-
-
-
-  
-
-
 
 export default Catalogo;

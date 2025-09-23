@@ -17,7 +17,7 @@ body{
 }
 
 main{
-  margin: 8%;
+  margin: 10% 0% 8% 0%;
   height: 100%;
   width: 100%;
   justify-self: center;

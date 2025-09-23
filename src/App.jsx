@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./components/home";
 import Login from "./components/login";
@@ -10,10 +10,11 @@ import Catalogo from "./components/catalogo";
 import Seguimiento from "./components/seguimiento";
 import "./App.css";
 
+
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
 
-  const secciones = ["Remeras / Tops / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
+  const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
 
   return (
     <>
@@ -23,31 +24,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/usuario" element={<Usuario />} />
-              <Route path="/" element={<Home />} />
-        <Route path="/catalogo" element={<Catalogo />} />
-        <Route path="/seguimiento" element={<Seguimiento />} /> {/* 👈 nueva ruta */}
+        <Route path="/seguimiento" element={<Seguimiento />} /> 
         <Route 
           path="/catalogo" 
           element={<Catalogo seccionSeleccionada={seccionActiva} />} 
         />
-        
       </Routes>
       <Footer />
     </>
   );
-
-
-
-  
 }
 
-
-
-
-
-
 export default App;
-
-
-
-

@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-
 function navbar({ secciones, onSelect }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -32,9 +33,16 @@ function navbar({ secciones, onSelect }) {
           ×
         </button>
         <ul>
-          {secciones.map((s) => (
-            <li key={s} onClick={() => { onSelect(s); setMenuAbierto(false); }}>
-              {s}
+          {secciones.map((seccionSeleccionada) => (
+            <li
+              key={seccionSeleccionada}
+              onClick={() => {
+                onSelect(seccionSeleccionada); 
+                setMenuAbierto(false);
+                navigate(`/catalogo/`);                
+              }}
+            >
+              {seccionSeleccionada}
             </li>
           ))}
         </ul>
