@@ -13,13 +13,21 @@ const productos = [
       { id: 7, tipo: "Vestido", nombre: "Vestido Mistake", precio: 23500.0, imagen: "/img/productos/vestido_negro.png" },
       { id: 8, tipo: "Vestido", nombre: "Vestido Hopeless", precio: 19000.0, imagen: "/img/productos/vestido_argolla.png" },
       { id: 9, tipo: "Vestido", nombre: "Vestido Romantic", precio: 21500.0, imagen: "/img/productos/vestido_blanco.png" },
+      { id: 10, tipo: "Pantalon", nombre: "Pantalon Diver", precio: 42000.0, imagen: "/img/productos/pantalon_rosa.jpg" },
+      { id: 11, tipo: "Pantalon", nombre: "Pantalon Sunny", precio: 47000.0, imagen: "/img/productos/pantalon_amarillo.jpg" },
+      { id: 12, tipo: "Pantalon", nombre: "Pantalon Classy", precio: 45500.0, imagen: "/img/productos/pantalon_classy.jpg" },
+      { id: 13, tipo: "Abrigo", nombre: "Sweater Lola", precio: 17000.0, imagen: "/img/productos/sweater_rosa.jpg" },
+      { id: 14, tipo: "Abrigo", nombre: "Cardigan Folklore", precio: 20500.0, imagen: "/img/productos/cardigan.jpg" },
+      { id: 15, tipo: "Abrigo", nombre: "Abrigo Money", precio: 53000.0, imagen: "/img/productos/abrigo_blanco.jpg" },
+      { id: 16, tipo: "Abrigo", nombre: "Abrigo Expensive", precio: 60700.0, imagen: "/img/productos/abrigo_broches.jpg" },
+      { id: 17, tipo: "Abrigo", nombre: "Saco Shadows", precio: 59000.0, imagen: "/img/productos/saco_negro.jpg" },
     ],
   },
 ];
 const mapaSecciones = {
     "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
     "Shorts / Polleras": ["Short", "Pollera"],
-    "Pantalones": ["Pantalón"], 
+    "Pantalones": ["Pantalon"], 
     "Vestidos": ["Vestido"],
     "Abrigos": ["Abrigo"],
 };

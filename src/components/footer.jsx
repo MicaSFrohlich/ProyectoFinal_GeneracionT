@@ -62,28 +62,28 @@ function Footer() {
         <div className="barra-lado-derecho">
           <p className="font-subtitulo">Nuestras redes</p>
           <div className="link-contactos">
-            <a href="#">
+            <a href="https://www.instagram.com/">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/2111/2111491.png"
                 alt="instagram"
                 className="iconos"
               />
             </a>
-            <a href="#">
+            <a href="https://www.tiktok.com/">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/3046/3046120.png"
                 alt="tiktok"
                 className="iconos"
               />
             </a>
-            <a href="#">
+            <a href="https://www.whatsapp.com/?lang=es_LA">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/1384/1384023.png"
-                alt="youtube"
+                alt="whatsapp"
                 className="iconos"
               />
             </a>
-            <a href="#">
+            <a href="https://www.gmail.com/">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/646/646094.png"
                 alt="mail"

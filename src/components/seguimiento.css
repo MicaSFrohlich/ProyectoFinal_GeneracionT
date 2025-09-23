@@ -26,14 +26,14 @@
 .timeline-item .circle {
   width: 65px;
   height: 65px;
-  background-color: rgb(129, 121, 121);
+  background-color: #D9A299;
   border-radius: 50%;
   margin-bottom: 350px;
    font-size: 40px;
 }
 
 .timeline-item.active .circle {
-  background-color: #987070; /* verde activo */
+  background-color: #987070;
    font-size: 40px;
 }
 
