@@ -18,7 +18,7 @@ function navbar({ secciones, onSelect }) {
         </div>
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">
-            <Link to="#"><p className="texto-nav">Sobre Nosotros</p></Link>
+            <Link to="/sobreNosotros"><p className="texto-nav">Sobre Nosotros</p></Link>
             <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
             <Link to="#"><p className="texto-nav">Carrito</p></Link>
             <Link to="/seguimiento"><p className="texto-nav">Seguí tu envío</p></Link>

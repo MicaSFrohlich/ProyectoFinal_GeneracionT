@@ -21,7 +21,8 @@ const SoporteChat = () => {
   };
 
   return (
-    <div className="chat-container">
+    <div className="chatContainer">
+      <h1>HOLA!</h1>
       <div className="chat-mensajes">
         {mensajes.map((msg, index) => (
           <div key={index} className={`mensaje ${msg.origen}`}>

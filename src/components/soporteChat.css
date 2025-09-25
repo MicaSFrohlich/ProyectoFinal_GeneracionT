@@ -1,11 +1,10 @@
 html,body{
     min-height: 100vh;
-    height:100%;
-    margin:0;
+    height:80vh;
 }
 
-.chat-container {
-  width: 30vh;
+.chatContainer {
+  width: 300vh;
   max-height: 100vh;
   border: 1px solid #DCC5B2;
   border-radius: 0.8vh;

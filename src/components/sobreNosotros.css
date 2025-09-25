@@ -1,0 +1,30 @@
+.main{
+    margin: 10% 8% 8% 10%;
+    width: 90%;
+}
+.contenedor{
+    margin: 2%;
+    grid: 1%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.local{
+ width: 30%;   
+}
+.nosotros{
+    width: 50%;
+    font-family: "Imperial";
+    font-weight: 500;
+    font-style: normal;
+    margin: 0%;
+}
+.titulo{
+    font-family: "Imperial Script", cursive;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+}

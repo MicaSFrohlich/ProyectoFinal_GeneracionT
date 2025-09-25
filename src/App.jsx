@@ -9,6 +9,7 @@ import Usuario from "./components/usuario";
 import Catalogo from "./components/catalogo";
 import Seguimiento from "./components/seguimiento";
 import SoporteChat from "./components/soporteChat";
+import SobreNosotros from "./components/sobreNosotros";
 import "./App.css";
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/soporteChat" element={<SoporteChat />} />
+        <Route path="/sobreNosotros" element={<SobreNosotros />} />
         <Route path="/seguimiento" element={<Seguimiento />} /> 
         <Route 
           path="/catalogo" 
