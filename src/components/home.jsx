@@ -2,9 +2,9 @@ import React from "react";
 import "../App.css";
 
 const productos = [
-  "/img/productos/vestido_grecia.jpg",
-  "/img/productos/musculosa_louise.jpg",
-  "/img/productos/abrigo_broches.jpg",
+  "/img/productos/vestido_grecia.png",
+  "/img/productos/musculosa_louise.png",
+  "/img/productos/abrigo_broches.png",
   "/img/productos/pollera_coqueta.png",
   "/img/productos/pollera_brillos.png",
 ];
