@@ -5,14 +5,15 @@ export const sobreNosotros = () => {
   return (
     <div className="main">
       <div >
-        <h1 className='titulo'>Sobre Nosotras</h1>
+        <h1 className='titulo_sn'>Sobre Nosotras</h1>
         <div className='contenedor'>
           <p className='nosotros'>
             En Nova Style
             creemos que la moda es una forma de expresión delicada y poderosa a la vez. 
             Nacimos en el corazón del barrio Recoleta como una tienda minimalista, 
             especializada en indumentaria femenina
-            que combina feminidad, elegancia y sutileza.
+            que combina feminidad, elegancia y sutileza y ofrece prendas únicas fabricadas por nuestro equipo
+            con variedad de talles para que nadie quede afuera.
           </p>
           <img src="public\img\local\local_4.png" alt="" className='local'/>
         </div>
@@ -28,14 +29,13 @@ export const sobreNosotros = () => {
         </div>
         <div className='contenedor'>
           <p className='nosotros'>
-          Nuestro objetivo es simple: que cada clienta viva una experiencia única, 
-          práctica y encantadora, desde la elección de la prenda hasta que llega 
-          a sus manos. A través de la tecnología, buscamos no solo mejorar la 
-          atención y organización, sino también reflejar la esencia de Nova Style: 
+          Nuestro objetivo es simple: que cada clienta viva una experiencia especial, 
+          práctica y encantadora, desde la elección de las prendas hasta que llega 
+          a sus manos. A través de la tecnología queremos reflejar la esencia de Nova Style: 
            delicadeza, clase y confianza.
           <p>Nova Style – Recoleta</p>
           </p>
-          <img src="public\img\local\local_3.jpg" alt="" className='local'/>
+          <img src="public\img\local\local_6.png" alt="" className='local'/>
         </div>
         <div>
         </div>

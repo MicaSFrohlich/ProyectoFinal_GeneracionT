@@ -95,6 +95,11 @@ a{
   border-radius: 1vh;
 }
 
+.btn:hover {
+  background:#C39898;
+
+}
+
 
 button{
   background-color: #ffffff00;
@@ -197,7 +202,6 @@ a{
   position: absolute;
   top:100%;
   z-index: 2;
-  
 }
 
 /* Detalles del navbar */
@@ -330,7 +334,7 @@ a{
 /* USUARIO */
 
 .container_usuario{
-  background: linear-gradient(135deg,#bd9090, #dbc3c3);;
+  background: linear-gradient(135deg,#bd9090, #dbc3c3);
   border-radius: 5vh;
   width: 25vh;
   height: 25vh;

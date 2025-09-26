@@ -6,23 +6,28 @@ const SoporteChat = () => {
   const [input, setInput] = useState("");
 
   const enviarMensaje = () => {
-    if (input.trim() === "") return;
+  if (input.trim() === "") return;
 
-    setMensajes([...mensajes, { texto: input, origen: "usuario" }]);
+  setMensajes(prev => [...prev, { texto: input, origen: "usuario" }]);
 
-    setTimeout(() => {
-      setMensajes(prev => [
+  setTimeout(() => {
+    setMensajes(prev => {
+      if (prev.some(m => m.origen === "soporte")) return prev;
+      return [
         ...prev,
-        { texto: "Gracias por consultar! Contestaremos a la brevedad.", origen: "soporte" },
-      ]);
-    }, 1000);
+        { 
+          texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.", 
+          origen: "soporte" 
+        },
+      ];
+    });
+  }, 1000);
 
-    setInput("");
-  };
+  setInput("");
+};
 
   return (
     <div className="chatContainer">
-      <h1>HOLA!</h1>
       <div className="chat-mensajes">
         {mensajes.map((msg, index) => (
           <div key={index} className={`mensaje ${msg.origen}`}>

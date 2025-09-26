@@ -1,30 +1,99 @@
-.main{
-    margin: 10% 8% 8% 10%;
-    width: 90%;
+html, body {
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
 }
-.contenedor{
-    margin: 2%;
-    grid: 1%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+
+.main {
+  background: linear-gradient(to bottom, #FAF7F3, #DCC5B2);
+  box-shadow: 0 4px 10px rgba(88, 83, 80, 0.432);
+  margin: 5% auto 0% auto;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  max-width: 120vh;
+  padding: 3.6vh;
+  scroll-behavior: smooth;
 }
-.local{
- width: 30%;   
+
+.titulo_sn {
+  text-align: center;
+  font-size: 6vh;
+  font-weight: 600;
+  margin-bottom: 5vh;
+  color: #d9a299;
+  letter-spacing: 0.5vh;
+  position: relative;
+  font-family: "Imperial Script";
 }
-.nosotros{
-    width: 50%;
-    font-family: "Imperial";
-    font-weight: 500;
-    font-style: normal;
-    margin: 0%;
+
+.titulo_sn::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: #d9a299;
+  margin: 1vh auto 0 auto;
+  border-radius: 2px;
 }
-.titulo{
-    font-family: "Imperial Script", cursive;
-    font-weight: 500;
-    font-style: normal;
-    margin: 0;
+
+.contenedor {
+  margin: 6vh 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2vh;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1vh;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.315);
+  transition: transform 0.3s ease;
+}
+
+.contenedor:hover {
+  transform: translateY(-0.5vh);
+}
+
+.local {
+  width: 40%;
+  border-radius: 1vh;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.local:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.nosotros {
+  width: 50%;
+  font-family: "Imperial Script", cursive;
+  word-spacing: 0.5vh;
+  font-size: 3.8vh;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.2vh;
+  margin: 0;
+  color:#987070;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nosotros, .local {
+    width: 100%;
+  }
+
+  .nosotros {
+    font-size: 3vh;
+  }
 }

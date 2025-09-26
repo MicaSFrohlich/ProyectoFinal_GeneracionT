@@ -4,23 +4,29 @@ html,body{
 }
 
 .chatContainer {
-  width: 300vh;
-  max-height: 100vh;
-  border: 1px solid #DCC5B2;
-  border-radius: 0.8vh;
+  width: 100vh;
+  height:auto;
+  min-height: 60vh;
+  margin:10% auto 5% auto;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+
+  background-color: white;
+  border: 0.3vh solid #DBB5B5;
+  border-radius: 1vh;
+
   overflow: hidden;
-  position: fixed;
   bottom: 8vh;
   right: 2vh;
-  background-color: white;
-  box-shadow: 0 0.4vh 0.1vh rgba(0,0,0,0.2);
-  font-family: Arial, sans-serif;
+
+  font-family: "Imperial";
   z-index: 1000;
 }
 
 .chat-mensajes {
+  height:auto;
+  min-height: 100%;
   flex: 1;
   padding: 1vh;
   overflow-y: auto;
@@ -56,6 +62,7 @@ html,body{
   padding: 0.8vh;
   border: none;
   outline: none;
+  font-family: "Imperial";
 }
 
 .chat-input button {
@@ -64,6 +71,7 @@ html,body{
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 2vh;
 }
 
 .chat-input button:hover {

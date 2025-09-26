@@ -13,7 +13,7 @@ function home() {
   return (
     <main className="inicio">
       <p className="font titulo">Nova Style</p>
-      <p className="font subtitulo">Destacados del mes</p>
+      <p className="font subtitulo"> Destacados del mes </p>
 
         <div className="destacados-container">
             {productos.map((img, index) => (

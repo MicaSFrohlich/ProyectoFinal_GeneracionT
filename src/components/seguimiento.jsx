@@ -22,7 +22,7 @@ const Seguimiento = () => {
 
   return (
     <div className="seguimiento-container">
-      <h2>Estado de tu pedido</h2>
+      <h2 id="titulo_seg">Estado de tu pedido</h2>
       <div className="timeline">
         {pasos.map((texto, index) => (
           <div
