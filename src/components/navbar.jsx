@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-function navbar({ secciones, onSelect }) {
+function navbar({ secciones, onSelect, carrito }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function navbar({ secciones, onSelect }) {
           <div className="link-otros-sitios">
             <Link to="/sobreNosotros"><p className="texto-nav">Sobre Nosotros</p></Link>
             <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
-            <Link to="#"><p className="texto-nav">Carrito</p></Link>
+            <Link to="/carrito"><p className="texto-nav">Carrito ({carrito.length})</p></Link>
             <Link to="/seguimiento"><p className="texto-nav">Seguí tu envío</p></Link>
             <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>
           </div>

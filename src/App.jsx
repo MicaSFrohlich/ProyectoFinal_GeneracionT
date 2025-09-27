@@ -10,6 +10,7 @@ import Catalogo from "./components/catalogo";
 import Seguimiento from "./components/seguimiento";
 import SoporteChat from "./components/soporteChat";
 import SobreNosotros from "./components/sobreNosotros";
+import Carrito from "./components/carrito";
 import "./App.css";
 
 
@@ -18,9 +19,17 @@ function App() {
 
   const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
 
+  const [carrito, setCarrito] = useState([]);
+
+  const agregarAlCarrito = (producto, talle) => {
+    setCarrito([...carrito, { ...producto, talle }]);
+  };
+
+
   return (
     <>
-      <Navbar secciones={secciones} onSelect={setSeccionActiva} />
+      <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -28,11 +37,9 @@ function App() {
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/soporte" element={<SoporteChat />} />
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
-        <Route path="/seguimiento" element={<Seguimiento />} /> 
-        <Route 
-          path="/catalogo" 
-          element={<Catalogo seccionSeleccionada={seccionActiva} />} 
-        />
+        <Route path="/seguimiento" element={<Seguimiento />} />         
+        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} />}/>        
+        <Route path="/catalogo" element={<Catalogo seccionSeleccionada={seccionActiva} agregarAlCarrito={agregarAlCarrito} />} />
       </Routes>
       <Footer />
     </>

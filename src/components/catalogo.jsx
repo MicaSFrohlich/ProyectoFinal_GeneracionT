@@ -47,9 +47,10 @@ const mapaSecciones = {
 
 
 
-const Catalogo = ({ seccionSeleccionada }) => {
-  const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null) || null;
+const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
+const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [talleSeleccionado, setTalleSeleccionado] = useState("");
 
   const handleClick = (producto) => {
     setProductoSeleccionado(producto);
@@ -57,16 +58,15 @@ const Catalogo = ({ seccionSeleccionada }) => {
 
   const cerrarModal = () => {
     setProductoSeleccionado(null);
+    setTalleSeleccionado("");
   };
 
   return (
     <div className="catalogo">
-            {productos.map((seccionObj) => {
+      {productos.map((seccionObj) => {
         const productosAMostrar = tiposFiltrar
           ? seccionObj.productos.filter((p) => tiposFiltrar.includes(p.tipo))
           : seccionObj.productos;
-
-        if (productosAMostrar.length === 0);
 
         return (
           <div key={seccionObj.seccion} className="seccion">
@@ -75,7 +75,7 @@ const Catalogo = ({ seccionSeleccionada }) => {
                 <div
                   key={producto.id}
                   className="producto"
-                  onClick={() => handleClick?.(producto)}
+                  onClick={() => handleClick(producto)}
                 >
                   <img src={producto.imagen} alt={producto.nombre} />
                   <p className="nombre fuente">{producto.nombre}</p>
@@ -86,40 +86,57 @@ const Catalogo = ({ seccionSeleccionada }) => {
           </div>
         );
       })}
-      {/* Modal de detalle */}
+
+      {/* Modal detalle */}
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
-            <button className="cerrar" onClick={cerrarModal}>
-              ✖
-            </button>
+            <button className="cerrar" onClick={cerrarModal}>✖</button>
             <img
               src={productoSeleccionado.imagen}
               alt={productoSeleccionado.nombre}
               className="modal-imagen"
             />
-              <div className="detalle-producto"> 
-                <h2>{productoSeleccionado.nombre}</h2>
-                <p><strong>Tipo:</strong> {productoSeleccionado.tipo}</p>
-                <p><strong>Precio:</strong> ${productoSeleccionado.precio}</p>
+            <div className="detalle-producto">
+              <h2>{productoSeleccionado.nombre}</h2>
+              <p><strong>Tipo:</strong> {productoSeleccionado.tipo}</p>
+              <p><strong>Precio:</strong> ${productoSeleccionado.precio}</p>
 
-                  <div className="selector-talles">
-                    <label htmlFor="talle">Talle:</label>
-                    <select id="talle" name="talle" defaultValue="">
-                        <option value="" disabled>Selecciona! </option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select>
-                  </div>
-                <button className="btn-comprar">Añadir al carrito !</button>
+              <div className="selector-talles">
+                <label htmlFor="talle">Talle:</label>
+                <select
+                  id="talle"
+                  value={talleSeleccionado}
+                  onChange={(e) => setTalleSeleccionado(e.target.value)}
+                >
+                  <option value="">Selecciona!</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
               </div>
+
+              <button
+                className="btn-comprar"
+                onClick={() => {
+                  if (!talleSeleccionado) {
+                    alert("Por favor selecciona un talle.");
+                    return;
+                  }
+                  agregarAlCarrito(productoSeleccionado, talleSeleccionado);
+                  cerrarModal();
+                }}
+              >
+                Añadir al carrito !
+              </button>
+            </div>
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
+
 export default Catalogo;
