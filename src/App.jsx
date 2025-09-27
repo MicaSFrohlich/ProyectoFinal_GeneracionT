@@ -11,6 +11,7 @@ import Seguimiento from "./components/seguimiento";
 import SoporteChat from "./components/soporteChat";
 import SobreNosotros from "./components/sobreNosotros";
 import Carrito from "./components/carrito";
+import MetodoPago from "./components/metodoPago";
 import "./App.css";
 
 
@@ -23,6 +24,10 @@ function App() {
 
   const agregarAlCarrito = (producto, talle) => {
     setCarrito([...carrito, { ...producto, talle }]);
+  };
+
+  const eliminarDelCarrito = (id) => {
+    setCarrito(prevCarrito => prevCarrito.filter(item => item.id !== id));
   };
 
 
@@ -38,8 +43,9 @@ function App() {
         <Route path="/soporte" element={<SoporteChat />} />
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
         <Route path="/seguimiento" element={<Seguimiento />} />         
-        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} />}/>        
+        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} eliminarDelCarrito={eliminarDelCarrito} />}/>        
         <Route path="/catalogo" element={<Catalogo seccionSeleccionada={seccionActiva} agregarAlCarrito={agregarAlCarrito} />} />
+        <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
       </Routes>
       <Footer />
     </>

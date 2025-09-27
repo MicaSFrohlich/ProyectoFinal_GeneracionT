@@ -1,0 +1,85 @@
+.pago-container {
+  margin:10% auto 5% auto;
+  width: 60%;
+  max-width: 70vh;
+  text-align: center;
+  background: #FAF7F3;
+  padding: 3vh;
+  border-radius: 1.2vh;
+  box-shadow: 0vh 0.4vh 1vh rgba(0,0,0,0.1);
+  font-family: "Imperial";
+  background: linear-gradient(to bottom, #f6f4f2, #edded1);
+  border: 0.5vh solid #d9a299;
+}
+
+.total {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #987070;
+}
+
+.opciones-pago {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+  margin: 2vh 0;
+}
+
+.opciones-pago label {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; 
+  gap: 1vh;
+  font-size: 2.5vh;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  margin: 5% auto 5% auto;
+  background: #d9a299;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-confirmar:hover {
+  background: #c68c87;
+}
+
+.confirmacion {
+  color: #987070;
+  font-size: 1.2rem;
+}
+
+.form-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.form-tarjeta input {
+  padding: 10px;
+  border: 1px solid #d9a299;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.tarjeta-flex {
+  display: flex;
+  gap: 10px;
+}
+
+.titulo-pago{
+  text-align: center;
+  font-family: "Imperial Script";
+  font-size: 5vh;
+  color: #d9a299;
+  letter-spacing: 0.5vh;
+}

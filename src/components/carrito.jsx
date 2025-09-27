@@ -6,7 +6,7 @@ import "./carrito.css";
 
 const Carrito = ({ carrito, eliminarDelCarrito,setCarrito}) => {
   const total = carrito.reduce((acc, item) => acc + item.precio, 0);
-  
+
   const finalizarCompra = () => {
     alert("La compra se realizó con éxito 🛍️✨!");
     setCarrito([]);
@@ -40,9 +40,9 @@ const Carrito = ({ carrito, eliminarDelCarrito,setCarrito}) => {
           </div>
           <div className="final">
             <p className="txt-carrito">Total: ${total}</p>
-          <Link to="/">
-            <button className="btn-comprar-final" onClick={finalizarCompra}>Finalizar Compra</button>
-          </Link> 
+          <Link to="/metodoPago" state={{ total }}>
+            <button className="btn-comprar-final">Finalizar Compra</button>
+          </Link>
           </div>
 
         </div>
