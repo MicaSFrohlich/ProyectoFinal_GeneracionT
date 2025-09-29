@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./catalogo.css";
+
 const productos = [
   {
     seccion: "Ropa",
@@ -37,20 +38,20 @@ const productos = [
     ],
   },
 ];
+
 const mapaSecciones = {
-    "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
-    "Shorts / Polleras": ["Short", "Pollera"],
-    "Pantalones": ["Pantalon"], 
-    "Vestidos": ["Vestido"],
-    "Abrigos": ["Abrigo"],
+  "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
+  "Shorts / Polleras": ["Short", "Pollera"],
+  "Pantalones": ["Pantalon"], 
+  "Vestidos": ["Vestido"],
+  "Abrigos": ["Abrigo"],
 };
 
-
-
 const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
-const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
+  const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState("");
+  const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
 
   const handleClick = (producto) => {
     setProductoSeleccionado(producto);
@@ -87,7 +88,7 @@ const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
         );
       })}
 
-      {/* Modal detalle */}
+      
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
@@ -109,13 +110,24 @@ const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
                   value={talleSeleccionado}
                   onChange={(e) => setTalleSeleccionado(e.target.value)}
                 >
-                  <option value="">Selecciona!</option>
+                  <option value="" disabled>Elegí</option>
                   <option value="XS">XS</option>
                   <option value="S">S</option>
                   <option value="M">M</option>
                   <option value="L">L</option>
                   <option value="XL">XL</option>
                 </select>
+              </div>
+
+              <div className="selector-cantidad">
+                <label htmlFor="cantidad">Cantidad:</label>
+                <input
+                  id="cantidad"
+                  type="number"
+                  min="1"
+                  value={cantidadSeleccionada}
+                  onChange={(e) => setCantidadSeleccionada(Number(e.target.value))}
+                />
               </div>
 
               <button
@@ -125,7 +137,7 @@ const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
                     alert("Por favor selecciona un talle.");
                     return;
                   }
-                  agregarAlCarrito(productoSeleccionado, talleSeleccionado);
+                  agregarAlCarrito(productoSeleccionado, talleSeleccionado, cantidadSeleccionada);
                   cerrarModal();
                 }}
               >

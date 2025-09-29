@@ -7,7 +7,8 @@ const categorias = {
 };
 
 const armarConjunto = ({ carrito }) => {
-  const [indexSuperior, setIndexSuperior] = useState(0);
+
+const [indexSuperior, setIndexSuperior] = useState(0);
   const [indexInferior, setIndexInferior] = useState(0);
   const [indexVestido, setIndexVestido] = useState(0);
 
@@ -45,10 +46,10 @@ const armarConjunto = ({ carrito }) => {
 
   return (
     <div className="armario">
-      <h2 className="font-armario">Outfit Selector</h2>
+      <h2 className="font-armario">Armá tu conjunto</h2>
 
       {carrito.length === 0 ? (
-        <p>No tenés prendas en el carrito aún 🛍️</p>
+        <p className="txt-carrito">No tenés prendas en el carrito aún</p>
       ) : (
         <div className="preview-area">
           {(!prendaVestido || !prendasPorCategoria["Vestido"].length) && (
@@ -78,6 +79,8 @@ const armarConjunto = ({ carrito }) => {
       )}
     </div>
   );
+
+  
 };
 
 export default armarConjunto;

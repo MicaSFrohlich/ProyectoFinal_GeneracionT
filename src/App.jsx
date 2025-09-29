@@ -20,13 +20,31 @@ function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
   const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
   const [carrito, setCarrito] = useState([]);
-  const agregarAlCarrito = (producto, talle) => {
-    setCarrito([...carrito, { ...producto, talle }]);
+  const agregarAlCarrito = (producto, talle, cantidad) => {
+    setCarrito((prev) => {
+      const existe = prev.find(
+        (item) => item.id === producto.id && item.talle === talle
+      );
+
+      if (existe) {
+      
+        return prev.map((item) =>
+          item.id === producto.id && item.talle === talle
+            ? { ...item, cantidad: item.cantidad + cantidad }
+            : item
+        );
+      } else {
+        
+        return [...prev, { ...producto, talle, cantidad }];
+      }
+    });
   };
   const eliminarDelCarrito = (id) => {
     setCarrito(prevCarrito => prevCarrito.filter(item => item.id !== id));
   };
+  
 
+  
   return (
     <>
       <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />

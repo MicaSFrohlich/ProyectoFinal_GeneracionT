@@ -66,26 +66,21 @@
 
 .modal-contenido {
   background: #DBB5B5;
-  border:0.5vh solid #987070;
+  border: 0.5vh solid #987070;
   border-radius: 1vh;
-
   width: 60vw;
   max-width: 90vw;
-  height: auto;
-  max-height: 90vh;  
-    
+  max-height: 90vh;
   padding: 2vh;
   position: relative;
   display: flex;
   gap: 2vw;
   align-items: stretch;
   overflow-y: auto;
-
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  font-size: 3vh;
-  font-weight: 400;
-  letter-spacing: 0.2vh;
-  color:#7a5858;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2.5vh;
+  color: #7a5858;
+  box-shadow: 0 0.5vh 2vh rgba(0,0,0,0.3);
 }
 
 .modal-imagen {
@@ -93,15 +88,34 @@
   max-width: 35vh;
   border-radius: 1vh;
   object-fit: contain;
+  box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.2);
 }
 
 .detalle-producto {
   display: flex;
   flex-direction: column; 
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex: 1;
-  height: 100%;
+  gap: 2vh;
+}
+
+.detalle-producto h2 {
+  font-family: "Imperial Script", cursive;
+  font-size: 4vh;
+  margin: 0;
+  color: #5a3d3d;
+}
+
+.detalle-producto p {
+  margin: 0.5vh 0;
+  font-size: 2.2vh;
+}
+
+.detalle-producto .precio {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #7a5858;
 }
 
 .cerrar {
@@ -110,19 +124,18 @@
   right: 1vh;
   background: transparent;
   border: none;
-  font-size: 2vh;
+  font-size: 2.5vh;
   cursor: pointer;
 }
 
 .btn-comprar {
-  margin-top: 1vh;
+  margin-top: 2vh;
   background: #987070;
-  font-family: "Imperial Script";
-  letter-spacing: 0.5vh;
+  font-family: "Imperial Script", cursive;
+  letter-spacing: 0.3vh;
   font-weight: 500;
   color: white;
-
-  padding: 2vh 2vw;
+  padding: 1.5vh 3vw;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
@@ -134,6 +147,28 @@
 .btn-comprar:hover {
   transform: scale(1.05);
   background: #C39898;
+}
+
+.selector-talles, .selector-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+  margin-top: 1vh;
+}
+
+#talle, #cantidad {
+  width: 10vh;
+  padding: 0.5vh 1vh;
+  background-color: #D9A299;
+  border: 0.2vh solid #987070;
+  border-radius: 0.5vh;
+  font-weight: bold;
+  font-size: 2vh;
+  transition: background-color 0.2s;
+}
+
+#talle:hover, #cantidad:hover {
+  background-color: #e1b8a0;
 }
 
 @media (max-width: 76.8vh) {
@@ -151,16 +186,13 @@
 
   .detalle-producto {
     width: 100%;
+    align-items: flex-start;
   }
-}
 
-#talle{
-    width: 23vh;
-    background-color: #D9A299;
-    border:0.2vh solid #987070;
-    margin-left: 2vh;
-    transition: background-color 0.2s;
-    font-weight: bold;
+  .btn-comprar {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .mensaje-carrito {
