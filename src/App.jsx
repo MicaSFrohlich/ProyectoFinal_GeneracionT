@@ -11,25 +11,21 @@ import Seguimiento from "./components/seguimiento";
 import SoporteChat from "./components/soporteChat";
 import SobreNosotros from "./components/sobreNosotros";
 import Carrito from "./components/carrito";
+import ArmarConjunto from "./components/armarConjunto.jsx";
 import MetodoPago from "./components/metodoPago";
 import "./App.css";
 
 
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
-
   const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
-
   const [carrito, setCarrito] = useState([]);
-
   const agregarAlCarrito = (producto, talle) => {
     setCarrito([...carrito, { ...producto, talle }]);
   };
-
   const eliminarDelCarrito = (id) => {
     setCarrito(prevCarrito => prevCarrito.filter(item => item.id !== id));
   };
-
 
   return (
     <>
@@ -46,6 +42,7 @@ function App() {
         <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} eliminarDelCarrito={eliminarDelCarrito} />}/>        
         <Route path="/catalogo" element={<Catalogo seccionSeleccionada={seccionActiva} agregarAlCarrito={agregarAlCarrito} />} />
         <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
+        <Route path="/armarConjunto" element={<ArmarConjunto carrito={carrito} />} />
       </Routes>
       <Footer />
     </>

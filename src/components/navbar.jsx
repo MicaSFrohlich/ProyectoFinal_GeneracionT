@@ -22,7 +22,7 @@ function navbar({ secciones, onSelect, carrito }) {
             <Link to="/soporte"><p className="texto-nav">Soporte</p></Link>
             <Link to="/carrito"><p className="texto-nav">Carrito ({carrito.length})</p></Link>
             <Link to="/seguimiento"><p className="texto-nav">Seguí tu envío</p></Link>
-            <Link to="#"><p className="texto-nav">Arma tu conjunto</p></Link>
+            <Link to="/armarConjunto"><p className="texto-nav">Arma tu conjunto</p></Link>
           </div>
           <Link to="/usuario"><img src="/img/contacto.png" alt="" className="logo" /></Link>
         </div>
