@@ -1,73 +1,105 @@
+/* CONTENEDOR */
 .seguimiento-container {
   text-align: center;
-  margin-top: 20vh;
-
-    font-family: "Imperial Script", cursive;
-    font-size: 4vh;
+  margin: 12%;
+  font-family: "Imperial Script", cursive;
+  font-size: 3.5vh;
+  animation: fadeSlideDown 1s ease;
+  padding: 4vh;
 }
 
+/* TÍTULO */
+#titulo_seg {
+  font-size: 6vh;
+  font-weight: 600;
+  color: #d9a299;
+  letter-spacing: 0.5vh;
+  margin-bottom: 8vh;
+  font-family: "Imperial Script";
+  animation: glowIn 1.5s ease;
+}
+
+/* EFECTO GLOW SUAVE */
+@keyframes glowIn {
+  0% { opacity: 0; text-shadow: none; }
+  100% { opacity: 1; text-shadow: 0 0 10px rgba(217,162,153,0.6); }
+}
+
+/* TIMELINE */
 .timeline {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10vh;
-   font-size: 4vh;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  margin: 0 auto;
 }
 
+/* línea base detrás de los círculos */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 3.25vh; 
+  left: 0.5vh;
+  width: 100%;
+  height: 0.4vh;
+  background-color:  #a777706e;
+}
+
+/* ITEM */
 .timeline-item {
+  position: relative;
+  z-index: 1; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  margin: 0 3vh;
-   font-size: 4vh;
+  gap: 2vh;
 }
 
+/* CÍRCULO */
 .timeline-item .circle {
   width: 6.5vh;
   height: 6.5vh;
   background-color: #D9A299;
   border-radius: 50%;
-  margin-bottom: 35vh;
-   font-size: 4vh;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1;
 }
 
+/* CÍRCULO ACTIVO */
 .timeline-item.active .circle {
   background-color: #987070;
-   font-size: 4vh;
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(152,112,112,0.6);
 }
 
-.timeline-item::after {
+/* EFECTO PULSO EN ACTIVO */
+.timeline-item.active .circle::after {
   content: "";
-  position: absolute;
-  top: 1vh;
-  left: 100%;
-  width: 3vh;
-  height: 0.3vh;
-  background-color: lightgray;
-   font-size: 4vh;
+  position: fixed;
+  width: 6.5vh;
+  height: 6.5vh;
+  border-radius: 50%;
+  border: 0.3vh solid rgba(152,112,112,0.4);
+  animation: pulse 1.5s infinite ease-out;
+  left: 0;
 }
 
-.timeline-item:last-child::after {
-  display: none;
-   font-size: 4vh;
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
-.timeline-item.active::after {
-  background-color: #987070;
-   font-size: 4vh;
-}
-
+/* TEXTO DEBAJO */
 .timeline-item p {
-
-  margin-top: -20vh;
-   font-size: 4vh;
+  margin: 0;
+  font-size: 3.2vh;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-#titulo_seg{
-  font-size: 6vh;
-  font-weight: 600;
-  color: #d9a299;
-  letter-spacing: 0.5vh;
-  font-family: "Imperial Script";
+/* TEXTO ACTIVO */
+.timeline-item.active p {
+  color: #987070;
+  font-weight: bold;
+  transform: scale(1.05);
 }

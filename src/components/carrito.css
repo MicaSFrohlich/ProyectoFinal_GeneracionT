@@ -1,7 +1,7 @@
-/*CONTENEDORES */
+/* CONTENEDORES */
 .carrito {
   background: linear-gradient(to bottom, #f6f4f2, #edded1);
-  box-shadow: 0 4px 10px rgba(196, 163, 188, 0.432);
+  box-shadow: 0 4px 12px rgba(196, 163, 188, 0.25);
   margin: 4% auto 0% auto;
   width: 100%;
   height: auto;
@@ -9,8 +9,11 @@
   max-width: 150vh;
   padding: 4%;
   scroll-behavior: smooth;
+  border-radius: 1.5vh;
+  animation: fadeIn 1s ease-in-out;
 }
-.respuesta{
+
+.respuesta {
   display: flex;
   flex-direction: row;
   padding: 7vh;
@@ -18,46 +21,60 @@
   justify-content: space-between;
   align-items: center;
 }
-.seleccionados{
+
+.seleccionados {
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-  gap: 5vh 20vh;
+  gap: 5vh 10vh;
   padding: 2vh;
 }
-.final{
+
+.final {
   display: flex;
   flex-direction: column;
   gap: 2vh;
   justify-self: center;
   align-items: center;
+  animation: slideUp 0.8s ease;
 }
 
-/*PRODUCTOS */
+.acciones-cantidad {
+  display: flex;
+  flex-direction: row;
+  padding: 1vh;
+  justify-content: space-around;
+}
+
+/* PRODUCTOS */
 .item-carrito {
   background-color: #fdfcfcec;
   display: flex;
   flex-direction: column;
   padding: 2vh;
   justify-content: space-around;
-  width: 20%;
-  border: 0.5vh;
-  border-style: solid;
-  border-color: #d9a299;
-  border-radius: 3vh ;
+  width: 25%;
+  border: 0.4vh solid #d9a299;
+  border-radius: 3vh;
+  box-shadow: 0 2px 6px rgba(152, 112, 112, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.7s ease;
+}
+.item-carrito:hover {
+  transform: translateY(-0.8vh) scale(1.02);
+  box-shadow: 0 6px 16px rgba(152, 112, 112, 0.25);
 }
 
-/* BOTON */
-.btn-eliminar{
+/* BOTONES */
+.btn-eliminar {
   margin-top: 1vh;
   background: #d9a299;
   font-family: "Imperial Script";
   letter-spacing: 0.3vh;
   font-weight: 500;
   color: white;
-
   padding: 1vh 2vw;
   border: none;
   border-radius: 1vh;
@@ -65,65 +82,136 @@
   font-size: 4vh;
   width: fit-content;
   align-self: center;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
-.btn-comprar-final{
+.btn-eliminar:hover {
+  background: #b87f72;
+  transform: scale(1.05);
+}
+
+.btn-comprar-final {
   margin-top: 1vh;
   background: #987070;
   font-family: "Imperial Script";
   letter-spacing: 0.5vh;
   font-weight: 500;
   color: white;
-
   padding: 2vh 2vw;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
   font-size: 5vh;
   width: fit-content;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-comprar-final:hover {
+  background: #7b5757;
+  transform: scale(1.07);
+  box-shadow: 0 4px 12px rgba(152, 112, 112, 0.35);
+}
+
+.btn-cantidad {
+  background: #efc9c3;
+  font-family: "Imperial Script", cursive;
+  font-weight: 600;
+  font-size: 5vh;
+  font-style: normal;
+  color: #705454;
+  text-align: center;
+  width: 6vh;
+  border: none;
+  border-radius: 50%;
+  align-self: center;
   transition: transform 0.2s ease, background 0.2s ease;
+}
+.btn-cantidad:hover {
+  background: #e5b5ae;
+  transform: scale(1.1);
 }
 
 /* TEXTO */
-.txt-carrito{
+.txt-carrito {
   font-family: "Imperial Script", cursive;
   font-weight: 600;
   font-size: 7vh;
   font-style: normal;
-  color:#705454;
+  color: #705454;
   margin: 2vh 0vh 2vh 0vh;
   text-align: center;
+  animation: fadeIn 1.2s ease;
 }
-.titulo-carrito{
+
+.titulo-carrito {
   text-align: center;
   font-size: 10vh;
   color: #d9a299;
   letter-spacing: 0.5vh;
+  animation: slideDown 1s ease;
 }
-.titulo-prenda{
+
+.titulo-prenda {
   font-size: 4vh;
-  color:#987070;
+  color: #987070;
   letter-spacing: 0.3vh;
+  transition: color 0.3s ease;
 }
-.txt-prenda{
+.titulo-prenda:hover {
+  color: #705454;
+}
+
+.txt-prenda {
   font-size: 3vh;
   font-family: "Delius Swash Caps", cursive;
   font-weight: 400;
   font-style: normal;
   justify-self: left;
   padding: 2vh;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
 }
-/* IMAGENES */
-.HasCompra{
+.txt-prenda:hover {
+  opacity: 1;
+}
+
+/* IMÁGENES */
+.HasCompra {
   margin: 1vh 2vh 1vh 12vh;
-  cursor: "pointer";
+  cursor: pointer;
   height: 40vh;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 1s ease;
 }
 .HasCompra:hover {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(-1deg);
 }
-.Prenda{
+
+.Prenda {
   height: 20vh;
   padding: 5vh 2vh;
   align-self: center;
+  transition: transform 0.3s ease;
+}
+.Prenda:hover {
+  transform: scale(1.05);
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(3vh); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(5vh); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5vh); }
+  to { opacity: 1; transform: translateY(0); }
 }

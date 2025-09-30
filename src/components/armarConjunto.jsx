@@ -58,7 +58,7 @@ const [indexSuperior, setIndexSuperior] = useState(0);
               {prendaSuperior ? (
                 <img src={prendaSuperior.imagen} alt={prendaSuperior.nombre} />
               ) : (
-                <p>No hay tops</p>
+                <p className="txt-carrito">No hay tops</p>
               )}
               <button onClick={() => mover("Parte superior", "der")}>↬</button>
             </div>
@@ -70,7 +70,7 @@ const [indexSuperior, setIndexSuperior] = useState(0);
               {prendaInferior ? (
                 <img src={prendaInferior.imagen} alt={prendaInferior.nombre} />
               ) : (
-                <p>No hay bottoms</p>
+                <p className="txt-carrito">No hay bottoms</p>
               )}
               <button onClick={() => mover("Parte inferior", "der")}>↬</button>
             </div>

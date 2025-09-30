@@ -137,6 +137,10 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
                     alert("Por favor selecciona un talle.");
                     return;
                   }
+                  if (cantidadSeleccionada == 0) {
+                    alert("Por favor ingrese una cantidad valida");
+                    return;
+                  }
                   agregarAlCarrito(productoSeleccionado, talleSeleccionado, cantidadSeleccionada);
                   cerrarModal();
                 }}
