@@ -38,7 +38,7 @@ const Carrito = ({ carrito, setCarrito }) => {
   );
 
   const finalizarCompra = () => {
-    alert("La compra se realizó con éxito 🛍️✨!");
+    alert("Llena tus datos para finalizar la compra ✨!");
     setCarrito([]);
   };
 

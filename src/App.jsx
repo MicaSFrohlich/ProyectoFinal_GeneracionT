@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./components/home";
@@ -20,6 +20,7 @@ function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
   const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
   const [carrito, setCarrito] = useState([]);
+
   const agregarAlCarrito = (producto, talle, cantidad) => {
     setCarrito((prev) => {
       const existe = prev.find(
@@ -56,10 +57,10 @@ function App() {
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/soporte" element={<SoporteChat />} />
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
-        <Route path="/seguimiento" element={<Seguimiento />} />         
-        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} eliminarDelCarrito={eliminarDelCarrito} />}/>        
+        <Route path="/seguimiento" element={ <Seguimiento/>}/>       
+        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} eliminarDelCarrito={eliminarDelCarrito} />} />
         <Route path="/catalogo" element={<Catalogo seccionSeleccionada={seccionActiva} agregarAlCarrito={agregarAlCarrito} />} />
-        <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
+         <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
         <Route path="/armarConjunto" element={<ArmarConjunto carrito={carrito} />} />
       </Routes>
       <Footer />

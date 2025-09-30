@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./metodoPago.css";
 
 const MetodoPago = ({ setCarrito }) => {
@@ -13,6 +13,8 @@ const MetodoPago = ({ setCarrito }) => {
     nombre: "",
     vencimiento: "",
     cvv: "",
+    dni: "",
+    direccion: "",
   });
   const [confirmado, setConfirmado] = useState(false);
 
@@ -23,7 +25,7 @@ const MetodoPago = ({ setCarrito }) => {
     }
 
     if ((metodo === "tarjeta" || metodo === "tarjetaMP") && 
-        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv)) {
+        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion)) {
         alert("Por favor completá todos los campos de la tarjeta.");
         return;
     }
@@ -33,8 +35,8 @@ const MetodoPago = ({ setCarrito }) => {
     setConfirmado(true);
 
     setTimeout(() => {
-      alert("La compra se realizó con éxito 🛍️✨");
-      navigate("/");
+      alert("Disfruta tu compra. Ya podes seguir el envío ✨");
+      navigate("/seguimiento");
     }, 500);
   };
 
@@ -96,12 +98,30 @@ const MetodoPago = ({ setCarrito }) => {
             value={tarjeta.cvv}
             onChange={(e) => setTarjeta({ ...tarjeta, cvv: e.target.value.replace(/\D/g, "")})}
             />
+            <input
+            type="text"
+            placeholder="DNI"
+            maxLength={8}
+            inputMode="numeric"
+            value={tarjeta.dni}
+            onChange={(e) => setTarjeta({ ...tarjeta, dni: e.target.value.replace(/\D/g, "")})}
+            />
+            <input
+            type="text"
+            placeholder="Dirección particular"
+            value={tarjeta.direccion}
+            onChange={(e) => setTarjeta({ ...tarjeta, direccion: e.target.value })}
+            />
         </div>
     )}
 
-      <button className="btn-confirmar" onClick={confirmarPago}>
-        Confirmar Pago
-      </button>
+      <div className="final">
+            <Link to="/seguimiento">
+              <button className="btn-confirmar" type="button" onClick={confirmarPago}>
+                Confirmar Pago
+              </button>
+            </Link>
+      </div>
 
       {confirmado && <p className="mensaje-exito">✅ Pago confirmado</p>}
     </div>
