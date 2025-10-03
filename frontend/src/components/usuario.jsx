@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import "../App.css";
+import ButterflyAnimation from "./ButterflyAnimation";
 
 function usuario() {
   return (
+
     <main className="inicio">
+      <ButterflyAnimation />
+
       <p className="font titulo">Bienvenido</p>
       <p className="font subtitulo">Elegí una opción</p>
       <hr className="division" />

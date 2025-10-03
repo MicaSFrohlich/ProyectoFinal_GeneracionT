@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import ButterflyAnimation from "./ButterflyAnimation";
 
 const productos = [
   "/img/productos/vestido_grecia.png",
@@ -13,8 +12,6 @@ const productos = [
 function home() {
   return (
     <main className="inicio">
-      {/* Animación de mariposas */}
-      <ButterflyAnimation />
 
       <p className="font titulo">Nova Style</p>
       <p className="font subtitulo"> Destacados del mes </p>

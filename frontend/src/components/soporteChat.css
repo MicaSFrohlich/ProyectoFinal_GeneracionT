@@ -20,7 +20,7 @@ html,body{
   bottom: 8vh;
   right: 2vh;
 
-  font-family: "Imperial";
+  font-family: "Elsie Swash Caps", serif;
   z-index: 1000;
 }
 
@@ -62,7 +62,7 @@ html,body{
   padding: 0.8vh;
   border: none;
   outline: none;
-  font-family: "Imperial";
+  font-family: "Elsie Swash Caps", serif;
 }
 
 .chat-input button {

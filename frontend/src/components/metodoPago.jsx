@@ -36,7 +36,6 @@ const MetodoPago = ({ setCarrito }) => {
 
     setTimeout(() => {
       alert("Disfruta tu compra. Ya podes seguir el envío ✨");
-      navigate("/seguimiento");
     }, 500);
   };
 
