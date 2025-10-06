@@ -16,7 +16,7 @@ const SoporteChat = () => {
       return [
         ...prev,
         { 
-          texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.", 
+          texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.",
           origen: "soporte" 
         },
       ];

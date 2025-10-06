@@ -14,6 +14,7 @@ const MetodoPago = ({ setCarrito }) => {
     vencimiento: "",
     cvv: "",
     dni: "",
+    telefono: "",
     direccion: "",
   });
   const [confirmado, setConfirmado] = useState(false);
@@ -22,21 +23,23 @@ const MetodoPago = ({ setCarrito }) => {
     if (!metodo) {
       alert("Por favor seleccioná un método de pago");
       return;
-    }
-
-    if ((metodo === "tarjeta" || metodo === "tarjetaMP") && 
-        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion)) {
+    }else if ((metodo === "tarjeta" || metodo === "tarjetaMP") && 
+        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || tarjeta.telefono)) {
         alert("Por favor completá todos los campos de la tarjeta.");
         return;
+    }else{
+      setCarrito([]);
+
+      setConfirmado(true);
+
+      setTimeout(() => {
+        alert("Disfruta tu compra. Ya podes seguir el envío ✨");
+      }, 500);
+
+      navigate("/seguimiento");
     }
 
-    setCarrito([]);
-
-    setConfirmado(true);
-
-    setTimeout(() => {
-      alert("Disfruta tu compra. Ya podes seguir el envío ✨");
-    }, 500);
+    
   };
 
   return (
@@ -107,6 +110,14 @@ const MetodoPago = ({ setCarrito }) => {
             />
             <input
             type="text"
+            placeholder="Teléfono"
+            maxLength={10}
+            inputMode="numeric"
+            value={tarjeta.telefono}
+            onChange={(e) => setTarjeta({ ...tarjeta, telefono: e.target.value.replace(/\D/g, "")})}
+            />
+            <input
+            type="text"
             placeholder="Dirección particular"
             value={tarjeta.direccion}
             onChange={(e) => setTarjeta({ ...tarjeta, direccion: e.target.value })}
@@ -115,11 +126,9 @@ const MetodoPago = ({ setCarrito }) => {
     )}
 
       <div className="final">
-            <Link to="/seguimiento">
               <button className="btn-confirmar" type="button" onClick={confirmarPago}>
                 Confirmar Pago
               </button>
-            </Link>
       </div>
 
       {confirmado && <p className="mensaje-exito">✅ Pago confirmado</p>}

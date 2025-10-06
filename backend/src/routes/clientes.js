@@ -4,7 +4,9 @@ const router = express.Router();
 // Ruta para traer todos los productos
 router.get('/', (req, res) => {
     const clientes = [
-        {    id: 1, nombre: "Daiana", contrasenia: "1234", email: "aylas@gmail.com" }
+        {    id: 1, nombre: "Daiana", contrasenia: "1234", email: "aylasdaiana06@gmail.com" },
+        {    id: 1, nombre: "Micaela", contrasenia: "1234", email: "micaelasf2007@gmail.com" },
+        {    id: 1, nombre: "Sofia", contrasenia: "1234", email: "e.sofiac06@gmail.com" }
     ];
     res.json(clientes);
 });
