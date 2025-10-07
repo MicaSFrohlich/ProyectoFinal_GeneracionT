@@ -24,7 +24,7 @@ const MetodoPago = ({ setCarrito }) => {
       alert("Por favor seleccioná un método de pago");
       return;
     }else if ((metodo === "tarjeta" || metodo === "tarjetaMP") && 
-        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || tarjeta.telefono)) {
+        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || !tarjeta.telefono)) {
         alert("Por favor completá todos los campos de la tarjeta.");
         return;
     }else{
