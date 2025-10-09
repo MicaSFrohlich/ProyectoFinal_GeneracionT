@@ -4,68 +4,94 @@ import "./catalogo.css";
 const mapaSecciones = {
   "Remeras / Blusas / Musculosas": ["Musculosa", "Blusa", "Remera"],
   "Shorts / Polleras": ["Short", "Pollera"],
-  "Pantalones": ["Pantalon"], 
+  "Pantalones": ["Pantalon"],
   "Vestidos": ["Vestido"],
   "Abrigos": ["Abrigo"],
 };
 
 const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
   const [productos, setProductos] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/productos")
-      .then((res) => res.json())
-      .then((data) => setProductos(data))
-      .catch((err) => console.error("ERROR AL TRAER PRODUCTOS", err));
-  }, []);
-
-  const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
-  const productosFiltrados = tiposFiltrar
-    ? productos.filter((p) => tiposFiltrar.includes(p.tipo))
-    : productos;
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState("");
   const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
 
-  const handleClick = (producto) => {
-    setProductoSeleccionado(producto);
-  };
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:3000/productos");
+        if (!response.ok) throw new Error("Error al obtener productos");
 
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error("Los datos recibidos no son un array");
+
+        setProductos(data);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProductos();
+  }, []);
+
+  const tiposFiltrar = mapaSecciones[seccionSeleccionada] || null;
+  const productosFiltrados = tiposFiltrar
+    ? productos.filter((p) => tiposFiltrar.includes(p.type))
+    : productos;
+
+  const handleClick = (producto) => setProductoSeleccionado(producto);
   const cerrarModal = () => {
     setProductoSeleccionado(null);
     setTalleSeleccionado("");
   };
+
+  if (loading) return <p>Cargando productos...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="catalogo">
       <div className="productos">
         {productosFiltrados.map((producto) => (
           <div
-            key={producto.id}
+            key={producto.productid}
             className="producto"
             onClick={() => handleClick(producto)}
           >
-            <img src={producto.imagen} alt={producto.nombre} />
-            <p className="nombre fuente">{producto.nombre}</p>
-            <p className="fuente">${producto.precio}</p>
+            <img
+              src={producto.image}
+              alt={producto.productname}
+              className="imagen-producto"
+            />
+            <p className="nombre fuente">{producto.productname}</p>
+            <p className="fuente">${producto.price}</p>
           </div>
         ))}
       </div>
 
+      {/* Modal */}
       {productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
-            <button className="cerrar" onClick={cerrarModal}>✖</button>
+            <button className="cerrar" onClick={cerrarModal}>
+              ✖
+            </button>
             <img
-              src={productoSeleccionado.imagen}
-              alt={productoSeleccionado.nombre}
+              src={productoSeleccionado.image}
+              alt={productoSeleccionado.productname}
               className="modal-imagen"
             />
             <div className="detalle-producto">
-              <h2>{productoSeleccionado.nombre}</h2>
-              <p><strong>Tipo:</strong> {productoSeleccionado.tipo}</p>
-              <p><strong>Precio:</strong> ${productoSeleccionado.precio}</p>
+              <h2>{productoSeleccionado.productname}</h2>
+              <p>
+                <strong>Tipo:</strong> {productoSeleccionado.type}
+              </p>
+              <p>
+                <strong>Precio:</strong> ${productoSeleccionado.price}
+              </p>
 
               <div className="selector-talles">
                 <label htmlFor="talle">Talle:</label>
@@ -74,7 +100,9 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
                   value={talleSeleccionado}
                   onChange={(e) => setTalleSeleccionado(e.target.value)}
                 >
-                  <option value="" disabled>Elegí</option>
+                  <option value="" disabled>
+                    Elegí
+                  </option>
                   <option value="XS">XS</option>
                   <option value="S">S</option>
                   <option value="M">M</option>
@@ -90,7 +118,9 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
                   type="number"
                   min="1"
                   value={cantidadSeleccionada}
-                  onChange={(e) => setCantidadSeleccionada(Number(e.target.value))}
+                  onChange={(e) =>
+                    setCantidadSeleccionada(Number(e.target.value))
+                  }
                 />
               </div>
 
@@ -102,10 +132,14 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
                     return;
                   }
                   if (cantidadSeleccionada <= 0) {
-                    alert("Por favor ingrese una cantidad válida");
+                    alert("Por favor ingrese una cantidad válida.");
                     return;
                   }
-                  agregarAlCarrito(productoSeleccionado, talleSeleccionado, cantidadSeleccionada);
+                  agregarAlCarrito(
+                    productoSeleccionado,
+                    talleSeleccionado,
+                    cantidadSeleccionada
+                  );
                   cerrarModal();
                 }}
               >

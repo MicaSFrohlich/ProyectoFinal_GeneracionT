@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./components/home";
@@ -15,40 +15,66 @@ import ArmarConjunto from "./components/armarConjunto.jsx";
 import MetodoPago from "./components/metodoPago";
 import "./App.css";
 
-
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
-  const secciones = ["Remeras / Blusas / Musculosas", "Shorts / Polleras", "Pantalones", "Vestidos", "Abrigos"];
+  const secciones = [
+    "Remeras / Blusas / Musculosas",
+    "Shorts / Polleras",
+    "Pantalones",
+    "Vestidos",
+    "Abrigos",
+  ];
   const [carrito, setCarrito] = useState([]);
 
+  // ✅ Función para agregar productos al carrito desde el catálogo
   const agregarAlCarrito = (producto, talle, cantidad) => {
     setCarrito((prev) => {
       const existe = prev.find(
-        (item) => item.id === producto.id && item.talle === talle
+        (item) =>
+          item.id === producto.productid && item.talle === talle
       );
 
       if (existe) {
-      
+        // Si ya está el mismo producto y talle, aumento la cantidad
         return prev.map((item) =>
-          item.id === producto.id && item.talle === talle
+          item.id === producto.productid && item.talle === talle
             ? { ...item, cantidad: item.cantidad + cantidad }
             : item
         );
       } else {
-        
-        return [...prev, { ...producto, talle, cantidad }];
+        // Si es nuevo, lo agrego con los campos correctos
+        return [
+          ...prev,
+          {
+            id: producto.productid,
+            nombre: producto.productname,
+            imagen: producto.image,
+            precio: producto.price,
+            tipo: producto.type,
+            talle,
+            cantidad,
+          },
+        ];
       }
     });
   };
-  const eliminarDelCarrito = (id) => {
-    setCarrito(prevCarrito => prevCarrito.filter(item => item.id !== id));
-  };
-  
 
-  
+  // ✅ Función para eliminar un producto del carrito
+  const eliminarDelCarrito = (id, talle) => {
+    setCarrito((prevCarrito) =>
+      prevCarrito.filter(
+        (item) => !(item.id === id && item.talle === talle)
+      )
+    );
+  };
+
   return (
     <>
-      <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
+      <Navbar
+        secciones={secciones}
+        onSelect={setSeccionActiva}
+        carrito={carrito}
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -57,12 +83,35 @@ function App() {
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/soporte" element={<SoporteChat />} />
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
-        <Route path="/seguimiento" element={ <Seguimiento/>}/>       
-        <Route path="/carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} eliminarDelCarrito={eliminarDelCarrito} />} />
-        <Route path="/catalogo" element={<Catalogo seccionSeleccionada={seccionActiva} agregarAlCarrito={agregarAlCarrito} />} />
-         <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
+        <Route path="/seguimiento" element={<Seguimiento />} />
+
+        {/* 🛒 Carrito conectado */}
+        <Route
+          path="/carrito"
+          element={
+            <Carrito
+              carrito={carrito}
+              setCarrito={setCarrito}
+              eliminarDelCarrito={eliminarDelCarrito}
+            />
+          }
+        />
+
+        {/* 🛍️ Catálogo conectado */}
+        <Route
+          path="/catalogo"
+          element={
+            <Catalogo
+              seccionSeleccionada={seccionActiva}
+              agregarAlCarrito={agregarAlCarrito}
+            />
+          }
+        />
+
+        <Route path="/metodoPago" element={<MetodoPago setCarrito={setCarrito} />} />
         <Route path="/armarConjunto" element={<ArmarConjunto carrito={carrito} />} />
       </Routes>
+
       <Footer />
     </>
   );
