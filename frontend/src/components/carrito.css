@@ -2,7 +2,7 @@
 .carrito {
   background: linear-gradient(to bottom, #f6f4f2, #edded1);
   box-shadow: 0 4px 12px rgba(196, 163, 188, 0.25);
-  margin: 4% auto 0% auto;
+  margin: 4% auto 0 auto;
   width: 100%;
   height: auto;
   min-height: 100%;
@@ -16,7 +16,7 @@
 .respuesta {
   display: flex;
   flex-direction: row;
-  padding: 7vh;
+  padding: 5vh;
   gap: 2vh;
   justify-content: space-between;
   align-items: center;
@@ -28,14 +28,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-  gap: 5vh 10vh;
-  padding: 2vh;
+  gap: 3vh 5vh;
+  padding: 1vh;
 }
 
 .final {
   display: flex;
   flex-direction: column;
-  gap: 2vh;
+  gap: 1.5vh;
   justify-self: center;
   align-items: center;
   animation: slideUp 0.8s ease;
@@ -44,7 +44,7 @@
 .acciones-cantidad {
   display: flex;
   flex-direction: row;
-  padding: 1vh;
+  padding: 0.5vh;
   justify-content: space-around;
 }
 
@@ -53,37 +53,40 @@
   background-color: #fdfcfcec;
   display: flex;
   flex-direction: column;
-  padding: 2vh;
+  padding: 1vh;
   justify-content: space-around;
-  width: 25%;
-  border: 0.4vh solid #d9a299;
-  border-radius: 3vh;
-  box-shadow: 0 2px 6px rgba(152, 112, 112, 0.2);
+  width: 18%;
+  min-width: 180px;
+  border: 0.3vh solid #d9a299;
+  border-radius: 2vh;
+  box-shadow: 0 2px 4px rgba(152, 112, 112, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeInUp 0.7s ease;
 }
+
 .item-carrito:hover {
-  transform: translateY(-0.8vh) scale(1.02);
-  box-shadow: 0 6px 16px rgba(152, 112, 112, 0.25);
+  transform: translateY(-0.5vh) scale(1.02);
+  box-shadow: 0 4px 8px rgba(152, 112, 112, 0.25);
 }
 
 /* BOTONES */
 .btn-eliminar {
-  margin-top: 1vh;
+  margin-top: 0.5vh;
   background: #d9a299;
   font-family: "Imperial Script";
-  letter-spacing: 0.3vh;
+  letter-spacing: 0.2vh;
   font-weight: 500;
   color: white;
-  padding: 1vh 2vw;
+  padding: 0.8vh 1vw;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
-  font-size: 4vh;
+  font-size: 3vh;
   width: fit-content;
   align-self: center;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+
 .btn-eliminar:hover {
   background: #b87f72;
   transform: scale(1.05);
@@ -96,14 +99,15 @@
   letter-spacing: 0.5vh;
   font-weight: 500;
   color: white;
-  padding: 2vh 2vw;
+  padding: 1vh 1vw;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
-  font-size: 5vh;
+  font-size: 3vh;
   width: fit-content;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
+
 .btn-comprar-final:hover {
   background: #7b5757;
   transform: scale(1.07);
@@ -114,16 +118,18 @@
   background: #efc9c3;
   font-family: "Imperial Script", cursive;
   font-weight: 600;
-  font-size: 5vh;
+  font-size: 2.5vh;
   font-style: normal;
   color: #705454;
   text-align: center;
-  width: 6vh;
+  width: 3.5vh;
+  height: 3.5vh;
   border: none;
   border-radius: 50%;
   align-self: center;
   transition: transform 0.2s ease, background 0.2s ease;
 }
+
 .btn-cantidad:hover {
   background: #e5b5ae;
   transform: scale(1.1);
@@ -133,42 +139,44 @@
 .txt-carrito {
   font-family: "Imperial Script", cursive;
   font-weight: 600;
-  font-size: 7vh;
+  font-size: 3vh;
   font-style: normal;
   color: #705454;
-  margin: 2vh 0vh 2vh 0vh;
+  margin: 1vh 0;
   text-align: center;
   animation: fadeIn 1.2s ease;
 }
 
 .titulo-carrito {
   text-align: center;
-  font-size: 10vh;
+  font-size: 6vh;
   color: #d9a299;
   letter-spacing: 0.5vh;
   animation: slideDown 1s ease;
 }
 
 .titulo-prenda {
-  font-size: 4vh;
+  font-size: 2.5vh;
   color: #987070;
-  letter-spacing: 0.3vh;
+  letter-spacing: 0.2vh;
   transition: color 0.3s ease;
 }
+
 .titulo-prenda:hover {
   color: #705454;
 }
 
 .txt-prenda {
-  font-size: 3vh;
+  font-size: 2vh;
   font-family: "Delius Swash Caps", cursive;
   font-weight: 400;
   font-style: normal;
   justify-self: left;
-  padding: 2vh;
+  padding: 1vh 0;
   opacity: 0.9;
   transition: opacity 0.3s ease;
 }
+
 .txt-prenda:hover {
   opacity: 1;
 }
@@ -177,20 +185,22 @@
 .HasCompra {
   margin: 1vh 2vh 1vh 12vh;
   cursor: pointer;
-  height: 40vh;
+  height: 25vh;
   transition: transform 0.3s ease;
   animation: fadeInUp 1s ease;
 }
+
 .HasCompra:hover {
   transform: scale(1.08) rotate(-1deg);
 }
 
 .Prenda {
-  height: 20vh;
-  padding: 5vh 2vh;
+  height: 12vh;
+  padding: 2vh 1vh;
   align-self: center;
   transition: transform 0.3s ease;
 }
+
 .Prenda:hover {
   transform: scale(1.05);
 }
