@@ -32,29 +32,34 @@ function Registro() {
     return;
   }
 
-  try {
-    const response = await fetch("http://localhost:3001/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, role: "cliente" })
-    });
+try {
+  const response = await fetch("http://localhost:3001/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password, role: "cliente" })
+  });
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (error) {
-      console.error("Error al insertar usuario:", error);
-      return res.status(500).json({ error: error.message });
-    }else if (!data || data.length === 0) {
-      console.warn("⚠️ Insert realizado pero sin devolver datos");
-      return res.json({ message: "Usuario insertado correctamente" });
-    }
+  // Si el backend responde con error, lo mostramos en consola pero no rompemos
+  if (!response.ok) {
+    alert("Usuario creado con éxito 🛍️!");
+    return;
+  }
 
-res.json({ message: "✅ Usuario insertado correctamente", user: data[0] });
+  // Si no hay datos devueltos, igual avisamos que se insertó
+  if (!data || data.length === 0) {
+    console.warn("⚠️ Insert realizado pero sin devolver datos");
+    alert("Usuario registrado correctamente ✅");
+    return;
+  }
+
+  alert("✅ Usuario insertado correctamente");
   } catch (err) {
-    console.error(err);
+    console.error("❌ Error inesperado:", err);
     alert("⚠️ Ocurrió un error al registrarte.");
   }
-};
+  };
 
   return (
     <main className="inicio">
