@@ -43,6 +43,7 @@ try {
 
   if (!response.ok) {
     alert("Usuario creado con éxito 🛍️!");
+    navigate("/");
     return;
   }
 
