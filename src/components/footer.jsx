@@ -22,7 +22,7 @@ function Footer() {
 
       <div className="barra-footer">
         <a href="/">
-          <img src="public/img/LogoFooter.png" alt="" id="logofooter" />
+          <img src="/img/LogoFooter.png" alt="" id="logofooter" />
         </a>
       
       <div className="footer-toggles">

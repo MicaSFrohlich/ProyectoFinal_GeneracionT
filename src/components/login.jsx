@@ -12,7 +12,7 @@ function Login() {
   const togglePassword = () => setShowPassword(!showPassword);
 
   const iniciarSesion = async () => {
-    // Validaciones básicas
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
       alert("⚠️ Por favor ingresá un email válido!");
@@ -27,14 +27,16 @@ function Login() {
     setLoading(true);
 
     try {
-      // 🔹 Si tu backend está desplegado, cambiá la URL
       const response = await fetch("http://localhost:3001/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const data = await response.json(); 
+
+      localStorage.setItem("usuario", JSON.stringify(data.user));
+      console.log("Usuario guardado en localStorage:", localStorage.getItem("usuario"));
 
       if (!response.ok) {
         alert(`❌ ${data.error || "Error al iniciar sesión"}`);
@@ -42,12 +44,9 @@ function Login() {
         return;
       }
 
-      // Guardar usuario logueado en localStorage (opcional)
-      localStorage.setItem("usuario", JSON.stringify(data.user));
-
       alert(`🩷 ¡Bienvenido ${data.user.email}!`);
 
-      navigate("/"); // redirige a la página principal
+      navigate("/");
     } catch (error) {
       console.error("Error en inicio de sesión:", error);
       alert("❌ Ocurrió un error al intentar iniciar sesión.");

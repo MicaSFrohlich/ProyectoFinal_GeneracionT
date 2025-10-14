@@ -14,7 +14,7 @@ function navbar({ secciones, onSelect, carrito }) {
           <button className="menu-btn" onClick={() => setMenuAbierto(!menuAbierto)}>
             ☰ 
           </button>
-          <Link to="/"><img src="public/img/LogoHeader.png" alt="" id="logoNS" /></Link>
+          <Link to="/"><img src="/img/LogoHeader.png" alt="" id="logoNS" /></Link>
         </div>
         <div className="barra-lado-derecho">
           <div className="link-otros-sitios">

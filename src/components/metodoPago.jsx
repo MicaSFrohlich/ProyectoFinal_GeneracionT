@@ -4,8 +4,9 @@ import "./metodoPago.css";
 
 const MetodoPago = ({ setCarrito }) => {
   const location = useLocation();
+const { total, user, carrito } = location.state || {};
+
   const navigate = useNavigate();
-  const { total } = location.state || { total: 0 };
 
   const [metodo, setMetodo] = useState("");
   const [tarjeta, setTarjeta] = useState({
@@ -19,28 +20,43 @@ const MetodoPago = ({ setCarrito }) => {
   });
   const [confirmado, setConfirmado] = useState(false);
 
-  const confirmarPago = () => {
-    if (!metodo) {
-      alert("Por favor seleccioná un método de pago");
-      return;
-    }else if ((metodo === "tarjeta" || metodo === "tarjetaMP") && 
-        (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || !tarjeta.telefono)) {
-        alert("Por favor completá todos los campos de la tarjeta.");
-        return;
-    }else{
-      setCarrito([]);
 
-      setConfirmado(true);
+const confirmarPago = async () => {
+  if (!metodo) return alert("Por favor seleccioná un método de pago");
 
-      setTimeout(() => {
-        alert("Disfruta tu compra. Ya podes seguir el envío ✨");
-      }, 500);
+  // Validaciones de tarjeta
+  if ((metodo === "tarjeta" || metodo === "tarjetaMP") &&
+      (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || 
+       !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || !tarjeta.telefono)) {
+    return alert("Por favor completá todos los campos de la tarjeta.");
+  }
 
-      navigate("/seguimiento");
-    }
+  try {
+    const response = await fetch("http://localhost:3001/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: JSON.parse(localStorage.getItem("usuario")), // id, email, etc
+        carrito, // array de productos
+        total,
+        metodoPago: metodo,
+        tarjeta
+      })
+    });
+    console.log("🟢 Enviando al backend:", { user, carrito, total });
+    const data = await response.json();
 
-    
-  };
+    if (!response.ok) throw new Error(data.error || "Error al procesar el pago");
+
+    alert("✅ Compra realizada con éxito!");
+    setCarrito([]); // vaciar carrito
+    navigate("/seguimiento");
+
+  } catch (err) {
+    console.error("Error en checkout:", err);
+    alert("❌ Ocurrió un error al procesar el pago");
+  }
+};
 
   return (
     <div className="pago-container">

@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import "./carrito.css";
 
 const Carrito = ({ carrito, setCarrito }) => {
+
+  const navigate = useNavigate();
 
   const eliminarDelCarrito = (id, talle) => {
     setCarrito((prev) =>
@@ -38,9 +40,16 @@ const Carrito = ({ carrito, setCarrito }) => {
   );
 
   const finalizarCompra = () => {
-    alert("Llena tus datos para finalizar la compra ✨!");
-    setCarrito([]);
-  };
+  const usuario = JSON.parse(localStorage.getItem("usuario")); // 🔹 AGREGADO: obtener usuario logueado
+  if (!usuario) { // 🔹 AGREGADO: si no hay usuario, no deja continuar
+    alert("Debes iniciar sesión antes de comprar ✨");
+    navigate("/login"); // 🔹 AGREGADO: redirige a login
+    return;
+  }
+
+  // 🔹 AGREGADO: redirigir a MetodoPago pasando carrito y total
+  navigate("/metodoPago", { state: { carrito, total } });
+};
 
   return (
     <div className="carrito">
@@ -51,7 +60,7 @@ const Carrito = ({ carrito, setCarrito }) => {
           <p className="txt-carrito">Aún no agregaste nada a tu carrito</p>
           <Link to="/catalogo">
             <img
-              src="public/img/SeguiComprando_2.png"
+              src="/img/SeguiComprando_2.png"
               alt="Seguir comprando"
               className="HasCompra"
             />
@@ -104,7 +113,7 @@ const Carrito = ({ carrito, setCarrito }) => {
           <div className="final">
             <p className="txt-carrito">Total: ${total}</p>
             <Link to="/metodoPago" state={{ total }}>
-              <button className="btn-comprar-final" onClick={finalizarCompra}>
+              <button className="btn-comprar-final"  state={{ total, user: JSON.parse(localStorage.getItem("usuario")), carrito: carrito}} onClick={finalizarCompra}>
                 Finalizar Compra
               </button>
             </Link>

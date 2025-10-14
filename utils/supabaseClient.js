@@ -1,13 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 
-// 🔹 Cargar variables de entorno antes de todo
 dotenv.config();
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
-// 🔹 Verificación de variables
 if (!supabaseUrl || !supabaseKey) {
   console.error("❌ No se encontraron las variables de entorno de Supabase");
   console.log("SUPABASE_URL:", supabaseUrl);

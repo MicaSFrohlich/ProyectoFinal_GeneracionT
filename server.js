@@ -58,10 +58,9 @@ app.post("/api/register", async (req, res) => {
       }
     });
 
-    //LOGIN
-
-  app.post("/api/login", async (req, res) => {
-  const { email, password } = req.body;
+    // LOGIN
+app.post("/api/login", async (req, res) => {
+  const { email, password} = req.body;
 
   try {
     console.log("Intentando iniciar sesión con:", email);
@@ -89,6 +88,69 @@ app.post("/api/register", async (req, res) => {
     res.status(500).json({ error: "Error al iniciar sesión" });
   }
 });
+
+// CHECKOUT
+
+app.post("/api/checkout", async (req, res) => {
+  const { usuario, carrito, shippingaddress, total } = req.body;
+
+  if (!usuario || !carrito || carrito.length === 0) {
+    return res.status(400).json({ error: "Datos incompletos" });
+  }
+
+  try {
+
+    const { data: updatedUser, error: userError } = await supabase
+      .from("users")
+      .update({
+        name: usuario.name,
+        dni: usuario.dni,
+        address: usuario.address,
+        phone: usuario.phone
+      })
+      .eq("userid", usuario.userid)
+      .select()
+      .maybeSingle();
+
+    if (userError) throw userError;
+
+    const { data: newOrder, error: orderError } = await supabase
+      .from("orders")
+      .insert([
+        {
+          userid: usuario.userid,
+          shippingaddress: shippingaddress,
+          total: total,
+        },
+      ])
+      .select()
+      .maybeSingle();
+
+    if (orderError) throw orderError;
+
+    const orderId = newOrder.orderid;
+    
+    const orderItems = carrito.map((item) => ({
+      orderid: orderId,
+      productid: item.id,
+      quantity: item.cantidad,
+      itemprice: item.precio,
+    }));
+
+    const { error: itemsError } = await supabase
+      .from("orderitems")
+      .insert(orderItems);
+
+    if (itemsError) throw itemsError;
+
+    res.json({ message: "Compra realizada correctamente", order: newOrder });
+
+  } catch (err) {
+    console.error("❌ Error en checkout:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 const PORT = 3001;
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

@@ -1,11 +1,10 @@
 import express from "express";
-import { supabase } from "./supabaseClient.js"; // 🔹 Importamos el cliente ya configurado
+import { supabase } from "./supabaseClient.js";
 
 console.log("📦 Cargando rutas de productos...");
 
 const router = express.Router();
 
-// GET /productos → trae todos los productos
 router.get("/", async (req, res) => {
   try {
     const { data, error } = await supabase.from("product").select("*");

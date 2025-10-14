@@ -26,7 +26,6 @@ function App() {
   ];
   const [carrito, setCarrito] = useState([]);
 
-  // ✅ Función para agregar productos al carrito desde el catálogo
   const agregarAlCarrito = (producto, talle, cantidad) => {
     setCarrito((prev) => {
       const existe = prev.find(
@@ -35,14 +34,12 @@ function App() {
       );
 
       if (existe) {
-        // Si ya está el mismo producto y talle, aumento la cantidad
         return prev.map((item) =>
           item.id === producto.productid && item.talle === talle
             ? { ...item, cantidad: item.cantidad + cantidad }
             : item
         );
       } else {
-        // Si es nuevo, lo agrego con los campos correctos
         return [
           ...prev,
           {
@@ -59,7 +56,6 @@ function App() {
     });
   };
 
-  // ✅ Función para eliminar un producto del carrito
   const eliminarDelCarrito = (id, talle) => {
     setCarrito((prevCarrito) =>
       prevCarrito.filter(
@@ -85,7 +81,6 @@ function App() {
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
         <Route path="/seguimiento" element={<Seguimiento />} />
 
-        {/* 🛒 Carrito conectado */}
         <Route
           path="/carrito"
           element={
@@ -97,7 +92,6 @@ function App() {
           }
         />
 
-        {/* 🛍️ Catálogo conectado */}
         <Route
           path="/catalogo"
           element={
