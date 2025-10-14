@@ -14,6 +14,7 @@ import Carrito from "./components/carrito";
 import ArmarConjunto from "./components/armarConjunto.jsx";
 import MetodoPago from "./components/metodoPago";
 import "./App.css";
+localStorage.removeItem("usuario");
 
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);

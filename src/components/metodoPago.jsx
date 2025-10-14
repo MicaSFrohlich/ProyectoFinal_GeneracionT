@@ -4,7 +4,14 @@ import "./metodoPago.css";
 
 const MetodoPago = ({ setCarrito }) => {
   const location = useLocation();
-const { total, user, carrito } = location.state || {};
+  const { carrito, total, usuario } = location.state || {};
+  const usuarioActual = usuario || JSON.parse(localStorage.getItem("usuario"));
+
+  if (!usuarioActual || !usuarioActual.userid) {
+    alert("Debes iniciar sesión antes de comprar ✨");
+    navigate("/login");
+    return null;
+  }
 
   const navigate = useNavigate();
 
@@ -24,7 +31,6 @@ const { total, user, carrito } = location.state || {};
 const confirmarPago = async () => {
   if (!metodo) return alert("Por favor seleccioná un método de pago");
 
-  // Validaciones de tarjeta
   if ((metodo === "tarjeta" || metodo === "tarjetaMP") &&
       (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || 
        !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || !tarjeta.telefono)) {
@@ -32,24 +38,36 @@ const confirmarPago = async () => {
   }
 
   try {
+
+    const usuarioStorage = JSON.parse(localStorage.getItem("usuario"));
+
+      const usuario = {
+        userid: usuarioStorage.userid,
+        name: tarjeta.nombre,
+        dni: tarjeta.dni,
+        address: tarjeta.direccion,
+        phone: tarjeta.telefono
+      };
+
     const response = await fetch("http://localhost:3001/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        user: JSON.parse(localStorage.getItem("usuario")), // id, email, etc
-        carrito, // array de productos
+        usuario,
+        carrito,
         total,
-        metodoPago: metodo,
-        tarjeta
+        shippingaddress: tarjeta.direccion
       })
     });
-    console.log("🟢 Enviando al backend:", { user, carrito, total });
-    const data = await response.json();
 
+    const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Error al procesar el pago");
 
     alert("✅ Compra realizada con éxito!");
-    setCarrito([]); // vaciar carrito
+    setCarrito([]);
+
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
     navigate("/seguimiento");
 
   } catch (err) {
@@ -95,10 +113,10 @@ const confirmarPago = async () => {
             onChange={(e) => setTarjeta({ ...tarjeta, numero: e.target.value.replace(/\D/g, "")})}
             />
             <input
-            type="text"
-            placeholder="Nombre del titular"
-            value={tarjeta.nombre}
-            onChange={(e) => setTarjeta({ ...tarjeta, nombre: e.target.value })}
+              type="text"
+              placeholder="Nombre De Titular"
+              value={tarjeta.nombre}
+              onChange={(e) => setTarjeta({ ...tarjeta, nombre: e.target.value })}
             />
             <input
             type="text"

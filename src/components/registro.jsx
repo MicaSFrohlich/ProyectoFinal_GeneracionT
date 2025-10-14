@@ -12,8 +12,8 @@ function Registro() {
   const togglePassword = () => setShowPassword(!showPassword);
 
   const registrar = async () => {
-  // Validaciones
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.trim())) {
     alert("⚠️ Por favor ingresá un email válido!");
     return;
@@ -41,13 +41,11 @@ try {
 
   const data = await response.json();
 
-  // Si el backend responde con error, lo mostramos en consola pero no rompemos
   if (!response.ok) {
     alert("Usuario creado con éxito 🛍️!");
     return;
   }
 
-  // Si no hay datos devueltos, igual avisamos que se insertó
   if (!data || data.length === 0) {
     console.warn("⚠️ Insert realizado pero sin devolver datos");
     alert("Usuario registrado correctamente ✅");

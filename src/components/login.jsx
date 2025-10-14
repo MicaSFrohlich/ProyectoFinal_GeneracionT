@@ -35,17 +35,15 @@ function Login() {
 
       const data = await response.json(); 
 
-      localStorage.setItem("usuario", JSON.stringify(data.user));
-      console.log("Usuario guardado en localStorage:", localStorage.getItem("usuario"));
-
       if (!response.ok) {
         alert(`❌ ${data.error || "Error al iniciar sesión"}`);
         setLoading(false);
         return;
       }
 
+      localStorage.setItem("usuario", JSON.stringify(data.user));
+      console.log("Usuario guardado en localStorage:", localStorage.getItem("usuario"));
       alert(`🩷 ¡Bienvenido ${data.user.email}!`);
-
       navigate("/");
     } catch (error) {
       console.error("Error en inicio de sesión:", error);

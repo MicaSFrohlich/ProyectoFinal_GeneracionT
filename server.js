@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { createClient } from "@supabase/supabase-js";
 import { supabase } from "./utils/supabaseClient.js";
 import productosRouter from "./utils/productos.js";
 
@@ -10,6 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/productos", productosRouter);
+
+const supabaseUrl = "https://ltyappemysyfspwzujpf.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0eWFwcGVteXN5ZnNwd3p1anBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI3NzIsImV4cCI6MjA3NTMzODc3Mn0.fFjI2h0mjBdJMc97QJavX3PMhuQ1foo-xdPuzNWlUM8";
+
 
 app.get("/productos", async (req, res) => {
   try {
@@ -40,7 +45,7 @@ app.post("/api/register", async (req, res) => {
         {
           "email": email,
           "password": password,
-          "role": role || "cliente", // opcional si tenés columna Role
+          "role": role || "cliente",
         },
       ]);
 
@@ -58,9 +63,10 @@ app.post("/api/register", async (req, res) => {
       }
     });
 
-    // LOGIN
-app.post("/api/login", async (req, res) => {
-  const { email, password} = req.body;
+  //LOGIN
+
+  app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
     console.log("Intentando iniciar sesión con:", email);
@@ -89,7 +95,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// CHECKOUT
+//CHECKOUT
 
 app.post("/api/checkout", async (req, res) => {
   const { usuario, carrito, shippingaddress, total } = req.body;
@@ -99,7 +105,10 @@ app.post("/api/checkout", async (req, res) => {
   }
 
   try {
+    console.log("🟢 Procesando checkout de usuario:", usuario.userid);
 
+
+    console.log("Actualizando usuario con datos:", usuario);
     const { data: updatedUser, error: userError } = await supabase
       .from("users")
       .update({
@@ -114,13 +123,16 @@ app.post("/api/checkout", async (req, res) => {
 
     if (userError) throw userError;
 
+    console.log("✅ Usuario actualizado:", updatedUser);
+
     const { data: newOrder, error: orderError } = await supabase
       .from("orders")
       .insert([
         {
           userid: usuario.userid,
-          shippingaddress: shippingaddress,
-          total: total,
+          shippingaddress,
+          total,
+
         },
       ])
       .select()
@@ -128,8 +140,9 @@ app.post("/api/checkout", async (req, res) => {
 
     if (orderError) throw orderError;
 
+    console.log("🧾 Nueva orden creada:", newOrder);
+
     const orderId = newOrder.orderid;
-    
     const orderItems = carrito.map((item) => ({
       orderid: orderId,
       productid: item.id,
@@ -143,7 +156,13 @@ app.post("/api/checkout", async (req, res) => {
 
     if (itemsError) throw itemsError;
 
-    res.json({ message: "Compra realizada correctamente", order: newOrder });
+    console.log("📦 Productos asociados a la orden correctamente.");
+
+    res.json({
+      message: "Compra realizada correctamente",
+      order: newOrder,
+      user: updatedUser,
+    });
 
   } catch (err) {
     console.error("❌ Error en checkout:", err);
@@ -151,6 +170,7 @@ app.post("/api/checkout", async (req, res) => {
   }
 });
 
-
 const PORT = 3001;
-app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+});
