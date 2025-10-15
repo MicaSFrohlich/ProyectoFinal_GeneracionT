@@ -47,11 +47,17 @@ try {
     return;
   }
 
+  if (data.user) {
+    localStorage.setItem("usuario", JSON.stringify(data.user)); //REVISEN ACA!!!
+    console.log("✅ Usuario guardado en localStorage:", data.user);
+  }
+
   if (!data || data.length === 0) {
     console.warn("⚠️ Insert realizado pero sin devolver datos");
     alert("Usuario registrado correctamente ✅");
     return;
   }
+
 
   alert("✅ Usuario insertado correctamente");
   } catch (err) {

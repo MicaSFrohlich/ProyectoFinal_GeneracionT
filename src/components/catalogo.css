@@ -234,21 +234,21 @@
 
 .mensaje-carrito {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 2vh;
+  right: 2vh;
   background: #4caf50;
   color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 1vh 1.5vh;
+  border-radius: 0.8vh;
+  font-size: 1.4vh;
   animation: fadeInOut 2s ease forwards;
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-10px); }
+  0% { opacity: 0; transform: translateY(-1vh); }
   20% { opacity: 1; transform: translateY(0); }
   80% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 0; transform: translateY(-1vh); }
 }
 
 .catalogo-cargando {

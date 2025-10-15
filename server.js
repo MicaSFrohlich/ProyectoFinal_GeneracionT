@@ -47,7 +47,8 @@ app.post("/api/register", async (req, res) => {
           "password": password,
           "role": role || "cliente",
         },
-      ]);
+      ])
+      .select();
 
     if (error) {
         console.error("❌ Error al insertar usuario:", error);
@@ -142,7 +143,7 @@ app.post("/api/checkout", async (req, res) => {
 
     console.log("🧾 Nueva orden creada:", newOrder);
 
-    const orderId = newOrder.orderid;
+    const orderId = newOrder[0].orderid;
     const orderItems = carrito.map((item) => ({
       orderid: orderId,
       productid: item.id,

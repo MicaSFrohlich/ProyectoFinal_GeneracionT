@@ -1,4 +1,4 @@
-/* CONTENEDOR */
+
 .seguimiento-container {
   text-align: center;
   margin: 12%;
@@ -8,7 +8,6 @@
   padding: 4vh;
 }
 
-/* TÍTULO */
 #titulo_seg {
   font-size: 6vh;
   font-weight: 600;
@@ -19,13 +18,11 @@
   animation: glowIn 1.5s ease;
 }
 
-/* EFECTO GLOW SUAVE */
 @keyframes glowIn {
   0% { opacity: 0; text-shadow: none; }
   100% { opacity: 1; text-shadow: 0 0 10px rgba(217,162,153,0.6); }
 }
 
-/* TIMELINE */
 .timeline {
   position: relative;
   display: flex;
@@ -35,7 +32,6 @@
   margin: 0 auto;
 }
 
-/* línea base detrás de los círculos */
 .timeline::before {
   content: "";
   position: absolute;
@@ -46,7 +42,6 @@
   background-color:  #a777706e;
 }
 
-/* ITEM */
 .timeline-item {
   position: relative;
   z-index: 1; 
@@ -56,7 +51,6 @@
   gap: 2vh;
 }
 
-/* CÍRCULO */
 .timeline-item .circle {
   width: 6.5vh;
   height: 6.5vh;
@@ -66,14 +60,12 @@
   z-index: 1;
 }
 
-/* CÍRCULO ACTIVO */
 .timeline-item.active .circle {
   background-color: #987070;
   transform: scale(1.2);
   box-shadow: 0 0 15px rgba(152,112,112,0.6);
 }
 
-/* EFECTO PULSO EN ACTIVO */
 .timeline-item.active .circle::after {
   content: "";
   position: fixed;
@@ -90,14 +82,12 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* TEXTO DEBAJO */
 .timeline-item p {
   margin: 0;
   font-size: 3.2vh;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* TEXTO ACTIVO */
 .timeline-item.active p {
   color: #987070;
   font-weight: bold;

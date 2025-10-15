@@ -39,7 +39,7 @@
   margin: 5% auto 5% auto;
   background: #d9a299;
   border: none;
-  padding: 12px 25px;
+  padding: 1.2vh 2.5vh;
   border-radius: 8px;
   color: white;
   font-size: 1rem;
@@ -59,21 +59,21 @@
 .form-tarjeta {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin: 20px 0;
+  gap: 1.5vh;
+  margin: 2vh 0;
 }
 
 .form-tarjeta input {
-  padding: 10px;
+  padding: 1vh;
   border: 1px solid #d9a299;
-  border-radius: 6px;
+  border-radius: 0.6vh;
   font-size: 1rem;
   outline: none;
 }
 
 .tarjeta-flex {
   display: flex;
-  gap: 10px;
+  gap: 1vh;
 }
 
 .titulo-pago{

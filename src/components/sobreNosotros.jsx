@@ -15,10 +15,10 @@ export const sobreNosotros = () => {
             que combina feminidad, elegancia y sutileza y ofrece prendas únicas fabricadas por nuestro equipo
             con variedad de talles para que nadie quede afuera.
           </p>
-          <img src="public\img\local\local_4.png" alt="" className='local'/>
+          <img src="img/local/local_4.png" alt="" className='local'/>
         </div>
         <div className='contenedor'>
-          <img src="public\img\local\local_5.png" alt="" className='local'/>
+          <img src="/img/local/local_5.png" alt="" className='local'/>
           <p className='nosotros'>
             Hasta hoy, nuestras prendas se comercializan principalmente de manera 
             presencial, pero sentimos la necesidad de expandirnos y conectar con 
@@ -35,7 +35,7 @@ export const sobreNosotros = () => {
            delicadeza, clase y confianza.
           <p>Nova Style – Recoleta</p>
           </p>
-          <img src="public\img\local\local_6.png" alt="" className='local'/>
+          <img src="/img/local/local_6.png" alt="" className='local'/>
         </div>
         <div>
         </div>
