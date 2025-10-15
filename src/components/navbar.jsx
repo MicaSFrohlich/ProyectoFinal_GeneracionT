@@ -6,6 +6,7 @@ import "../App.css";
 function navbar({ secciones, onSelect, carrito }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const navigate = useNavigate();
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
 
   return (
     <header>
@@ -23,9 +24,17 @@ function navbar({ secciones, onSelect, carrito }) {
             <Link to="/carrito"><p className="texto-nav">Carrito ({carrito.length})</p></Link>
             <Link to="/armarConjunto"><p className="texto-nav">Arma tu conjunto</p></Link>
           </div>
-          <Link to="/usuario"><img src="/img/contacto.png" alt="" className="logo" /></Link>
+          <Link 
+              to={usuario ? "#" : "/usuario"} 
+              className={`link-usuario ${usuario ? "deshabilitado" : ""}`}
+              onClick={(e) => usuario && e.preventDefault()}
+            >
+              <img src="/img/contacto.png" alt="" className="logo" />
+          </Link>
         </div>
       </div>
+
+      
 
       <div className={`sidebar ${menuAbierto ? "activo" : ""}`}>
         <button className="cerrar-btn" onClick={() => setMenuAbierto(false)}>

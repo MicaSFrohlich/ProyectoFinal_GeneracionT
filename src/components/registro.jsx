@@ -41,15 +41,11 @@ try {
 
   const data = await response.json();
 
-  if (!response.ok) {
+  if (response.ok) {
     alert("Usuario creado con éxito 🛍️!");
-    navigate("/");
+    alert(`🩷 Ahora inicia sesión para comprar`);
+    navigate("/login");
     return;
-  }
-
-  if (data.user) {
-    localStorage.setItem("usuario", JSON.stringify(data.user)); //REVISEN ACA!!!
-    console.log("✅ Usuario guardado en localStorage:", data.user);
   }
 
   if (!data || data.length === 0) {
@@ -58,8 +54,6 @@ try {
     return;
   }
 
-
-  alert("✅ Usuario insertado correctamente");
   } catch (err) {
     console.error("❌ Error inesperado:", err);
     alert("⚠️ Ocurrió un error al registrarte.");

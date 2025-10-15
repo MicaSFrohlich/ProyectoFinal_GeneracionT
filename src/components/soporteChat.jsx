@@ -4,27 +4,32 @@ import "./soporteChat.css";
 const SoporteChat = () => {
   const [mensajes, setMensajes] = useState([]);
   const [input, setInput] = useState("");
+  const [respuestaEnviada, setRespuestaEnviada] = useState(false);
 
   const enviarMensaje = () => {
-  if (input.trim() === "") return;
+    if (input.trim() === "") return;
 
-  setMensajes(prev => [...prev, { texto: input, origen: "usuario" }]);
+    setMensajes(prev => [...prev, { texto: input, origen: "usuario" }]);
+    setInput("");
 
-  setTimeout(() => {
-    setMensajes(prev => {
-      if (prev.some(m => m.origen === "soporte")) return prev;
-      return [
-        ...prev,
-        { 
-          texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.",
-          origen: "soporte" 
-        },
-      ];
-    });
-  }, 1000);
+    if (!respuestaEnviada) {
+      setRespuestaEnviada(true);
 
-  setInput("");
-};
+      setTimeout(() => {
+        setMensajes(prev => [
+          ...prev,
+          { texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.", origen: "soporte" }
+        ]);
+      }, 1000);
+
+      setTimeout(() => {
+        setMensajes(prev => [
+          ...prev,
+          { texto: "Mientras tanto, contanos cómo podemos ayudarte...", origen: "soporte" }
+        ]);
+      }, 2000);
+    }
+  };
 
   return (
     <div className="chatContainer">

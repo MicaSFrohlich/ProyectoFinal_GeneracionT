@@ -12,10 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/productos", productosRouter);
 
-const supabaseUrl = "https://ltyappemysyfspwzujpf.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0eWFwcGVteXN5ZnNwd3p1anBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI3NzIsImV4cCI6MjA3NTMzODc3Mn0.fFjI2h0mjBdJMc97QJavX3PMhuQ1foo-xdPuzNWlUM8";
-
-
 app.get("/productos", async (req, res) => {
   try {
     const { data, error } = await supabase.from("product").select("*");
@@ -143,7 +139,7 @@ app.post("/api/checkout", async (req, res) => {
 
     console.log("🧾 Nueva orden creada:", newOrder);
 
-    const orderId = newOrder[0].orderid;
+    const orderId = newOrder.orderid;
     const orderItems = carrito.map((item) => ({
       orderid: orderId,
       productid: item.id,

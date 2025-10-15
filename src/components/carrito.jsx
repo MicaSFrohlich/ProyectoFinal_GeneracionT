@@ -12,14 +12,18 @@ const Carrito = ({ carrito, setCarrito }) => {
   };
 
   const aumentarCantidad = (id, talle) => {
-    setCarrito((prev) =>
-      prev.map((item) =>
-        item.id === id && item.talle === talle
-          ? { ...item, cantidad: item.cantidad + 1 }
-          : item
-      )
-    );
-  };
+  setCarrito((prev) =>
+    prev.map((item) => {
+      if (item.id === id && item.talle === talle) {
+        if (item.cantidad >= 25) {
+          return item;
+        }
+        return { ...item, cantidad: item.cantidad + 1 };
+      }
+      return item;
+    })
+  );
+};
 
   const disminuirCantidad = (id, talle) => {
     setCarrito((prev) =>

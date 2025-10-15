@@ -87,6 +87,8 @@ html, body {
   .contenedor {
     flex-direction: column;
     text-align: center;
+    padding: 2vh 1vh;
+    gap: 2vh;
   }
 
   .nosotros, .local {
@@ -95,5 +97,12 @@ html, body {
 
   .nosotros {
     font-size: 3vh;
+    line-height: 1.4;
+  }
+
+  .local {
+    max-width: 90%;
+    margin: 0 auto;
   }
 }
+

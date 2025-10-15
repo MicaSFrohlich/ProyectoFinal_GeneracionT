@@ -225,3 +225,182 @@
   from { opacity: 0; transform: translateY(-5vh); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 480px) {
+  .carrito {
+    margin: 4% 1rem 0 1rem;
+    padding: 2%;
+    max-width: 95%;
+  }
+
+  .respuesta {
+    flex-direction: column;
+    padding: 2vh;
+    gap: 1.5vh;
+    align-items: center;
+  }
+
+  .seleccionados {
+    flex-direction: column;
+    gap: 2vh;
+    justify-content: center;
+  }
+
+  .item-carrito {
+    width: 90%;
+    min-width: auto;
+    padding: 1vh;
+  }
+
+  .btn-eliminar,
+  .btn-comprar-final {
+    font-size: 2.5vh;
+    padding: 0.5vh 1vw;
+  }
+
+  .btn-cantidad {
+    width: 3vh;
+    height: 3vh;
+    font-size: 2vh;
+  }
+
+  .txt-carrito {
+    font-size: 2.2vh;
+  }
+
+  .titulo-carrito {
+    font-size: 5vh;
+  }
+
+  .titulo-prenda {
+    font-size: 2vh;
+  }
+
+  .txt-prenda {
+    font-size: 1.8vh;
+  }
+
+  .HasCompra {
+    margin: 1vh 0;
+    height: 20vh;
+  }
+
+  .Prenda {
+    height: 10vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .carrito {
+    margin: 4% 2rem 0 2rem;
+    padding: 3%;
+    max-width: 120vh;
+  }
+
+  .respuesta {
+    flex-direction: column;
+    padding: 3vh;
+    gap: 2vh;
+    align-items: center;
+  }
+
+  .seleccionados {
+    flex-wrap: wrap;
+    gap: 2.5vh 3vh;
+    justify-content: center;
+  }
+
+  .item-carrito {
+    width: 45%;
+    padding: 1.5vh;
+  }
+
+  .btn-eliminar,
+  .btn-comprar-final {
+    font-size: 2.8vh;
+    padding: 0.7vh 1vw;
+  }
+
+  .btn-cantidad {
+    width: 3.2vh;
+    height: 3.2vh;
+    font-size: 2.2vh;
+  }
+
+  .txt-carrito {
+    font-size: 2.5vh;
+  }
+
+  .titulo-carrito {
+    font-size: 5.5vh;
+  }
+
+  .titulo-prenda {
+    font-size: 2.2vh;
+  }
+
+  .txt-prenda {
+    font-size: 1.9vh;
+  }
+
+  .HasCompra {
+    margin: 1vh 1vh;
+    height: 22vh;
+  }
+
+  .Prenda {
+    height: 11vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carrito {
+    max-width: 150vh;
+    padding: 4%;
+  }
+
+  .seleccionados {
+    flex-wrap: wrap;
+    gap: 3vh 5vh;
+  }
+
+  .item-carrito {
+    width: 18%;
+    min-width: 180px;
+  }
+
+  .btn-eliminar,
+  .btn-comprar-final {
+    font-size: 3vh;
+  }
+
+  .btn-cantidad {
+    width: 3.5vh;
+    height: 3.5vh;
+    font-size: 2.5vh;
+  }
+
+  .txt-carrito {
+    font-size: 3vh;
+  }
+
+  .titulo-carrito {
+    font-size: 6vh;
+  }
+
+  .titulo-prenda {
+    font-size: 2.5vh;
+  }
+
+  .txt-prenda {
+    font-size: 2vh;
+  }
+
+  .HasCompra {
+    height: 25vh;
+  }
+
+  .Prenda {
+    height: 12vh;
+  }
+}

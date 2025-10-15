@@ -116,8 +116,18 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
                   id="cantidad"
                   type="number"
                   min="1"
+                  max="25"
                   value={cantidadSeleccionada}
-                  onChange={(e) => setCantidadSeleccionada(Number(e.target.value))}
+                  onChange={(e) => {
+                    const valor = Number(e.target.value);
+                    if (valor > 25) {
+                      setCantidadSeleccionada(25);
+                    } else if (valor < 1) {
+                      setCantidadSeleccionada(1);
+                    } else {
+                      setCantidadSeleccionada(valor);
+                    }
+                  }}
                 />
               </div>
 

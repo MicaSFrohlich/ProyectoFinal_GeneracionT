@@ -77,3 +77,35 @@ html,body{
 .chat-input button:hover {
   background-color: #dbb5af;
 }
+
+@media (max-width: 768px) {
+  .chatContainer {
+    width: 90%;
+    margin: 5% auto;
+    min-height: 50vh;
+    bottom: 2vh;
+    right: 0;
+    border-radius: 0.8vh;
+  }
+
+  .chat-mensajes {
+    padding: 0.5vh;
+    gap: 0.3vh;
+  }
+
+  .mensaje {
+    padding: 0.6vh 0.8vh;
+    font-size: 2vh;
+    max-width: 90%;
+  }
+
+  .chat-input input {
+    padding: 0.6vh;
+    font-size: 2vh;
+  }
+
+  .chat-input button {
+    padding: 0.6vh 1vh;
+    font-size: 1.8vh;
+  }
+}

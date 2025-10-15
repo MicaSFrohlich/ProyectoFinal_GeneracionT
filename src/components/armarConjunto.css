@@ -75,3 +75,81 @@
   background: #eb95a3;
   transform: scale(1.1);
 }
+
+@media (max-width: 480px) {
+  .armario {
+    margin: 8% 1rem 5% 1rem;
+    padding: 0 1rem;
+  }
+
+  .font-armario {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin: 1.5vh 0;
+  }
+
+  .slot {
+    flex-direction: column;
+    gap: 2vh;
+    padding: 3vh;
+    width: 90%;
+    min-height: 20vh;
+  }
+
+  .slot img {
+    max-width: 40vw;
+    max-height: 30vh;
+  }
+
+  .slot button {
+    width: 4.5vh;
+    height: 4.5vh;
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .armario {
+    margin: 8% auto 4% auto;
+    padding: 0 1.5rem;
+  }
+
+  .font-armario {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 1.8vh 0;
+  }
+
+  .slot {
+    flex-direction: row;
+    gap: 3vh;
+    padding: 3.5vh;
+    width: 80%;
+    min-height: 25vh;
+  }
+
+  .slot img {
+    max-width: 18vh;
+    max-height: 25vh;
+  }
+
+  .slot button {
+    width: 4.8vh;
+    height: 4.8vh;
+    font-size: 1.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .armario {
+    max-width: 120vh;
+  }
+
+  .slot {
+    width: min(90%, 55vh);
+    min-height: 28vh;
+  }
+
+  .slot img {
+    max-width: 20vh;
+    max-height: 28vh;
+  }
+}

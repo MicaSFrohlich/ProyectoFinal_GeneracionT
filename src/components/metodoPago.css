@@ -83,3 +83,99 @@
   color: #d9a299;
   letter-spacing: 0.5vh;
 }
+
+@media (max-width: 480px) {
+  .pago-container {
+    width: 90%;
+    margin: 5% auto 5% auto;
+    padding: 2vh;
+  }
+
+  .total {
+    font-size: 1rem;
+  }
+
+  .opciones-pago {
+    gap: 1.5vh;
+  }
+
+  .opciones-pago label {
+    font-size: 2vh;
+    gap: 0.8vh;
+    flex-wrap: wrap;
+  }
+
+  .btn-confirmar {
+    width: 100%;
+    padding: 1vh;
+    font-size: 0.9rem;
+  }
+
+  .form-tarjeta {
+    gap: 1vh;
+  }
+
+  .form-tarjeta input {
+    font-size: 0.9rem;
+    padding: 0.8vh;
+  }
+
+  .tarjeta-flex {
+    flex-direction: column;
+  }
+
+  .titulo-pago {
+    font-size: 4vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .pago-container {
+    width: 80%;
+    margin: 7% auto 5% auto;
+    padding: 2.5vh;
+  }
+
+  .total {
+    font-size: 1.1rem;
+  }
+
+  .opciones-pago label {
+    font-size: 2.2vh;
+    gap: 1vh;
+  }
+
+  .btn-confirmar {
+    font-size: 1rem;
+    padding: 1vh 2vh;
+  }
+
+  .form-tarjeta input {
+    font-size: 1rem;
+    padding: 0.9vh;
+  }
+
+  .tarjeta-flex {
+    flex-direction: column;
+    gap: 0.8vh;
+  }
+
+  .titulo-pago {
+    font-size: 4.5vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pago-container {
+    width: 60%;
+    padding: 3vh;
+  }
+
+  .tarjeta-flex {
+    flex-direction: row;
+  }
+
+  .titulo-pago {
+    font-size: 5vh;
+  }
+}

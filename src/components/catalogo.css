@@ -208,29 +208,6 @@
   background-color: #e1b8a0;
 }
 
-@media (max-width: 76.8vh) {
-  .modal-contenido {
-    flex-direction: column;
-    width: 90vw;
-    max-height: 90vh;
-  }
-
-  .modal-imagen {
-    width: 80vw;
-    max-width: 80vw;
-    margin-bottom: 2vh;
-  }
-
-  .detalle-producto {
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .btn-comprar {
-    width: 100%;
-    text-align: center;
-  }
-}
 
 .mensaje-carrito {
   position: fixed;
@@ -256,4 +233,147 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 480px) {
+  .catalogo {
+    margin: 5% 2% 4% 2%;
+  }
+
+  .productos {
+    flex-direction: column;
+    gap: 3vh;
+    align-items: center;
+  }
+
+  .producto {
+    width: 90%;
+    max-width: 25vh;
+    padding: 2vh;
+    overflow: hidden;
+  }
+
+  .producto img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    padding: 2vh;
+    object-fit: contain;
+  }
+
+  .fuente {
+    font-size: 2vh;
+  }
+
+  .nombre {
+    font-size: 3vh;
+  }
+
+  .detalle-producto h2 {
+    font-size: 3vh;
+  }
+
+  .detalle-producto p {
+    font-size: 1.8vh;
+  }
+
+  .detalle-producto .precio {
+    font-size: 2.5vh;
+  }
+
+  .btn-comprar {
+    width: 100%;
+    font-size: 2.5vh;
+    padding: 1vh 1vw;
+  }
+
+  .selector-talles, .selector-cantidad {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #talle, #cantidad {
+    width: 100%;
+    font-size: 1.8vh;
+  }
+
+  .cerrar {
+    font-size: 2vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .catalogo {
+    margin: 8% 5% 4% 5%;
+  }
+
+  .productos {
+    gap: 4vh 10vh;
+    justify-content: center;
+  }
+
+  .producto {
+    width: 40%;
+    padding: 2vh;
+  }
+
+  .producto img {
+    height: 22vh;
+    padding: 3vh;
+  }
+
+  .fuente {
+    font-size: 2.5vh;
+  }
+
+  .nombre {
+    font-size: 3.5vh;
+  }
+
+  .detalle-producto h2 {
+    font-size: 3.5vh;
+  }
+
+  .detalle-producto p {
+    font-size: 2vh;
+  }
+
+  .detalle-producto .precio {
+    font-size: 2.8vh;
+  }
+
+  .btn-comprar {
+    font-size: 2.8vh;
+    padding: 1.2vh 2vw;
+  }
+
+  #talle, #cantidad {
+    width: 14vh;
+    font-size: 2vh;
+  }
+
+  .cerrar {
+    font-size: 2.2vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .productos {
+    flex-wrap: wrap;
+    gap: 5vh 20vh;
+  }
+
+  .producto {
+    width: 15%;
+    padding: 2vh;
+  }
+
+  .producto img {
+    height: 25vh;
+    padding: 4vh;
+  }
+
+  .btn-comprar {
+    width: fit-content;
+  }
 }
