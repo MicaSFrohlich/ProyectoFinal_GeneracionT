@@ -7,21 +7,21 @@ function Usuario() {
   const [pedidoActivo, setPedidoActivo] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const usuarioGuardado = sessionStorage.getItem("usuario");
-    if (usuarioGuardado) setUsuario(JSON.parse(usuarioGuardado));
+    useEffect(() => {
+      const usuarioGuardado = sessionStorage.getItem("usuario");
+      if (usuarioGuardado) setUsuario(JSON.parse(usuarioGuardado));
 
-    const pedidoId = localStorage.getItem("pedidoActual");
-    if (pedidoId) {
-      const entregado = localStorage.getItem(`pedidoEntregado_${pedidoId}`) === "true";
-      setPedidoActivo(!entregado);
-    }
-  }, []);
+      const pedidoGuardado = JSON.parse(localStorage.getItem("pedidoActual"));
+      if (pedidoGuardado) {
+        setPedidoActivo(!pedidoGuardado.entregado);
+      }
+    }, []);
+
 
   const cerrarSesion = () => {
     sessionStorage.removeItem("usuario");
     setUsuario(null);
-    alert("Hasta luego 🤍");
+    alert("Hasta luego 🤍!");
     navigate("/");
   };
 
@@ -53,7 +53,6 @@ function Usuario() {
           <button className="btn" onClick={cerrarSesion}>
             Cerrar Sesión
           </button>
-
           {pedidoActivo && (
             <button className="btn-envio" onClick={seguirEnvio}>
               Seguir envío 📦

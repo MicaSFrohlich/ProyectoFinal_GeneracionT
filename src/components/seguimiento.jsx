@@ -27,13 +27,13 @@ const Seguimiento = () => {
     }
   }, [pasoActivo, entregado, pedido]);
 
-  const confirmarEntrega = () => {
-    const updatedPedido = { ...pedido, entregado: true };
-    setPedido(updatedPedido);
-    localStorage.setItem("pedidoActual", JSON.stringify(updatedPedido));
-    localStorage.removeItem("carrito"); 
-    alert("Gracias por confirmar la recepción de tu pedido!");
-  };
+    const confirmarEntrega = () => {
+      const updatedPedido = { ...pedido, entregado: true };
+      setPedido(updatedPedido);
+      localStorage.setItem("pedidoActual", JSON.stringify(updatedPedido));
+      localStorage.removeItem("carrito"); 
+      alert("Gracias por confirmar la recepción de tu pedido 🤍✨!");
+    };
 
   return (
     <div className="seguimiento-container">
