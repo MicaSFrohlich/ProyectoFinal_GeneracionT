@@ -6,6 +6,7 @@ const MetodoPago = ({ setCarrito }) => {
   const location = useLocation();
   const { carrito, total, usuario } = location.state || {};
   const usuarioActual = usuario || JSON.parse(sessionStorage.getItem("usuario"));
+
   const navigate = useNavigate();
 
   if (!usuarioActual || !usuarioActual.userid) {
@@ -24,7 +25,6 @@ const MetodoPago = ({ setCarrito }) => {
     telefono: "",
     direccion: "",
   });
-  const [confirmado, setConfirmado] = useState(false);
 
   const confirmarPago = async () => {
     if (!metodo) return alert("Por favor seleccioná un método de pago");
@@ -38,7 +38,7 @@ const MetodoPago = ({ setCarrito }) => {
     try {
       const usuarioStorage = JSON.parse(sessionStorage.getItem("usuario"));
 
-      const usuarioPago = {
+      const usuarioActualizado = {
         userid: usuarioStorage.userid,
         name: tarjeta.nombre,
         dni: tarjeta.dni,
@@ -50,7 +50,7 @@ const MetodoPago = ({ setCarrito }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          usuario: usuarioPago,
+          usuario: usuarioActualizado,
           carrito,
           total,
           shippingaddress: tarjeta.direccion
@@ -68,21 +68,22 @@ const MetodoPago = ({ setCarrito }) => {
         return;
       }
 
+      const pedidoActual = {
+        carrito,
+        pasoActivo: 0,     
+        entregado: false
+      };
+      localStorage.setItem("pedidoActual", JSON.stringify(pedidoActual));
+
       sessionStorage.setItem("compraConfirmada", "true");
 
-        setCarrito([]);
-        localStorage.removeItem(`carrito_${usuarioStorage.userid}`);
+      alert("✅ Compra realizada con éxito!");
 
-      const usuarioActualizado = {
-        ...usuarioStorage, 
-        name: tarjeta.nombre,
-        dni: tarjeta.dni,
-        address: tarjeta.direccion,
-        phone: tarjeta.telefono
-      };
+      setCarrito([]);
+      localStorage.removeItem("carrito");
+
       sessionStorage.setItem("usuario", JSON.stringify(data.user || usuarioActualizado));
 
-      alert("✅ Compra realizada con éxito!");
       navigate("/seguimiento");
 
     } catch (err) {
@@ -179,8 +180,6 @@ const MetodoPago = ({ setCarrito }) => {
           Confirmar Pago
         </button>
       </div>
-
-      {confirmado && <p className="mensaje-exito">✅ Pago confirmado</p>}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 
 .seguimiento-container {
   text-align: center;
-  margin: 12%;
+  margin: 8%;
   font-family: "Imperial Script", cursive;
   font-size: 3.5vh;
   animation: fadeSlideDown 1s ease;
@@ -17,7 +17,29 @@
   font-family: "Imperial Script";
   animation: glowIn 1.5s ease;
 }
-
+#titulo_ped {
+  font-size: 6vh;
+  font-weight: 600;
+  color: #a3655b9e;
+  letter-spacing: 0.5vh;
+  margin-bottom: 8vh;
+  font-family: "Imperial Script";
+  animation: glowIn 1.5s ease;
+}
+.texto-ped {
+  font-family: "Elsie Swash Caps";
+  letter-spacing: 0.1vh;
+  font-size: smaller;
+}
+.confirmado {
+  font-size: 5vh;
+  font-weight: 600;
+  color: #a77770;
+  letter-spacing: 0.5vh;
+  margin: 8vh 0vh 0vh 0vh;
+  font-family: "Imperial Script";
+  animation: glowIn 1.5s ease;
+}
 @keyframes glowIn {
   0% { opacity: 0; text-shadow: none; }
   100% { opacity: 1; text-shadow: 0 0 10px rgba(217,162,153,0.6); }
@@ -102,5 +124,79 @@
   .timeline-item .circle {
     width: 5.5vh;
     height: 5.5vh;
+  }
+}
+.btn-confirmar-seg{
+  font-family: "Imperial Script", cursive;
+  color: white;
+  background-color: #D9A299;
+  width: 40vh;
+  font-size: 5vh;
+  border-radius: 1vh;
+  padding: 1vh;
+  margin: 5vh;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.productos-comprados {
+  margin: 0vh 0vh 10vh 0vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5vh;
+  justify-content: space-between;
+}
+
+.productos-comprados h3 {
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #333;}
+
+.item-pedido {
+  height: 20vh;
+  width: 30vh;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  background-color: #f9f9f9; 
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+
+.item-pedido:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-pedido {
+  height: 15vh;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.item-pedido div {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-pedido p {
+  margin: 0;
+  font-size: 3vh;
+  color: #555;
+}
+
+@media (max-width: 480px) {
+  .item-pedido {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .img-pedido {
+    width: 100%;
+    height: auto;
   }
 }

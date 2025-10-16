@@ -4,31 +4,31 @@ import "../App.css";
 
 function Usuario() {
   const [usuario, setUsuario] = useState(null);
-  const [compraConfirmada, setCompraConfirmada] = useState(false);
+  const [pedidoActivo, setPedidoActivo] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const usuarioGuardado = sessionStorage.getItem("usuario");
-    const confirmada = sessionStorage.getItem("compraConfirmada") === "true";
+    if (usuarioGuardado) setUsuario(JSON.parse(usuarioGuardado));
 
-    if (usuarioGuardado) {
-      setUsuario(JSON.parse(usuarioGuardado));
+    const pedidoId = localStorage.getItem("pedidoActual");
+    if (pedidoId) {
+      const entregado = localStorage.getItem(`pedidoEntregado_${pedidoId}`) === "true";
+      setPedidoActivo(!entregado);
     }
-    setCompraConfirmada(confirmada);
   }, []);
 
   const cerrarSesion = () => {
     sessionStorage.removeItem("usuario");
-    sessionStorage.removeItem("compraConfirmada");
     setUsuario(null);
-    setCompraConfirmada(false);
     alert("Hasta luego 🤍");
     navigate("/");
   };
 
   const seguirEnvio = () => {
-    if (!compraConfirmada) {
-      alert("Aún no tenés compras activas.");
+    const pedidoId = localStorage.getItem("pedidoActual");
+    if (!pedidoId) {
+      alert("No hay pedidos activos.");
       return;
     }
     navigate("/seguimiento");
@@ -54,7 +54,7 @@ function Usuario() {
             Cerrar Sesión
           </button>
 
-          {compraConfirmada && (
+          {pedidoActivo && (
             <button className="btn-envio" onClick={seguirEnvio}>
               Seguir envío 📦
             </button>
