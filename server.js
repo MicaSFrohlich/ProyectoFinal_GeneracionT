@@ -103,7 +103,6 @@ app.post("/api/checkout", async (req, res) => {
   try {
     console.log("🟢 Procesando checkout de usuario:", usuario.userid);
 
-    // ✅ Verificar si el DNI ya existe en otro usuario
     const { data: existingUser, error: dniError } = await supabase
       .from("users")
       .select("userid, dni")
@@ -119,7 +118,6 @@ app.post("/api/checkout", async (req, res) => {
       });
     }
 
-    // ✅ Actualizar usuario
     const { data: updatedUser, error: userError } = await supabase
       .from("users")
       .update({
@@ -134,7 +132,6 @@ app.post("/api/checkout", async (req, res) => {
 
     if (userError) throw userError;
 
-    // ✅ Crear orden
     const { data: newOrder, error: orderError } = await supabase
       .from("orders")
       .insert([
@@ -171,7 +168,6 @@ app.post("/api/checkout", async (req, res) => {
   } catch (err) {
     console.error("❌ Error en checkout:", err);
 
-    // 🔍 Manejar errores de constraint duplicado
     if (
       err.message &&
       err.message.includes("duplicate key value violates unique constraint") &&

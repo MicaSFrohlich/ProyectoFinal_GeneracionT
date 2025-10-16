@@ -6,6 +6,13 @@ function Usuario() {
   const [usuario, setUsuario] = useState(null);
   const navigate = useNavigate();
 
+  const [compraConfirmada, setCompraConfirmada] = useState(false);
+
+  useEffect(() => {
+    const confirmada = sessionStorage.getItem("compraConfirmada") === "true";
+    setCompraConfirmada(confirmada);
+  }, []);
+
   useEffect(() => {
     const usuarioGuardado = sessionStorage.getItem("usuario");
     if (usuarioGuardado) {
@@ -15,8 +22,9 @@ function Usuario() {
 
   const cerrarSesion = () => {
     sessionStorage.removeItem("usuario");
+    sessionStorage.removeItem("compraConfirmada");
     alert("Hasta Luego 🤍!");
-    setUsuario(null); // Refresca el estado sin recargar
+    setUsuario(null);
     navigate("/");
   };
 
@@ -36,6 +44,16 @@ function Usuario() {
 
           <button className="btn" onClick={cerrarSesion}>
             Cerrar Sesión
+          </button>
+
+          <button
+            onClick={() => navigate("/seguimiento")}
+            disabled={!compraConfirmada}
+            className="btn-envio"
+          >
+            {compraConfirmada
+              ? "Seguir envío 📦"
+              : "Seguir envío (disponible al confirmar compra)"}
           </button>
         </>
       ) : (

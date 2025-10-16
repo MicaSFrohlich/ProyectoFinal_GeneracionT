@@ -62,7 +62,7 @@ const confirmarPago = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      // ⚠️ Si el error viene por un DNI duplicado, mostrar explicación más clara
+
       if (data.error && data.error.includes("users_dni_key")) {
         alert(
           "⚠️ Este DNI ya está registrado por otro usuario.\n" +
@@ -74,20 +74,19 @@ const confirmarPago = async () => {
       return;
     }
 
+    sessionStorage.setItem("compraConfirmada", "true");
     alert("✅ Compra realizada con éxito!");
     setCarrito([]);
-
-    // 🟢 Mantener el email y el rol originales del usuario logueado
     const usuarioActualizado = {
-      ...usuarioStorage, // conserva email, role, etc.
+      ...usuarioStorage, 
       name: tarjeta.nombre,
       dni: tarjeta.dni,
       address: tarjeta.direccion,
       phone: tarjeta.telefono
     };
 
-    // 🟢 Si el backend devuelve el usuario actualizado, usarlo preferentemente
     sessionStorage.setItem("usuario", JSON.stringify(data.user || usuarioActualizado));
+   
 
     navigate("/seguimiento");
 

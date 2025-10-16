@@ -121,6 +121,17 @@ a:hover {
   box-shadow: 0 4px 12px rgba(152, 112, 112, 0.3);
 }
 
+.btn-envio {
+  font-family: "Imperial Script", cursive;
+  color: white;
+  background-color: #987070;
+  width: auto;
+  border-radius: 1vh;
+  margin-top: 1vh;
+  padding: 1vh;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
 button {
   background-color: transparent;
   border: none;
