@@ -43,7 +43,7 @@ try {
 
   if (response.ok) {
     alert("Usuario creado con éxito 🛍️!");
-    alert(`🩷 Ahora inicia sesión para comprar`);
+    alert(`🤍 Ahora inicia sesión para comprar`);
     navigate("/login");
     return;
   }

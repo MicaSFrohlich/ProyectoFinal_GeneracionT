@@ -45,9 +45,9 @@ function Login() {
         navigate("/")
       }
 
-      localStorage.setItem("usuario", JSON.stringify(data.user));
-      console.log("Usuario guardado en localStorage:", localStorage.getItem("usuario"));
-      alert(`🩷 ¡Bienvenido ${data.user.email}!`);
+      sessionStorage.setItem("usuario", JSON.stringify(data.user));
+      console.log("Usuario guardado en sessionStorage:", sessionStorage.getItem("usuario"));
+      alert(`🤍 ¡Bienvenido ${data.user.email}!`);
     } catch (error) {
       console.error("Error en inicio de sesión:", error);
       alert("❌ Ocurrió un error al intentar iniciar sesión.");

@@ -43,7 +43,7 @@ const Carrito = ({ carrito, setCarrito }) => {
   );
 
   const finalizarCompra = () => {
-    const usuarioStr = localStorage.getItem("usuario");
+    const usuarioStr = sessionStorage.getItem("usuario");
     const usuario = usuarioStr ? JSON.parse(usuarioStr) : null;
 
     if (!usuario || !usuario.userid || !usuario.email) {

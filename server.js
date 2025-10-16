@@ -92,8 +92,7 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-//CHECKOUT
-
+// CHECKOUT
 app.post("/api/checkout", async (req, res) => {
   const { usuario, carrito, shippingaddress, total } = req.body;
 
@@ -104,15 +103,30 @@ app.post("/api/checkout", async (req, res) => {
   try {
     console.log("🟢 Procesando checkout de usuario:", usuario.userid);
 
+    // ✅ Verificar si el DNI ya existe en otro usuario
+    const { data: existingUser, error: dniError } = await supabase
+      .from("users")
+      .select("userid, dni")
+      .eq("dni", usuario.dni)
+      .maybeSingle();
 
-    console.log("Actualizando usuario con datos:", usuario);
+    if (dniError) throw dniError;
+
+    if (existingUser && existingUser.userid !== usuario.userid) {
+      console.warn("⚠️ DNI duplicado detectado:", usuario.dni);
+      return res.status(400).json({
+        error: "Este DNI ya está registrado por otro usuario",
+      });
+    }
+
+    // ✅ Actualizar usuario
     const { data: updatedUser, error: userError } = await supabase
       .from("users")
       .update({
         name: usuario.name,
         dni: usuario.dni,
         address: usuario.address,
-        phone: usuario.phone
+        phone: usuario.phone,
       })
       .eq("userid", usuario.userid)
       .select()
@@ -120,8 +134,7 @@ app.post("/api/checkout", async (req, res) => {
 
     if (userError) throw userError;
 
-    console.log("✅ Usuario actualizado:", updatedUser);
-
+    // ✅ Crear orden
     const { data: newOrder, error: orderError } = await supabase
       .from("orders")
       .insert([
@@ -129,15 +142,12 @@ app.post("/api/checkout", async (req, res) => {
           userid: usuario.userid,
           shippingaddress,
           total,
-
         },
       ])
       .select()
       .maybeSingle();
 
     if (orderError) throw orderError;
-
-    console.log("🧾 Nueva orden creada:", newOrder);
 
     const orderId = newOrder.orderid;
     const orderItems = carrito.map((item) => ({
@@ -153,19 +163,29 @@ app.post("/api/checkout", async (req, res) => {
 
     if (itemsError) throw itemsError;
 
-    console.log("📦 Productos asociados a la orden correctamente.");
-
     res.json({
       message: "Compra realizada correctamente",
       order: newOrder,
       user: updatedUser,
     });
-
   } catch (err) {
     console.error("❌ Error en checkout:", err);
+
+    // 🔍 Manejar errores de constraint duplicado
+    if (
+      err.message &&
+      err.message.includes("duplicate key value violates unique constraint") &&
+      err.message.includes("users_dni_key")
+    ) {
+      return res.status(400).json({
+        error: "Este DNI ya está registrado por otro usuario",
+      });
+    }
+
     res.status(500).json({ error: err.message });
   }
 });
+
 
 const PORT = 3001;
 app.listen(PORT, () => {

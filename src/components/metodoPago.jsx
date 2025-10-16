@@ -5,7 +5,7 @@ import "./metodoPago.css";
 const MetodoPago = ({ setCarrito }) => {
   const location = useLocation();
   const { carrito, total, usuario } = location.state || {};
-  const usuarioActual = usuario || JSON.parse(localStorage.getItem("usuario"));
+  const usuarioActual = usuario || JSON.parse(sessionStorage.getItem("usuario"));
 
   if (!usuarioActual || !usuarioActual.userid) {
     alert("Debes iniciar sesión antes de comprar ✨");
@@ -38,16 +38,15 @@ const confirmarPago = async () => {
   }
 
   try {
+    const usuarioStorage = JSON.parse(sessionStorage.getItem("usuario"));
 
-    const usuarioStorage = JSON.parse(localStorage.getItem("usuario"));
-
-      const usuario = {
-        userid: usuarioStorage.userid,
-        name: tarjeta.nombre,
-        dni: tarjeta.dni,
-        address: tarjeta.direccion,
-        phone: tarjeta.telefono
-      };
+    const usuario = {
+      userid: usuarioStorage.userid,
+      name: tarjeta.nombre,
+      dni: tarjeta.dni,
+      address: tarjeta.direccion,
+      phone: tarjeta.telefono
+    };
 
     const response = await fetch("http://localhost:3001/api/checkout", {
       method: "POST",
@@ -61,12 +60,34 @@ const confirmarPago = async () => {
     });
 
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "Error al procesar el pago");
+
+    if (!response.ok) {
+      // ⚠️ Si el error viene por un DNI duplicado, mostrar explicación más clara
+      if (data.error && data.error.includes("users_dni_key")) {
+        alert(
+          "⚠️ Este DNI ya está registrado por otro usuario.\n" +
+          "Por favor verificá que estés usando tu propio DNI o iniciá sesión con la cuenta asociada a ese número."
+        );
+      } else {
+        alert(data.error || "❌ Ocurrió un error al procesar el pago");
+      }
+      return;
+    }
 
     alert("✅ Compra realizada con éxito!");
     setCarrito([]);
 
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    // 🟢 Mantener el email y el rol originales del usuario logueado
+    const usuarioActualizado = {
+      ...usuarioStorage, // conserva email, role, etc.
+      name: tarjeta.nombre,
+      dni: tarjeta.dni,
+      address: tarjeta.direccion,
+      phone: tarjeta.telefono
+    };
+
+    // 🟢 Si el backend devuelve el usuario actualizado, usarlo preferentemente
+    sessionStorage.setItem("usuario", JSON.stringify(data.user || usuarioActualizado));
 
     navigate("/seguimiento");
 
@@ -74,6 +95,8 @@ const confirmarPago = async () => {
     console.error("Error en checkout:", err);
     alert("❌ Ocurrió un error al procesar el pago");
   }
+
+
 };
 
   return (
