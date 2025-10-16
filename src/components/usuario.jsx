@@ -4,35 +4,43 @@ import "../App.css";
 
 function Usuario() {
   const [usuario, setUsuario] = useState(null);
-  const navigate = useNavigate();
-
   const [compraConfirmada, setCompraConfirmada] = useState(false);
-
-  useEffect(() => {
-    const confirmada = sessionStorage.getItem("compraConfirmada") === "true";
-    setCompraConfirmada(confirmada);
-  }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const usuarioGuardado = sessionStorage.getItem("usuario");
+    const confirmada = sessionStorage.getItem("compraConfirmada") === "true";
+
     if (usuarioGuardado) {
       setUsuario(JSON.parse(usuarioGuardado));
     }
+    setCompraConfirmada(confirmada);
   }, []);
 
   const cerrarSesion = () => {
     sessionStorage.removeItem("usuario");
     sessionStorage.removeItem("compraConfirmada");
-    alert("Hasta Luego 🤍!");
     setUsuario(null);
+    setCompraConfirmada(false);
+    alert("Hasta luego 🤍");
     navigate("/");
+  };
+
+  const seguirEnvio = () => {
+    if (!compraConfirmada) {
+      alert("Aún no tenés compras activas.");
+      return;
+    }
+    navigate("/seguimiento");
   };
 
   return (
     <main className="inicio">
       {usuario ? (
         <>
-          <p className="font titulo">Bienvenido, {usuario.name || usuario.email}</p>
+          <p className="font titulo">
+            Bienvenido, {usuario.name || usuario.email}
+          </p>
           <p className="font subtitulo">Tu cuenta está activa.</p>
 
           <div className="datosUsuario">
@@ -46,19 +54,15 @@ function Usuario() {
             Cerrar Sesión
           </button>
 
-          <button
-            onClick={() => navigate("/seguimiento")}
-            disabled={!compraConfirmada}
-            className="btn-envio"
-          >
-            {compraConfirmada
-              ? "Seguir envío 📦"
-              : "Seguir envío (disponible al confirmar compra)"}
-          </button>
+          {compraConfirmada && (
+            <button className="btn-envio" onClick={seguirEnvio}>
+              Seguir envío 📦
+            </button>
+          )}
         </>
       ) : (
         <>
-          <p className="font titulo">Bienvenido !</p>
+          <p className="font titulo">Bienvenido!</p>
           <p className="font subtitulo">Elegí una opción</p>
           <hr className="division" />
 
@@ -66,7 +70,6 @@ function Usuario() {
             <Link to="/login">
               <button className="btn">Iniciar Sesión</button>
             </Link>
-
             <Link to="/registro">
               <button className="btn">Registrarse</button>
             </Link>

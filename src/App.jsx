@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -24,13 +24,24 @@ function App() {
     "Vestidos",
     "Abrigos",
   ];
-  const [carrito, setCarrito] = useState([]);
+
+  const [carrito, setCarrito] = useState(() => {
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+    if (!usuario || !usuario.userid) return [];
+    const guardado = localStorage.getItem(`carrito_${usuario.userid}`);
+    return guardado ? JSON.parse(guardado) : [];
+  });
+
+  useEffect(() => {
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+    if (!usuario || !usuario.userid) return;
+    localStorage.setItem(`carrito_${usuario.userid}`, JSON.stringify(carrito));
+  }, [carrito]);
 
   const agregarAlCarrito = (producto, talle, cantidad) => {
     setCarrito((prev) => {
       const existe = prev.find(
-        (item) =>
-          item.id === producto.productid && item.talle === talle
+        (item) => item.id === producto.productid && item.talle === talle
       );
 
       if (existe) {
@@ -57,20 +68,14 @@ function App() {
   };
 
   const eliminarDelCarrito = (id, talle) => {
-    setCarrito((prevCarrito) =>
-      prevCarrito.filter(
-        (item) => !(item.id === id && item.talle === talle)
-      )
+    setCarrito((prev) =>
+      prev.filter((item) => !(item.id === id && item.talle === talle))
     );
   };
 
   return (
     <>
-      <Navbar
-        secciones={secciones}
-        onSelect={setSeccionActiva}
-        carrito={carrito}
-      />
+      <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -84,11 +89,7 @@ function App() {
         <Route
           path="/carrito"
           element={
-            <Carrito
-              carrito={carrito}
-              setCarrito={setCarrito}
-              eliminarDelCarrito={eliminarDelCarrito}
-            />
+            <Carrito carrito={carrito} setCarrito={setCarrito} />
           }
         />
 

@@ -32,31 +32,26 @@ function Registro() {
     return;
   }
 
-try {
-  const response = await fetch("http://localhost:3001/api/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password, role: "cliente" })
-  });
+  try {
+    const response = await fetch("http://localhost:3001/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, role: "cliente" })
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (response.ok) {
+    if (!response.ok) {
+      alert(data.error );
+      return;
+    }
+
     alert("Usuario creado con éxito 🛍️!");
-    alert(`🤍 Ahora inicia sesión para comprar`);
+    alert("🤍 Ahora inicia sesión para comprar");
     navigate("/login");
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    console.warn("⚠️ Insert realizado pero sin devolver datos");
-    alert("Usuario registrado correctamente ✅");
-    return;
-  }
 
   } catch (err) {
-    console.error("❌ Error inesperado:", err);
-    alert("⚠️ Ocurrió un error al registrarte.");
+    alert("❌ Ocurrió un error al registrarte.");
   }
   };
 

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./carrito.css";
 
 const Carrito = ({ carrito, setCarrito }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+    if (!usuario || !usuario.userid) return;
+
+    const carritoGuardado = localStorage.getItem(`carrito_${usuario.userid}`);
+    if (carritoGuardado) setCarrito(JSON.parse(carritoGuardado));
+  }, [setCarrito]);
 
   const eliminarDelCarrito = (id, talle) => {
     setCarrito((prev) =>
@@ -12,18 +20,14 @@ const Carrito = ({ carrito, setCarrito }) => {
   };
 
   const aumentarCantidad = (id, talle) => {
-  setCarrito((prev) =>
-    prev.map((item) => {
-      if (item.id === id && item.talle === talle) {
-        if (item.cantidad >= 25) {
-          return item;
-        }
-        return { ...item, cantidad: item.cantidad + 1 };
-      }
-      return item;
-    })
-  );
-};
+    setCarrito((prev) =>
+      prev.map((item) =>
+        item.id === id && item.talle === talle
+          ? { ...item, cantidad: Math.min(item.cantidad + 1, 25) }
+          : item
+      )
+    );
+  };
 
   const disminuirCantidad = (id, talle) => {
     setCarrito((prev) =>
@@ -43,14 +47,14 @@ const Carrito = ({ carrito, setCarrito }) => {
   );
 
   const finalizarCompra = () => {
-    const usuarioStr = sessionStorage.getItem("usuario");
-    const usuario = usuarioStr ? JSON.parse(usuarioStr) : null;
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
     if (!usuario || !usuario.userid || !usuario.email) {
       alert("Debes iniciar sesión antes de comprar ✨");
       navigate("/login");
       return;
     }
+
     navigate("/metodoPago", { state: { carrito, total, usuario } });
   };
 

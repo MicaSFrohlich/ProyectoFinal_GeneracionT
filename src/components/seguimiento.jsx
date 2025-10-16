@@ -17,6 +17,8 @@ const Seguimiento = () => {
         setPasoActivo((prev) => prev + 1);
       }, 10000);
       return () => clearTimeout(timer);
+    } else {
+      localStorage.removeItem("carrito");
     }
   }, [pasoActivo]);
 
