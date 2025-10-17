@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 
-function Login({ setCarrito }) { // <-- recibe la función para actualizar el estado del carrito
+function Login({ setCarrito }) { 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,8 @@ const iniciarSesion = async () => {
 
   setLoading(true);
   try {
-    const response = await fetch("http://localhost:3001/api/login", {
+  const base = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '');
+    const response = await fetch(`${base}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -34,10 +35,8 @@ const iniciarSesion = async () => {
     const usuarioId = usuario?.userid;
     if (!usuarioId) throw new Error("No se recibió un ID de usuario válido");
 
-    // Guardamos usuario
     sessionStorage.setItem("usuario", JSON.stringify(usuario));
 
-    // Fusionar carrito temporal con el del usuario
     const carritoTemporal = JSON.parse(localStorage.getItem("carrito")) || [];
     const carritoUsuario = JSON.parse(localStorage.getItem(`carrito_${usuarioId}`)) || [];
 
@@ -49,11 +48,9 @@ const iniciarSesion = async () => {
       else fusionado.push(item);
     });
 
-    // Guardar en localStorage del usuario y limpiar temporal
     localStorage.setItem(`carrito_${usuarioId}`, JSON.stringify(fusionado));
     localStorage.removeItem("carrito");
 
-    // Actualizar estado React
     if (setCarrito) setCarrito(fusionado);
 
     alert(`🤍 ¡Bienvenido ${usuario.email}!`);

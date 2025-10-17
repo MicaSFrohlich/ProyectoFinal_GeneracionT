@@ -158,7 +158,8 @@
   display: flex;
   flex-direction: row;
   align-items:center;
-  background-color: #f9f9f9; 
+  background-color: #DBB5B5; 
+  font-family: "Elsie Swash Caps", serif;
   padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 10px;

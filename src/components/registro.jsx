@@ -33,7 +33,8 @@ function Registro() {
   }
 
   try {
-    const response = await fetch("http://localhost:3001/api/register", {
+  const base = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '');
+  const response = await fetch(`${base}/api/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, role: "cliente" })

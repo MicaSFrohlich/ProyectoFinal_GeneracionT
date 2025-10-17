@@ -9,6 +9,7 @@ const productos = [
   "/img/productos/pollera_brillos.png",
 ];
 
+
 function home() {
   return (
     <main className="inicio">

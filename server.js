@@ -145,5 +145,25 @@ app.post("/api/checkout", async (req, res) => {
 });
 
 //  Servidor
-const PORT = 3001;
-app.listen(PORT, () => console.log(`🚀 Servidor backend en http://localhost:${PORT}`));
+app.get('/', (req, res) => res.json({ status: 'ok', env: process.env.NODE_ENV || 'development' }));
+
+const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || '127.0.0.1';
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err && err.stack ? err.stack : err);
+  process.exit(1);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled rejection:', reason);
+});
+
+const server = app.listen(PORT, HOST, () => {
+  console.log(`🚀 Servidor backend en http://localhost:${PORT} (bound to ${HOST})`);
+  console.log('PID:', process.pid);
+});
+
+server.on('error', (err) => {
+  console.error('Error al iniciar el servidor:', err && err.stack ? err.stack : err);
+  process.exit(1);
+});

@@ -72,10 +72,10 @@ html, body {
 
 .nosotros {
   width: 50%;
-  font-family: "Imperial Script", cursive;
+  font-family: "Imperial Script", serif;
   word-spacing: 0.5vh;
-  font-size: 3.8vh;
-  font-weight: 700;
+  font-size: 3vh;
+  font-weight: 600;
   line-height: 1.6;
   letter-spacing: 0.2vh;
   margin: 0;

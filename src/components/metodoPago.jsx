@@ -46,7 +46,8 @@ const MetodoPago = ({ setCarrito }) => {
         phone: tarjeta.telefono
       };
 
-      const response = await fetch("http://localhost:3001/api/checkout", {
+  const base = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '');
+  const response = await fetch(`${base}/api/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

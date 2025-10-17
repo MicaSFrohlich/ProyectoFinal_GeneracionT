@@ -30,9 +30,9 @@ function Footer() {
           <button onClick={() => toggleSection("ayuda")}>Ayuda</button>
           {open.ayuda && (
             <div className="toggle-content">
-              <p class="toggle-font">🤍 Querés mandar un reclamo? </p>
-              <p class="toggle-font"> Comunicate a nuestro mail:</p>
-              <p class="toggle-font"> novastyle.reclamos@gmail.com</p>
+              <p className="toggle-font">🤍 Querés mandar un reclamo? </p>
+              <p className="toggle-font"> Comunicate a nuestro mail:</p>
+              <p className="toggle-font"> novastyle.reclamos@gmail.com</p>
             </div>
           )}
       </div>
@@ -41,8 +41,8 @@ function Footer() {
           <button onClick={() => toggleSection("contacto")}>Contacto</button>
           {open.contacto && (
             <div className="toggle-content">
-              <p class="toggle-font">🤍 Email: novastyle@gmail.com</p>
-              <p class="toggle-font">🤍 Teléfono: +54 9 11 1234-5678</p>
+              <p className="toggle-font">🤍 Email: novastyle@gmail.com</p>
+              <p className="toggle-font">🤍 Teléfono: +54 9 11 1234-5678</p>
             </div>
           )}
         </div>
@@ -51,9 +51,9 @@ function Footer() {
           <button onClick={() => toggleSection("local")}>Local</button>
           {open.local && (
             <div className="toggle-content">
-              <p class="toggle-font">🤍 Dirección: Av. Santa Fe 2015, CABA</p>
-              <p class="toggle-font">🤍 Horarios: Lunes a Viernes de 9 a 18hs</p>
-              <p class="toggle-font">🤍 Cerca del Ateneo Grand Splendid</p>
+              <p className="toggle-font">🤍 Dirección: Av. Santa Fe 2015, CABA</p>
+              <p className="toggle-font">🤍 Horarios: Lunes a Viernes de 9 a 18hs</p>
+              <p className="toggle-font">🤍 Cerca del Ateneo Grand Splendid</p>
             </div>
           )}
         </div>

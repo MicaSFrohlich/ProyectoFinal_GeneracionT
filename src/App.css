@@ -406,6 +406,7 @@ p {
   border-radius: 2vh;
   animation: fadeInUp 1s ease;
   transition: transform 0.3s ease;
+  font-family: "Elsie Swash Caps", serif;
 }
 .datosUsuario:hover {
   transform: scale(1.05);

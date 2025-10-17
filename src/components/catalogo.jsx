@@ -21,16 +21,29 @@ const Catalogo = ({ seccionSeleccionada, agregarAlCarrito }) => {
   const fetchProductos = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/productos");
-      if (!response.ok) throw new Error("Error al obtener productos");
+
+  const base = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '');
+  const path = import.meta.env.DEV ? `${base}/productos` : (import.meta.env.VITE_API_URL ? `${base}/productos` : '/api/productos');
+      const response = await fetch(path);
+
+      if (!response.ok) {
+        const text = await response.clone().text();
+        throw new Error(`HTTP ${response.status} ${response.statusText} - ${text.slice(0,300)}`);
+      }
+
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        const text = await response.clone().text();
+        throw new Error('La API no devolvió JSON. Respuesta: ' + text.slice(0,300));
+      }
 
       const data = await response.json();
-      if (!Array.isArray(data)) throw new Error("Los datos recibidos no son un array");
+      if (!Array.isArray(data)) throw new Error('Los datos recibidos no son un array: ' + JSON.stringify(data).slice(0,300));
 
       setProductos(data);
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      setError(err.message || String(err));
     } finally {
       setLoading(false);
     }
