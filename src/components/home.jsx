@@ -15,14 +15,9 @@ function Home({ setSeccionSeleccionada }) {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
 
-  useEffect(() => {
-    const usuarioGuardado = localStorage.getItem("usuario");
-    const usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
-
-    if (!usuario) {
-      setTimeout(() => setShowPopup(true), 800); 
-    }
-  }, []);
+    useEffect(() => {
+      setTimeout(() => setShowPopup(true), 800);
+    }, []);
 
   const handleClickProducto = (seccion) => {
     setSeccionSeleccionada(seccion);
