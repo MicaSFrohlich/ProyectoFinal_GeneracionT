@@ -75,10 +75,11 @@ function App() {
 
   return (
     <>
+      {console.log("APP RENDERED")}
       <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
 
       <Routes>
-        <Route path="/" element={<Home setSeccionSeleccionada={setSeccionActiva} />} />
+        <Route path="/" element={<>{console.log("HOME MONTADO")}<Home setSeccionSeleccionada={setSeccionActiva} /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/usuario" element={<Usuario />} />
