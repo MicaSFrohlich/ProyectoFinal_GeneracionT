@@ -27,9 +27,10 @@ function Home({ setSeccionSeleccionada }) {
   const cerrarPopup = () => {
     setShowPopup(false);
   };
-
+  console.log("HOME RENDERED — showPopup =", showPopup);
   return (
     <main className="inicio">
+      
       <p className="font titulo">Nova Style</p>
       <p className="font subtitulo">Destacados del mes</p>
 
