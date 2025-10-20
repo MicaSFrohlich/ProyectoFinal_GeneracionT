@@ -11,8 +11,9 @@ import Seguimiento from "./components/seguimiento";
 import SoporteChat from "./components/soporteChat";
 import SobreNosotros from "./components/sobreNosotros";
 import Carrito from "./components/carrito";
-import ArmarConjunto from "./components/armarConjunto.jsx";
+import ArmarConjunto from "./components/armarConjunto";
 import MetodoPago from "./components/metodoPago";
+import PopupBienvenida from "./components/PopUp";
 import "./App.css";
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
 
   return (
     <>
+      <PopupBienvenida />
       <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
 
       <Routes>

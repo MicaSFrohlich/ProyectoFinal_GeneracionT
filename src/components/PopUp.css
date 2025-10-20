@@ -1,0 +1,116 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(88, 83, 80, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  animation: fadeIn 0.6s ease;
+}
+
+.popup-container {
+  background: linear-gradient(to bottom right, #FAF7F3, #E8D6C5);
+  border-radius: 1.5vh;
+  box-shadow: 0 4px 12px rgba(88, 83, 80, 0.25);
+  padding: 4vh 6vh;
+  width: 90%;
+  margin: 18% 12% 12% 12%;
+  max-width: 60vh;
+  text-align: center;
+  animation: slideUp 0.5s ease;
+  font-family: "Elsie Swash Caps", serif;
+}
+
+.popup-titulo {
+  font-family: "Imperial Script", cursive;
+  font-size: 7vh;
+  color: #d9a299;
+  margin-bottom: 2vh;
+  position: relative;
+}
+
+.popup-titulo::after {
+  content: "";
+  display: block;
+  width: 6vh;
+  height: 0.3vh;
+  background-color: #d9a299;
+  margin: 1vh auto 0;
+  border-radius: 0.2vh;
+}
+
+.popup-text {
+  font-size: 3vh;
+  color: #987070;
+  margin: 2vh 0;
+  line-height: 1.5;
+}
+
+.popup-note {
+  font-size: 3vh;
+  color: #987070;
+  margin: 1vh 0 3vh 0;
+  font-weight:bold;
+}
+
+.popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  align-items: center;
+}
+
+.btn-iniciar {
+  background-color: #D9A299;
+  color: white;
+  border: none;
+  font-family: "Imperial Script", cursive;
+  font-size: 5vh;
+  border-radius: 0.8vh;
+  padding: 1vh 3vh;
+  transition: transform 0.3s ease, background 0.3s ease;
+  width: 80%;
+  box-shadow: 0 2px 6px rgba(152, 112, 112, 0.3);
+}
+
+.btn-iniciar:hover {
+  background-color: #987070;
+  transform: translateY(-0.3vh);
+  box-shadow: 0 4px 10px rgba(152, 112, 112, 0.4);
+}
+
+.btn-continuar {
+  background: transparent;
+  color: #987070;
+  border: 0.2vh solid #987070;
+  font-family: "Elsie Swash Caps", serif;
+  font-size: 3vh;
+  border-radius: 0.8vh;
+  padding: 1vh 3vh;
+  transition: all 0.3s ease;
+  width: 80%;
+}
+
+.btn-continuar:hover {
+  background-color: #987070;
+  color: #FAF7F3;
+  transform: translateY(-0.3vh);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
