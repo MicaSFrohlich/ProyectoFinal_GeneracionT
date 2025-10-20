@@ -31,7 +31,7 @@ const Popup = () => {
           <strong>iniciá sesión o registrate</strong> para guardar tus datos y tus pedidos.
         </p>
         <p className="popup-note">
-          Si continuás sin iniciar sesión, tu carrito se perderá al salir del sitio.
+          Si continuás sin iniciar sesión, tu carrito se perderá.
         </p>
 
         <div className="popup-buttons">
