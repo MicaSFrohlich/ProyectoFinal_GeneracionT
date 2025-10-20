@@ -16,7 +16,14 @@ function Home({ setSeccionSeleccionada }) {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-  setTimeout(() => setShowPopup(true), 800);
+    // Revisamos el usuario en sessionStorage (igual que App.jsx)
+    const usuarioGuardado = sessionStorage.getItem("usuario");
+    const usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
+
+    // Si NO hay usuario, mostramos popup
+    if (!usuario) {
+      setTimeout(() => setShowPopup(true), 800);
+    }
   }, []);
 
   const handleClickProducto = (seccion) => {
@@ -27,10 +34,9 @@ function Home({ setSeccionSeleccionada }) {
   const cerrarPopup = () => {
     setShowPopup(false);
   };
-  console.log("HOME RENDERED — showPopup =", showPopup);
+
   return (
     <main className="inicio">
-      
       <p className="font titulo">Nova Style</p>
       <p className="font subtitulo">Destacados del mes</p>
 
@@ -47,28 +53,27 @@ function Home({ setSeccionSeleccionada }) {
       </div>
 
       {showPopup && (
-      <div className="popup-overlay">
-        <div className="popup-container">
-          <h2 className="popup-titulo">Bienvenido a NovaStyle</h2>
-          <p className="popup-text">
-            Nos alegra tenerte acá 🤍<br />
-            Antes de continuar,{" "} 
-            <strong>iniciá sesión o registrate</strong> para guardar tus datos y tus pedidos.
-          </p>
-          <p className="popup-note">
-            Si continuás sin iniciar sesión, tu carrito se perderá.
-          </p>
+        <div className="popup-overlay">
+          <div className="popup-container">
+            <h2 className="popup-titulo">Bienvenido a NovaStyle</h2>
+            <p className="popup-text">
+              Nos alegra tenerte acá 🤍<br />
+              Antes de continuar, <strong>iniciá sesión o registrate</strong> para guardar tus datos y tus pedidos.
+            </p>
+            <p className="popup-note">
+              Si continuás sin iniciar sesión, tu carrito se perderá.
+            </p>
 
-          <div className="popup-buttons">
-            <button className="btn-iniciar" onClick={() => navigate("/login")}>
-              Iniciar sesión
-            </button>
-            <button className="btn-continuar" onClick={cerrarPopup}>
-              Continuar sin iniciar
-            </button>
+            <div className="popup-buttons">
+              <button className="btn-iniciar" onClick={() => navigate("/login")}>
+                Iniciar sesión
+              </button>
+              <button className="btn-continuar" onClick={cerrarPopup}>
+                Continuar sin iniciar
+              </button>
+            </div>
           </div>
-      </div>
-    </div>
+        </div>
       )}
     </main>
   );
