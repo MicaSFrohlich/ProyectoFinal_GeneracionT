@@ -80,7 +80,7 @@ function App() {
       <Navbar secciones={secciones} onSelect={setSeccionActiva} carrito={carrito} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setSeccionSeleccionada={setSeccionActiva} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/usuario" element={<Usuario />} />

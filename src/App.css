@@ -333,7 +333,7 @@ p {
 }
 
 .division {
-  height: 1px; 
+  height: 0.1vh; 
   background-color: #ccbfb4;
   width: 30%;
   margin: 2vh 0;
@@ -342,39 +342,35 @@ p {
 
 .destacados-container {
   display: flex;
-  justify-content: space-around;
-  margin-top: 3vh;
+  gap: 2vh;
   flex-wrap: wrap;
-  gap: 4vh;
-  animation: fadeInUp 1s ease;
+  justify-content: center;
+  margin-top: 2vh;
 }
 
 .destacados {
-  width: 17vh;
-  height: 17vh;
-  border-radius: 1.5vh;
+  cursor: pointer;
+  border: 0.1vh solid #eee;
+  border-radius: 1vh;
   overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 15vh;
+  height: 18vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: pulsar 3s ease-in-out infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.destacados:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(152, 112, 112, 0.3);
 }
 
 .destacados img {
-  background-color: #fdfcfc;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 1.5vh;
-  transition: transform 0.3s ease;
+  border-radius: 1vh;
 }
-.destacados img:hover {
-  transform: scale(1.15);
+
+.destacados:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.4vh 10px rgba(0,0,0,0.1);
 }
 
 /* USUARIO */
