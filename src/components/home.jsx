@@ -16,11 +16,9 @@ function Home({ setSeccionSeleccionada }) {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Revisamos el usuario en sessionStorage (igual que App.jsx)
     const usuarioGuardado = sessionStorage.getItem("usuario");
     const usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
 
-    // Si NO hay usuario, mostramos popup
     if (!usuario) {
       setTimeout(() => setShowPopup(true), 800);
     }

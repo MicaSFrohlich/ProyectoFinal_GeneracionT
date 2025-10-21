@@ -138,15 +138,21 @@ const MetodoPago = ({ setCarrito }) => {
           <input
             type="text"
             placeholder="MM/AA"
-            maxLength={4}
+            maxLength={5}
             inputMode="numeric"
             value={tarjeta.vencimiento}
-            onChange={(e) => setTarjeta({ ...tarjeta, vencimiento: e.target.value.replace(/\D/g, "")})}
+            onChange={(e) => {
+              let val = e.target.value.replace(/\D/g, "");
+              if (val.length > 2) {
+                val = val.slice(0, 2) + "/" + val.slice(2, 4);
+              }
+              setTarjeta({ ...tarjeta, vencimiento: val });
+            }}
           />
           <input
             type="text"
             placeholder="CVV"
-            maxLength={3}
+            maxLength={4}
             inputMode="numeric"
             value={tarjeta.cvv}
             onChange={(e) => setTarjeta({ ...tarjeta, cvv: e.target.value.replace(/\D/g, "")})}
