@@ -144,12 +144,34 @@ const MetodoPago = ({ setCarrito }) => {
             value={tarjeta.vencimiento}
             onChange={(e) => {
               let val = e.target.value.replace(/\D/g, "");
+
               if (val.length > 2) {
                 val = val.slice(0, 2) + "/" + val.slice(2, 4);
               }
+
+              if (val.length === 5) {
+                const [mesStr, anioStr] = val.split("/");
+                const mes = parseInt(mesStr, 10);
+                const anio = parseInt("20" + anioStr, 10);
+                const hoy = new Date();
+                const mesActual = hoy.getMonth() + 1;
+                const anioActual = hoy.getFullYear();
+
+                if (mes < 1 || mes > 12) {
+                  alert("Mes inválido");
+                  return;
+                }
+
+                if (anio < anioActual || (anio === anioActual && mes < mesActual)) {
+                  alert("La tarjeta está vencida");
+                  return;
+                }
+              }
+
               setTarjeta({ ...tarjeta, vencimiento: val });
             }}
           />
+
           <input
             type="text"
             placeholder="CVV"

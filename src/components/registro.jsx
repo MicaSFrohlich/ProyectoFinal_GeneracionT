@@ -15,20 +15,20 @@ function Registro() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.trim())) {
-    alert("⚠️ Por favor ingresá un email válido!");
+    alert("⚠️ Por favor ingresá un email válido");
     return;
   }
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
   if (!passwordRegex.test(password)) {
-    alert("⚠️ Tu contraseña es insegura! Mínimo 6 caracteres, agrega letras y números!");
+    alert("⚠️ ¡Tu contraseña es insegura! Mínimo 6 caracteres, agrega letras y números");
     return;
   }
   if (!email || !password || !passwordRepeat) {
-    alert("⚠️ Todos los campos son obligatorios!");
+    alert("⚠️ Todos los campos son obligatorios");
     return;
   }
   if (password !== passwordRepeat) {
-    alert("⚠️ Las contraseñas no coinciden!");
+    alert("⚠️ Las contraseñas no coinciden");
     return;
   }
 

@@ -38,34 +38,40 @@ function App() {
     localStorage.setItem(`carrito_${usuario.userid}`, JSON.stringify(carrito));
   }, [carrito]);
 
-  const agregarAlCarrito = (producto, talle, cantidad) => {
-    setCarrito((prev) => {
-      const existe = prev.find(
-        (item) => item.id === producto.productid && item.talle === talle
-      );
+ const agregarAlCarrito = (producto, talle, cantidad) => {
+  setCarrito((prev) => {
+    const existe = prev.find(
+      (item) => item.id === producto.productid && item.talle === talle
+    );
 
-      if (existe) {
-        return prev.map((item) =>
-          item.id === producto.productid && item.talle === talle
-            ? { ...item, cantidad: item.cantidad + cantidad }
-            : item
-        );
-      } else {
-        return [
-          ...prev,
-          {
-            id: producto.productid,
-            nombre: producto.productname,
-            imagen: producto.image,
-            precio: producto.price,
-            tipo: producto.type,
-            talle,
-            cantidad,
-          },
-        ];
+    if (existe) {
+      const nuevaCantidad = Math.min(existe.cantidad + cantidad, 25);
+
+      if (existe.cantidad + cantidad > 25) {
+        alert("No podés agregar más de 25 unidades de este producto en este talle.");
       }
-    });
-  };
+
+      return prev.map((item) =>
+        item.id === producto.productid && item.talle === talle
+          ? { ...item, cantidad: nuevaCantidad }
+          : item
+      );
+    } else {
+      return [
+        ...prev,
+        {
+          id: producto.productid,
+          nombre: producto.productname,
+          imagen: producto.image,
+          precio: producto.price,
+          tipo: producto.type,
+          talle,
+          cantidad: Math.min(cantidad, 25),
+        },
+      ];
+    }
+  });
+};
 
   const eliminarDelCarrito = (id, talle) => {
     setCarrito((prev) =>

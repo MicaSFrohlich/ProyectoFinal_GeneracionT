@@ -15,7 +15,7 @@ function Footer() {
   return (
     <footer>
       <div className="informacion">
-        <h3>⌯⌲ Envios gratis a partir de $100.000 </h3>
+        <h3>⌯⌲ Envios gratis a todo el país </h3>
         <h3>⚲ Pick up gratis en nuestro local</h3>
         <h3>Ropa vendida con amor 𖹭.ᐟ</h3>
       </div>

@@ -1,10 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./soporteChat.css";
 
 const SoporteChat = () => {
-  const [mensajes, setMensajes] = useState([]);
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+  const userId = usuario?.userid || "anonimo";
+
+  const [mensajes, setMensajes] = useState(() => {
+    const chatGuardado = sessionStorage.getItem(`chat_soporte_${userId}`);
+    if (chatGuardado) {
+      try {
+        return JSON.parse(chatGuardado).mensajes || [];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  });
+
   const [input, setInput] = useState("");
-  const [respuestaEnviada, setRespuestaEnviada] = useState(false);
+
+  const [respuestaEnviada, setRespuestaEnviada] = useState(() => {
+    const chatGuardado = sessionStorage.getItem(`chat_soporte_${userId}`);
+    if (chatGuardado) {
+      try {
+        return JSON.parse(chatGuardado).respuestaEnviada || false;
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      `chat_soporte_${userId}`,
+      JSON.stringify({ mensajes, respuestaEnviada })
+    );
+  }, [mensajes, respuestaEnviada, userId]);
 
   const enviarMensaje = () => {
     if (input.trim() === "") return;
@@ -18,7 +50,7 @@ const SoporteChat = () => {
       setTimeout(() => {
         setMensajes(prev => [
           ...prev,
-          { texto: "Gracias por consultar! Estamos buscando un agente disponible para atenderte.", origen: "soporte" }
+          { texto: "¡Gracias por consultar! Estamos buscando un agente disponible para atenderte.", origen: "soporte" }
         ]);
       }, 1000);
 
@@ -43,7 +75,7 @@ const SoporteChat = () => {
       <div className="chat-input">
         <input
           type="text"
-          placeholder="Escribinos tu consulta!"
+          placeholder="¡Escribinos tu consulta!"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && enviarMensaje()}

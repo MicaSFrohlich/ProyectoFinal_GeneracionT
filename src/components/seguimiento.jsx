@@ -5,7 +5,7 @@ const pasos = [
   "Pedido recibido",
   "Pedido en preparación",
   "En camino",
-  "Entregado !"
+  "Entregado"
 ];
 
 const Seguimiento = () => {
