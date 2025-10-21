@@ -16,14 +16,17 @@ Para el primer entregable trabajamos con React. Aún no hemos hecho una conexió
 20/10/2025
 Sobre la entrega final: 
     La página cuenta con las siguientes características:
-    - Registro e inicio de sesión, los usuarios son guardados en la base de datos.
+    - Registro e inicio de sesión.
     - Menú de usuario: para iniciar sesión o registrarse, luego aparecen los datos asociados a la cuenta y el botón para seguir el envío en caso de haber realizado una compra.
     - Chat de soporte: responde con dos mensajes automáticos.
+    - Catálogo separado por secciones. 
     - Apartado "Sobre Nosotros": cuenta un poco sobre la marca ficticia.
     - Menu izquierdo: secciones de prendas.
     - Carrito de compra: guarda los productos seleccionados, muestra el precio de cada uno y permite agregar o disminuir la cantidad.
-    - Armá tu conjunto: Las prendas agregadas al carrito se muestran seccionadas en parte de arriba y parte de abajo, permitiendo armar conjuntos.
+    - Apartado para pagar.
+    - Armá tu conjunto: Las prendas agregadas al carrito se muestran divididas en parte de arriba y parte de abajo, permitiendo armar conjuntos.
     - Seguimiento de envío: aparece al confirmar el pago de la compra y también se puede acceder a el desde el menú de usuario. En el mismo aparecen las prendas que se están enviando.
+    - La base de datos, realizada con Supabase, guarda en la tabla Users los usuarios con su respectiva contraseña, nombre, DNI, teléfono y dirección, en la tabla Orders las órdenes realizadas, en Products los productos del catálogo, y en Orderitems los items pedidos en cada orden.
 
 ALGUNAS de las validaciones realizadas:
     - Email válido: debe seguir el formato: texto @ texto . dominio
@@ -32,9 +35,9 @@ ALGUNAS de las validaciones realizadas:
     - Cantidad de prendas: no se pueden comprar ni cero ni más de 25 prendas 
     - DNI: no pueden haber dos usuarios registrados con el mismo DNI o mail
     - Registro: al repetir la contraseña debe ser igual que la primera escrita
-    - No se pierde ni el usuario activo, ni su carrito, ni su seguimiento de envío al recargar la página
+    - No se pierde ni el usuario activo, ni su carrito, ni su seguimiento de envío, ni su chat de soporte al recargar la página
     - Rellenar todos los campos que son pedidos
-    - Método de pago: los campos númericos no permiten ingresar letras, todos los campos (excepto dirección y Nombre, con 50 dígitos cada uno) tienen límite de dígitos según corresponde
+    - Método de pago: los campos númericos no permiten ingresar letras, todos los campos (excepto dirección y Nombre, con 50 dígitos cada uno) tienen límite de dígitos según corresponde. La tarjeta no puede estar vencida, y el mes debe ser de 01 a 12.
 
 Link a nuestro Trello de planificación: https://trello.com/b/Ser3wIrf/proyecto-nova-style-generacion-t-2025
 Link del repositorio de GitHub: https://github.com/MicaSFrohlich/ProyectoFinal_GeneracionT
