@@ -29,6 +29,27 @@ const MetodoPago = ({ setCarrito }) => {
   const confirmarPago = async () => {
     if (!metodo) return alert("Por favor seleccioná un método de pago");
 
+    if (tarjeta.vencimiento) {
+      const [mesStr, anioStr] = tarjeta.vencimiento.split("/");
+      const mes = parseInt(mesStr, 10);
+      const anio = parseInt("20" + anioStr, 10);
+      const hoy = new Date();
+      const mesActual = hoy.getMonth() + 1;
+      const anioActual = hoy.getFullYear();
+
+      if (isNaN(mes) || isNaN(anio) || mes < 1 || mes > 12) {
+        alert("⚠️ Fecha de vencimiento inválida.");
+        setTarjeta({ ...tarjeta, vencimiento: "" });
+        return;
+      }
+
+      if (anio < anioActual || (anio === anioActual && mes < mesActual)) {
+        alert("⚠️ La tarjeta está vencida.");
+        setTarjeta({ ...tarjeta, vencimiento: "" });
+        return;
+      }
+    }
+
     if ((metodo === "tarjeta" || metodo === "tarjetaMP") &&
         (!tarjeta.numero || !tarjeta.nombre || !tarjeta.vencimiento || 
          !tarjeta.cvv || !tarjeta.dni || !tarjeta.direccion || !tarjeta.telefono)) {
@@ -48,49 +69,49 @@ const MetodoPago = ({ setCarrito }) => {
 
   const base = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '');
   const response = await fetch(`${base}/api/checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          usuario: usuarioActualizado,
-          carrito,
-          total,
-          shippingaddress: tarjeta.direccion
-        })
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    usuario: usuarioActualizado,
+    carrito,
+    total,
+    shippingaddress: tarjeta.direccion
+  })
+});
 
-      const data = await response.json();
+  const data = await response.json();
 
-      if (!response.ok) {
-        if (response.status === 400 && data.error?.includes("DNI")) {
-          alert("⚠️ Este DNI ya está registrado por otro usuario.");
-        } else {
-          alert("❌ No se pudo procesar el pago. " + (data.error || ""));
-        }
-        return;
-      }
-
-      const pedidoActual = {
-        carrito,
-        pasoActivo: 0,     
-        entregado: false
-      };
-      localStorage.setItem("pedidoActual", JSON.stringify(pedidoActual));
-
-      sessionStorage.setItem("compraConfirmada", "true");
-
-      alert("✅ Compra realizada con éxito!");
-
-      setCarrito([]);
-      localStorage.removeItem("carrito");
-
-      sessionStorage.setItem("usuario", JSON.stringify(data.user || usuarioActualizado));
-
-      navigate("/seguimiento");
-
-    } catch (err) {
-      console.error("Error en checkout:", err);
-      alert("❌ Ocurrió un error al procesar el pago");
+  if (!response.ok) {
+    if (response.status === 400 && data.error?.includes("DNI")) {
+      alert("⚠️ Este DNI ya está registrado por otro usuario.");
+    } else {
+      alert("❌ No se pudo procesar el pago. " + (data.error || ""));
     }
+    return;
+  }
+
+    const pedidoActual = {
+      carrito,
+      pasoActivo: 0,     
+      entregado: false
+    };
+    localStorage.setItem("pedidoActual", JSON.stringify(pedidoActual));
+
+    sessionStorage.setItem("compraConfirmada", "true");
+
+    alert("✅ Compra realizada con éxito!");
+
+    setCarrito([]);
+    localStorage.removeItem("carrito");
+
+    sessionStorage.setItem("usuario", JSON.stringify(data.user || usuarioActualizado));
+
+    navigate("/seguimiento");
+
+  } catch (err) {
+    console.error("Error en checkout:", err);
+    alert("❌ Ocurrió un error al procesar el pago");
+  }
   };
 
   return (
@@ -158,12 +179,14 @@ const MetodoPago = ({ setCarrito }) => {
                 const anioActual = hoy.getFullYear();
 
                 if (mes < 1 || mes > 12) {
-                  alert("Mes inválido");
+                  alert("⚠️ Mes inválido. Ingresá un número entre 01 y 12.");
+                  setTarjeta({ ...tarjeta, vencimiento: "" });
                   return;
                 }
 
                 if (anio < anioActual || (anio === anioActual && mes < mesActual)) {
-                  alert("La tarjeta está vencida");
+                  alert("⚠️ La tarjeta ya está vencida.");
+                  setTarjeta({ ...tarjeta, vencimiento: "" }); 
                   return;
                 }
               }
@@ -171,6 +194,7 @@ const MetodoPago = ({ setCarrito }) => {
               setTarjeta({ ...tarjeta, vencimiento: val });
             }}
           />
+
 
           <input
             type="text"
