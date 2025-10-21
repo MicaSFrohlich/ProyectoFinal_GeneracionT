@@ -132,6 +132,7 @@ const MetodoPago = ({ setCarrito }) => {
           <input
             type="text"
             placeholder="Nombre De Titular"
+            maxLength={50}
             value={tarjeta.nombre}
             onChange={(e) => setTarjeta({ ...tarjeta, nombre: e.target.value })}
           />
@@ -176,6 +177,7 @@ const MetodoPago = ({ setCarrito }) => {
           <input
             type="text"
             placeholder="Dirección particular"
+            maxLength={50}
             value={tarjeta.direccion}
             onChange={(e) => setTarjeta({ ...tarjeta, direccion: e.target.value })}
           />

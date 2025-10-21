@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (re,res)=>{
-    res.end("holiwis soy APP!");
+    res.end("hola soy APP!");
 });
 
 app.post('/productos', (req, res) => {
